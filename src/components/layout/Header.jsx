@@ -32,7 +32,7 @@ export default function Header() {
 </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden items-center justify-center gap-6 lg:flex">
+          <nav className="hidden items-center justify-between gap-14 lg:flex">
             <Link
               href="/"
               className="text-sm font-medium text-slate-700 transition-colors hover:text-[var(--primary)]"
