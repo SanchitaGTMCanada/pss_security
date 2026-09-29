@@ -6,6 +6,7 @@ import WhyChoose from "@/components/home/WhyChoose";
 import MissionVision from "@/components/home/MissionVision";
 import BookingSection from "@/components/home/BookingSection";
 import FAQSection from "@/components/faq/FAQSection";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
@@ -20,7 +21,9 @@ export default function Home() {
         <MissionVision/>
         <BookingSection/>
         <FAQSection/>
+    
       </main>
+          <Footer/>
     </>
   );
 }
