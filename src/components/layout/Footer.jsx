@@ -19,16 +19,6 @@ export default function Footer() {
           BACKGROUND
       ====================================================== */}
 
-      <div className="pointer-events-none absolute inset-0 opacity-[0.025]">
-        <div
-          className="h-full w-full"
-          style={{
-            backgroundImage:
-              "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
 
       <div className="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#A51F20]/12 blur-[140px]" />
 
