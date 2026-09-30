@@ -1,22 +1,48 @@
-
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#171717]">
+    <section className="relative min-h-[680px] overflow-hidden ">
+
+      {/* =====================================================
+          BACKGROUND VIDEO
+      ====================================================== */}
+
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src="/videos/security-hero.mp4" type="video/mp4" />
+      </video>
+
+      {/* =====================================================
+          DARK VIDEO OVERLAY
+      ====================================================== */}
+
+   
+
+      {/* =====================================================
+          LEFT DARK GRADIENT
+      ====================================================== */}
+
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#171717]/95 via-[#171717]/75 to-[#171717]/45" />
+
+      {/* =====================================================
+          BOTTOM GRADIENT
+      ====================================================== */}
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#171717] to-transparent" />
+
       {/* =====================================================
           BACKGROUND GRID
       ====================================================== */}
 
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.035]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+    
 
       {/* =====================================================
           RED GLOW - LEFT
@@ -31,25 +57,23 @@ export default function Hero() {
       <div className="pointer-events-none absolute -right-40 top-20 h-96 w-96 rounded-full bg-[#A51F20]/10 blur-[140px]" />
 
       {/* =====================================================
-          SUBTLE GRAPHITE SHAPE
+          CONTENT
       ====================================================== */}
 
-      <div className="pointer-events-none absolute right-[20%] top-0 h-72 w-72 rounded-full bg-[#303030]/40 blur-[100px]" />
-
       <Container>
-        <div className="relative grid min-h-[680px] items-center gap-12 py-16 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <div className="relative z-10 flex min-h-[680px] items-center py-16 sm:py-20">
 
           {/* =================================================
               LEFT CONTENT
           ================================================== */}
 
-          <div className="relative z-10">
+          <div className="relative max-w-3xl">
 
             {/* =================================================
                 LABEL
             ================================================== */}
 
-            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-[#303030]/70 px-4 py-2 backdrop-blur-sm">
+            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-[#171717]/65 px-4 py-2 backdrop-blur-md">
 
               <span className="h-2 w-2 rounded-full bg-[#A51F20] shadow-[0_0_12px_rgba(165,31,32,0.8)]" />
 
@@ -77,7 +101,7 @@ export default function Hero() {
                 DESCRIPTION
             ================================================== */}
 
-            <p className="mt-7 max-w-xl text-base leading-8 text-[#F4F4F4]/75 sm:text-lg">
+            <p className="mt-7 max-w-xl text-base leading-8 text-[#F4F4F4]/80 sm:text-lg">
               Reliable security solutions built to protect your people,
               property, and business. Professional protection when you need
               it most.
@@ -106,7 +130,7 @@ export default function Hero() {
 
               <Link
                 href="/services"
-                className="group inline-flex items-center gap-3 rounded-lg border border-white/15 bg-[#303030]/70 px-7 py-4 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-[#A51F20]/60 hover:bg-[#454545]"
+                className="group inline-flex items-center gap-3 rounded-lg border border-white/15 bg-[#171717]/65 px-7 py-4 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-[#A51F20]/60 hover:bg-[#303030]/80"
               >
                 Explore Services
 
@@ -152,105 +176,6 @@ export default function Hero() {
                 </p>
 
               </div>
-            </div>
-
-          </div>
-
-          {/* =================================================
-              RIGHT IMAGE
-          ================================================== */}
-
-          <div className="relative z-10">
-
-            <div className="relative mx-auto max-w-xl">
-
-              {/* =================================================
-                  IMAGE GLOW
-              ================================================== */}
-
-              <div className="absolute -inset-5 rounded-[2rem] bg-[#A51F20]/10 blur-2xl" />
-
-              {/* =================================================
-                  IMAGE CONTAINER
-              ================================================== */}
-
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#303030] shadow-2xl">
-
-                <img
-                  src="https://www.securityguard.sk/images/service_strazna.png"
-                  alt="Professional security guard"
-                  className="h-[420px] w-full object-cover object-center sm:h-[500px]"
-                />
-
-                {/* =================================================
-                    DARK IMAGE OVERLAY
-                ================================================== */}
-
-                <div className="absolute inset-0 bg-gradient-to-t from-[#171717]/95 via-[#171717]/15 to-transparent" />
-
-                {/* =================================================
-                    RED BOTTOM ACCENT
-                ================================================== */}
-
-                <div className="absolute bottom-0 left-0 h-1 w-1/3 bg-[#A51F20]" />
-
-                {/* =================================================
-                    BOTTOM INFORMATION CARD
-                ================================================== */}
-
-                <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/10 bg-[#171717]/85 p-5 backdrop-blur-xl sm:bottom-6 sm:left-6 sm:right-6">
-
-                  <div className="flex items-center justify-between gap-4">
-
-                    <div>
-
-                      <p className="text-xs font-medium uppercase tracking-[0.2em] text-[#F4F4F4]/50">
-                        Security Coverage
-                      </p>
-
-                      <p className="mt-1 text-lg font-bold text-white sm:text-xl">
-                        Professional Protection
-                      </p>
-
-                    </div>
-
-                    {/* Check Icon */}
-
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#A51F20] text-lg font-bold text-white shadow-lg shadow-black/20 sm:h-12 sm:w-12">
-                      ✓
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-              {/* =================================================
-                  FLOATING 24/7 CARD
-              ================================================== */}
-
-              <div className="absolute -right-4 top-8 hidden w-48 rounded-2xl border border-white/10 bg-[#303030]/95 p-5 shadow-2xl backdrop-blur-xl sm:block lg:-right-6">
-
-                <div className="mb-3 flex items-center justify-between">
-
-                  <span className="text-xs uppercase tracking-wider text-[#F4F4F4]/55">
-                    Available
-                  </span>
-
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#A51F20] shadow-[0_0_10px_rgba(165,31,32,0.8)]" />
-
-                </div>
-
-                <p className="text-2xl font-bold text-white">
-                  24/7
-                </p>
-
-                <p className="mt-1 text-xs text-[#F4F4F4]/55">
-                  Security Support
-                </p>
-
-              </div>
 
             </div>
 
@@ -258,6 +183,13 @@ export default function Hero() {
 
         </div>
       </Container>
+
+      {/* =====================================================
+          BOTTOM RED ACCENT
+      ====================================================== */}
+
+      <div className="absolute bottom-0 left-0 h-1 w-1/3 bg-[#A51F20]" />
+
     </section>
   );
 }
