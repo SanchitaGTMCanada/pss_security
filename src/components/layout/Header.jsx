@@ -40,12 +40,12 @@ export default function Header() {
               Home
             </Link>
 
-            <Link
+            {/* <Link
               href="/about"
               className="text-sm font-medium text-slate-700 transition-colors hover:text-[var(--primary)]"
             >
               About
-            </Link>
+            </Link> */}
 
             <Link
               href="/services"
@@ -65,7 +65,7 @@ export default function Header() {
               href="/contact"
               className="text-sm font-medium text-slate-700 transition-colors hover:text-[var(--primary)]"
             >
-              Contact
+              Contact 
             </Link>
           </nav>
 

@@ -7,11 +7,12 @@ import MissionVision from "@/components/home/MissionVision";
 import BookingSection from "@/components/home/BookingSection";
 import FAQSection from "@/components/faq/FAQSection";
 import Footer from "@/components/layout/Footer";
+import Team from "@/components/home/Team";
 
 export default function Home() {
   return (
     <>
-      <Header />
+     
 
       <main>
         <Hero />
@@ -19,11 +20,12 @@ export default function Home() {
         <AboutPreview/>
         <WhyChoose/>
         <MissionVision/>
+        <Team/>
         <BookingSection/>
         <FAQSection/>
     
       </main>
-          <Footer/>
+        
     </>
   );
 }

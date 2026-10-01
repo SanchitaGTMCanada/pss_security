@@ -1,0 +1,223 @@
+import Image from "next/image";
+import Container from "@/components/ui/Container";
+
+const teamMembers = [
+  {
+    name: "Michael Anderson",
+    role: "Chief Executive Officer",
+    image:
+      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1200&q=90",
+  },
+  {
+    name: "Daniel Wilson",
+    role: "Security Operations Manager",
+    image:
+      "https://images.unsplash.com/photo-1566492031773-4f4e44671d66?auto=format&fit=crop&w=1200&q=90",
+  },
+  {
+    name: "James Mitchell",
+    role: "Senior Security Supervisor",
+    image:
+      "https://images.unsplash.com/photo-1569913486515-b74bf7751574?auto=format&fit=crop&w=1200&q=90",
+  },
+];
+
+export default function Team() {
+  return (
+    <section className="relative overflow-hidden bg-[#F7F7F5] py-16 sm:py-20 lg:py-24">
+
+      {/* =====================================================
+          BACKGROUND
+      ====================================================== */}
+
+      <div className="pointer-events-none absolute -right-40 top-0 h-96 w-96 rounded-full bg-[#B91C1C]/5 blur-[140px]" />
+
+      <div className="pointer-events-none absolute -left-40 bottom-0 h-96 w-96 rounded-full bg-[#E5E7EB]/60 blur-[130px]" />
+
+      <Container>
+
+        {/* =================================================
+            SECTION HEADER
+        ================================================== */}
+
+        <div className="relative z-10 mb-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+
+          {/* LEFT */}
+
+          <div>
+
+            {/* Label */}
+
+            <div className="mb-4 flex items-center gap-3">
+
+              <span className="h-[2px] w-8 bg-[#B91C1C]" />
+
+              <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#B91C1C]">
+                Our Team
+              </span>
+
+            </div>
+
+            {/* Heading */}
+
+            <h2 className="max-w-2xl text-4xl font-bold leading-[1.05] tracking-tight text-[#111111] sm:text-5xl lg:text-6xl">
+
+              The people behind
+
+              <span className="block text-[#B91C1C]">
+                your protection.
+              </span>
+
+            </h2>
+
+          </div>
+
+          {/* DESCRIPTION */}
+
+          <p className="max-w-md text-sm leading-7 text-[#5F6368] sm:text-base lg:pb-1">
+
+            Meet the professionals dedicated to delivering dependable
+            security, exceptional service, and protection you can trust.
+
+          </p>
+
+        </div>
+
+        {/* =================================================
+            TEAM GRID
+        ================================================== */}
+
+        <div className="relative z-10 grid gap-5 md:grid-cols-3">
+
+          {teamMembers.map((member, index) => (
+            <div
+              key={member.name}
+              className="group relative overflow-hidden rounded-[26px] border border-black/[0.07] bg-white shadow-[0_15px_45px_rgba(0,0,0,0.07)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,0,0,0.12)]"
+            >
+
+              {/* =================================================
+                  PHOTO
+              ================================================== */}
+
+              <div className="relative h-[500px] overflow-hidden sm:h-[540px] lg:h-[580px]">
+
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  fill
+                  priority={index === 0}
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  unoptimized
+                />
+
+                {/* =================================================
+                    IMAGE GRADIENT
+                ================================================== */}
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+
+                {/* =================================================
+                    RED HOVER GLOW
+                ================================================== */}
+
+                <div className="absolute inset-0 bg-gradient-to-t from-[#B91C1C]/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                {/* =================================================
+                    MEMBER NUMBER
+                ================================================== */}
+
+                <div className="absolute left-5 top-5 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/25 text-xs font-bold text-white backdrop-blur-md">
+                  0{index + 1}
+                </div>
+
+                {/* =================================================
+                    MEMBER INFORMATION
+                ================================================== */}
+
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7">
+
+                  <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#F87171]">
+                    {member.role}
+                  </p>
+
+                  <h3 className="text-2xl font-bold text-white sm:text-3xl">
+                    {member.name}
+                  </h3>
+
+                  {/* Small line */}
+
+                  <div className="mt-4 h-[2px] w-10 bg-[#B91C1C] transition-all duration-500 group-hover:w-20" />
+
+                </div>
+
+              </div>
+
+              {/* =================================================
+                  BOTTOM INFO
+              ================================================== */}
+
+              <div className="flex items-center justify-between px-5 py-4">
+
+                <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#777]">
+                  PSS Professional
+                </span>
+
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-black/10 text-sm text-[#555] transition-all duration-300 group-hover:border-[#B91C1C] group-hover:bg-[#B91C1C] group-hover:text-white">
+                  →
+                </div>
+
+              </div>
+
+              {/* =================================================
+                  BOTTOM RED LINE
+              ================================================== */}
+
+              <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-[#B91C1C] transition-all duration-500 group-hover:w-full" />
+
+            </div>
+          ))}
+
+        </div>
+
+        {/* =================================================
+            BOTTOM STATEMENT
+        ================================================== */}
+
+        <div className="relative z-10 mt-10 flex flex-col justify-between gap-5 border-t border-black/10 pt-6 sm:flex-row sm:items-center">
+
+          <div>
+
+            <p className="text-sm font-semibold text-[#111111] sm:text-base">
+              Professional people. Reliable protection.
+            </p>
+
+            <p className="mt-1 text-xs text-[#6B7280]">
+              A dedicated team ready to protect what matters most.
+            </p>
+
+          </div>
+
+          <div className="flex items-center gap-3">
+
+            <span className="h-2.5 w-2.5 rounded-full bg-[#B91C1C] shadow-[0_0_10px_rgba(185,28,28,0.35)]" />
+
+            <span className="text-xs font-semibold uppercase tracking-[0.15em] text-[#555]">
+              Available 24/7
+            </span>
+
+          </div>
+
+        </div>
+
+      </Container>
+
+      {/* =====================================================
+          BOTTOM ACCENT
+      ====================================================== */}
+
+      <div className="absolute bottom-0 left-0 h-[3px] w-24 bg-[#B91C1C]" />
+
+    </section>
+  );
+}
