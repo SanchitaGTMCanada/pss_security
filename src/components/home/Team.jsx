@@ -3,22 +3,22 @@ import Container from "@/components/ui/Container";
 
 const teamMembers = [
   {
-    name: "Michael Anderson",
+    name: "TANVEER SINGH(GUARD)",
     role: "Chief Executive Officer",
     image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1200&q=90",
+      "/homepage/tanveer.png",
   },
   {
-    name: "Daniel Wilson",
+    name: "ALLAN SSENYONJO(GUARD)",
     role: "Security Operations Manager",
     image:
-      "https://images.unsplash.com/photo-1566492031773-4f4e44671d66?auto=format&fit=crop&w=1200&q=90",
+      "/homepage/allan.png",
   },
   {
-    name: "James Mitchell",
+    name: "Manjinder Singh(GUARD)",
     role: "Senior Security Supervisor",
     image:
-      "https://images.unsplash.com/photo-1569913486515-b74bf7751574?auto=format&fit=crop&w=1200&q=90",
+      "/homepage/manjinder.png",
   },
 ];
 

@@ -100,7 +100,7 @@ export default function WhyChoose() {
           <div className="group relative min-h-[520px] overflow-hidden rounded-[32px] bg-[#05051A] shadow-2xl">
             {/* Image */}
             <img
-              src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=85"
+              src="/homepage/whychoose.png"
               alt="Professional security and protection services"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />

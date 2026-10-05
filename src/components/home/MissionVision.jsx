@@ -77,7 +77,7 @@ export default function MissionVision() {
 
           <div className="relative z-10 my-6 h-[430px] w-full max-w-2xl overflow-hidden rounded-[36px] border border-white/10 shadow-2xl sm:h-[500px] lg:my-0 lg:h-[570px] lg:w-[560px] lg:shrink-0">
             <img
-              src="https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=1600&q=90"
+              src="/homepage/standfor.png"
               alt="Professional security guard"
               className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
             />

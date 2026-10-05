@@ -40,13 +40,13 @@ export default function FAQ() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=2000&q=85"
+          src="/homepage/faq.png"
           alt="Security professional"
           className="h-full w-full object-cover"
         />
 
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-[#05051A]/75" />
+        <div className="absolute inset-0 bg-[#05051A]/55" />
 
         {/* Left Gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#05051A]/95 via-[#05051A]/75 to-[#05051A]/45" />

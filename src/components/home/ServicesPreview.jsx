@@ -10,7 +10,7 @@ const services = [
     //   "Professional security personnel and protection solutions designed to help keep your people, property, and business safe.",
     href: "/services",
     image:
-      "https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=1200&q=85",
+      "/homepage/security-services.jpeg",
   },
   {
     number: "02",
@@ -19,7 +19,7 @@ const services = [
     //   "Professional reception and customer service personnel creating a welcoming, organized, and secure experience for every visitor.",
     href: "/services",
     image:
-      "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85",
+      "/homepage/customer-services.jpeg",
   },
 ];
 

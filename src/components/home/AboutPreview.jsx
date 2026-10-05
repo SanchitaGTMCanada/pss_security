@@ -33,7 +33,7 @@ export default function AboutPreview() {
       {/* Image */}
       <div className="relative h-[420px] overflow-hidden rounded-[32px] border border-white/10 sm:h-[520px] lg:h-[600px]">
         <img
-          src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1600&q=85"
+          src="/homepage/about-pss.png"
           alt="Professional security and business services"
           className="h-full w-full object-cover"
         />
