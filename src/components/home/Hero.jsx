@@ -69,7 +69,7 @@ export default function Hero() {
             <div className="mt-10 flex flex-wrap gap-5">
 
               <Link
-                href="/contact"
+                href="/#contact"
                 className="group inline-flex items-center gap-3 rounded-xl bg-[#B91C1C] px-8 py-5 text-base font-bold text-white shadow-lg shadow-red-950/30 transition-all duration-300 hover:-translate-y-1 hover:bg-[#8F1111] sm:px-9 sm:py-5 sm:text-lg"
               >
                 Get a Free Consultation Today
@@ -80,7 +80,7 @@ export default function Hero() {
               </Link>
 
               <Link
-                href="#services"
+                href="/services"
                 className="group inline-flex items-center gap-3 rounded-xl border border-white/15 bg-black/20 px-8 py-5 text-base font-bold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/30 hover:bg-white/[0.08] sm:px-9 sm:py-5 sm:text-lg"
               >
                 Explore Services

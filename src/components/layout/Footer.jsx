@@ -16,6 +16,7 @@ import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
+  FaXTwitter
 } from "react-icons/fa";
 
 export default function Footer() {
@@ -285,27 +286,33 @@ export default function Footer() {
                   SOCIAL ICONS
               ================================================== */}
 
-              <div className="mt-8 flex items-center gap-4">
+<div className="mt-8 flex items-center gap-4">
 
-                <SocialButton
-                  href="#"
-                  label="Facebook"
-                  icon={<FaFacebookF size={23} />}
-                />
+  <SocialButton
+    href="https://www.facebook.com/people/Preventative-Security-Services-Ltd/61576388536208/"
+    label="Facebook"
+    icon={<FaFacebookF size={23} />}
+  />
 
-                <SocialButton
-                  href="#"
-                  label="Instagram"
-                  icon={<FaInstagram size={23} />}
-                />
+  <SocialButton
+    href="https://www.instagram.com/preventivesecurityservices/"
+    label="Instagram"
+    icon={<FaInstagram size={23} />}
+  />
 
-                <SocialButton
-                  href="#"
-                  label="LinkedIn"
-                  icon={<FaLinkedinIn size={23} />}
-                />
+  <SocialButton
+    href="https://www.linkedin.com/company/preventative-security-services/"
+    label="LinkedIn"
+    icon={<FaLinkedinIn size={23} />}
+  />
 
-              </div>
+  <SocialButton
+    href="https://x.com/preventivess"
+    label="X"
+    icon={<FaXTwitter size={21} />}
+  />
+
+</div>
 
             </div>
 
