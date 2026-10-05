@@ -22,7 +22,7 @@ export default function Footer() {
   return (
     <footer
       className="relative overflow-hidden bg-[#05051A] text-white"
-      id="contact"
+      id="footer"
     >
       {/* =====================================================
           DARK FOOTER BACKGROUND

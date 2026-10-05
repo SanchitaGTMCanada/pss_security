@@ -2,54 +2,288 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import Swal from "sweetalert2";
+import { Menu, X } from "lucide-react";
 import Container from "@/components/ui/Container";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isJoinModalOpen, setIsJoinModalOpen] = useState(false);
+  const [isJoinUsOpen, setIsJoinUsOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const fileInputRef = useRef(null);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    position: "",
+    message: "",
+  });
+
+  const [resume, setResume] = useState(null);
 
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
 
-  const openJoinModal = () => {
+  // =====================================================
+  // OPEN JOIN US
+  // =====================================================
+
+  const openJoinUs = () => {
     setIsMenuOpen(false);
-    setIsJoinModalOpen(true);
+    setIsJoinUsOpen(true);
+    document.body.style.overflow = "hidden";
   };
 
-  const closeJoinModal = () => {
-    setIsJoinModalOpen(false);
+  // =====================================================
+  // CLOSE JOIN US
+  // =====================================================
+
+  const closeJoinUs = () => {
+    if (isSubmitting) return;
+
+    setIsJoinUsOpen(false);
+    document.body.style.overflow = "";
   };
 
-  // Close modal with Escape key
+  // =====================================================
+  // CLEANUP
+  // =====================================================
+
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  // =====================================================
+  // ESCAPE KEY
+  // =====================================================
+
   useEffect(() => {
     const handleEscape = (event) => {
-      if (event.key === "Escape") {
-        setIsJoinModalOpen(false);
+      if (event.key === "Escape" && isJoinUsOpen && !isSubmitting) {
+        setIsJoinUsOpen(false);
+        document.body.style.overflow = "";
       }
     };
 
-    if (isJoinModalOpen) {
-      document.addEventListener("keydown", handleEscape);
-      document.body.style.overflow = "hidden";
-    }
+    window.addEventListener("keydown", handleEscape);
 
     return () => {
-      document.removeEventListener("keydown", handleEscape);
-      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleEscape);
     };
-  }, [isJoinModalOpen]);
+  }, [isJoinUsOpen, isSubmitting]);
+
+  // =====================================================
+  // INPUT CHANGE
+  // =====================================================
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((previous) => ({
+      ...previous,
+      [name]: value,
+    }));
+  };
+
+  // =====================================================
+  // RESUME
+  // =====================================================
+
+  const handleResumeChange = (event) => {
+    const file = event.target.files?.[0];
+
+    if (!file) {
+      setResume(null);
+      return;
+    }
+
+    const allowedTypes = [
+      "application/pdf",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ];
+
+    if (!allowedTypes.includes(file.type)) {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Resume",
+        text: "Only PDF, DOC and DOCX files are allowed.",
+        confirmButtonColor: "#B91C1C",
+      });
+
+      event.target.value = "";
+      setResume(null);
+
+      return;
+    }
+
+    const maxFileSize = 5 * 1024 * 1024;
+
+    if (file.size > maxFileSize) {
+      Swal.fire({
+        icon: "error",
+        title: "File Too Large",
+        text: "Your resume must be smaller than 5 MB.",
+        confirmButtonColor: "#B91C1C",
+      });
+
+      event.target.value = "";
+      setResume(null);
+
+      return;
+    }
+
+    setResume(file);
+  };
+
+  // =====================================================
+  // RESET FORM
+  // =====================================================
+
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      position: "",
+      message: "",
+    });
+
+    setResume(null);
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
+  // =====================================================
+  // SUBMIT
+  // =====================================================
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (isSubmitting) return;
+
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.phone.trim() ||
+      !formData.position.trim() ||
+      !formData.message.trim()
+    ) {
+      await Swal.fire({
+        icon: "warning",
+        title: "Incomplete Form",
+        text: "Please complete all required fields.",
+        confirmButtonColor: "#B91C1C",
+      });
+
+      return;
+    }
+
+    if (!resume) {
+      await Swal.fire({
+        icon: "warning",
+        title: "Resume Required",
+        text: "Please upload your resume before submitting.",
+        confirmButtonColor: "#B91C1C",
+      });
+
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+
+      const data = new FormData();
+
+      data.append("name", formData.name.trim());
+      data.append("email", formData.email.trim());
+      data.append("phone", formData.phone.trim());
+      data.append("position", formData.position.trim());
+      data.append("message", formData.message.trim());
+      data.append("resume", resume);
+
+      const response = await fetch("/api/career", {
+        method: "POST",
+        body: data,
+      });
+
+      let result;
+
+      try {
+        result = await response.json();
+      } catch {
+        throw new Error("The server returned an invalid response.");
+      }
+
+      if (response.ok && result?.success === true) {
+        setIsJoinUsOpen(false);
+        document.body.style.overflow = "";
+
+        resetForm();
+
+        setIsSubmitting(false);
+
+        await Swal.fire({
+          icon: "success",
+          title: "Application Submitted!",
+          text:
+            result.message ||
+            "Your application has been submitted successfully.",
+          confirmButtonColor: "#B91C1C",
+          confirmButtonText: "Done",
+        });
+
+        return;
+      }
+
+      await Swal.fire({
+        icon: "error",
+        title: "Submission Failed",
+        text:
+          result?.message ||
+          "Unable to submit your application. Please try again.",
+        confirmButtonColor: "#B91C1C",
+      });
+    } catch (error) {
+      console.error("Career submission error:", error);
+
+      await Swal.fire({
+        icon: "error",
+        title: "Something Went Wrong",
+        text:
+          error?.message ||
+          "Unable to submit your application. Please try again.",
+        confirmButtonColor: "#B91C1C",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <>
       {/* =====================================================
-          HEADER
+          STICKY HEADER
+          
+          IMPORTANT:
+          Only "sticky top-0" has been added.
+          No height, width, padding, logo size,
+          colors, shadow or spacing are changed.
       ====================================================== */}
 
-      <header className="border-b border-slate-200 bg-white">
+      <header className="sticky top-0 z-[1000] border-b border-slate-200 bg-white">
         <Container>
+
+          {/* ORIGINAL HEIGHT — UNCHANGED */}
           <div className="flex h-20 items-center justify-between sm:h-24">
 
             {/* =================================================
@@ -57,7 +291,10 @@ export default function Header() {
             ================================================= */}
 
             <div className="flex items-center justify-start">
-              <Link href="/" className="flex items-center">
+              <Link
+                href="/"
+                className="flex items-center"
+              >
                 <Image
                   src="/images/logo.png"
                   alt="Preventative Security Services"
@@ -83,7 +320,7 @@ export default function Header() {
               </Link>
 
               <Link
-                href="#team"
+                href="/#team"
                 className="text-lg font-medium text-slate-700 transition-all hover:text-[#B91C1C] hover:underline hover:underline-offset-4 hover:decoration-2"
               >
                 Team
@@ -93,14 +330,14 @@ export default function Header() {
 
               <button
                 type="button"
-                onClick={openJoinModal}
+                onClick={openJoinUs}
                 className="text-lg font-medium text-slate-700 transition-all hover:text-[#B91C1C] hover:underline hover:underline-offset-4 hover:decoration-2"
               >
                 Join Us
               </button>
 
               <Link
-                href="#contact"
+                href="/#contact"
                 className="text-lg font-medium text-slate-700 transition-all hover:text-[#B91C1C] hover:underline hover:underline-offset-4 hover:decoration-2"
               >
                 Contact Us
@@ -109,16 +346,18 @@ export default function Header() {
             </nav>
 
             {/* =================================================
-                DESKTOP BOOK NOW
+                BOOK NOW
             ================================================= */}
 
             <div className="hidden justify-end lg:flex">
+
               <Link
-                href="/contact"
+                href="/#contact"
                 className="inline-flex items-center justify-center rounded-lg bg-[#B91C1C] px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-[#8F1111]"
               >
                 Book Now
               </Link>
+
             </div>
 
             {/* =================================================
@@ -128,21 +367,30 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-label={
+                isMenuOpen
+                  ? "Close menu"
+                  : "Open menu"
+              }
               aria-expanded={isMenuOpen}
               className="flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 text-slate-800 transition-colors hover:bg-slate-100 lg:hidden"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? (
+                <X size={24} />
+              ) : (
+                <Menu size={24} />
+              )}
             </button>
 
           </div>
 
-          {/* =================================================
+          {/* =====================================================
               MOBILE MENU
-          ================================================= */}
+          ====================================================== */}
 
           {isMenuOpen && (
             <div className="border-t border-slate-200 py-5 lg:hidden">
+
               <nav className="flex flex-col">
 
                 <Link
@@ -154,35 +402,31 @@ export default function Header() {
                 </Link>
 
                 <Link
-                  href="/team"
+                  href="/#team"
                   onClick={closeMenu}
                   className="border-b border-slate-100 py-4 text-lg font-medium text-slate-700"
                 >
                   Team
                 </Link>
 
-                {/* MOBILE JOIN US */}
-
                 <button
                   type="button"
-                  onClick={openJoinModal}
+                  onClick={openJoinUs}
                   className="border-b border-slate-100 py-4 text-left text-lg font-medium text-slate-700"
                 >
                   Join Us
                 </button>
 
                 <Link
-                  href="/contact"
+                  href="/#contact"
                   onClick={closeMenu}
                   className="border-b border-slate-100 py-4 text-lg font-medium text-slate-700"
                 >
                   Contact Us
                 </Link>
 
-                {/* Mobile Book Now */}
-
                 <Link
-                  href="/contact"
+                  href="/#contact"
                   onClick={closeMenu}
                   className="mt-5 inline-flex items-center justify-center rounded-lg bg-[#B91C1C] px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-[#8F1111]"
                 >
@@ -190,8 +434,10 @@ export default function Header() {
                 </Link>
 
               </nav>
+
             </div>
           )}
+
         </Container>
       </header>
 
@@ -199,248 +445,306 @@ export default function Header() {
           JOIN US MODAL
       ====================================================== */}
 
-      {isJoinModalOpen && (
+      {isJoinUsOpen && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#05051A]/80 px-4 py-6 backdrop-blur-md"
-          onMouseDown={(e) => {
-            if (e.target === e.currentTarget) {
-              closeJoinModal();
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 px-4 py-5 backdrop-blur-sm sm:py-8"
+          onMouseDown={(event) => {
+            if (
+              event.target === event.currentTarget &&
+              !isSubmitting
+            ) {
+              closeJoinUs();
             }
           }}
         >
 
-          {/* =================================================
-              MODAL CONTAINER
-          ================================================= */}
-
-          <div className="scrollbar-hide relative max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-[28px] border border-white/10 bg-[#0B0B24] shadow-[0_25px_80px_rgba(0,0,0,0.5)]">
-
-            {/* Red Glow */}
-
-            <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#B91C1C]/20 blur-[100px]" />
+          <div className="relative flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#08081C] shadow-[0_30px_100px_rgba(0,0,0,0.6)]">
 
             {/* =================================================
-                CLOSE BUTTON
+                MODAL HEADER
             ================================================= */}
 
-            <button
-              type="button"
-              onClick={closeJoinModal}
-              aria-label="Close Join Us form"
-              className="absolute right-5 top-5 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-all duration-300 hover:border-[#B91C1C] hover:bg-[#B91C1C]"
-            >
-              <X size={24} />
-            </button>
+            <div className="relative shrink-0 border-b border-white/10 bg-[#0D0D25] px-6 py-6 sm:px-8">
 
-            {/* =================================================
-                MODAL CONTENT
-            ================================================= */}
+              <div className="pr-12">
 
-            <div className="relative z-10 p-7 sm:p-10 lg:p-12">
+                <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#FCA5A5]">
+                  Careers
+                </p>
 
-              {/* =================================================
-                  MODAL HEADER
-              ================================================= */}
-
-              <div className="mb-9 max-w-2xl">
-
-                <div className="flex items-center gap-3">
-
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#B91C1C] shadow-[0_0_15px_rgba(185,28,28,0.8)]" />
-
-                  <p className="text-sm font-bold uppercase tracking-[0.25em] text-[#FCA5A5] sm:text-base">
-                    Careers at PSS
-                  </p>
-
-                </div>
-
-                <h2 className="mt-4 text-4xl font-black leading-tight text-white sm:text-5xl">
-                  Join Our
-                  <span className="text-[#B91C1C]"> Team.</span>
+                <h2 className="mt-2 text-3xl font-black tracking-tight text-white sm:text-4xl">
+                  Join Our Team
                 </h2>
 
-                <p className="mt-4 text-base leading-7 text-slate-400 sm:text-lg">
-                  Interested in becoming part of our professional security
-                  team? Submit your information below and we will get in
-                  touch with you.
+                <p className="mt-2 max-w-2xl text-base leading-7 text-slate-400">
+                  Interested in joining Preventative
+                  Security Services? Send us your
+                  details and resume.
                 </p>
 
               </div>
 
-              {/* =================================================
-                  FORM
-              ================================================= */}
+              <button
+                type="button"
+                onClick={closeJoinUs}
+                disabled={isSubmitting}
+                aria-label="Close career form"
+                className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-slate-300 transition-all hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                <X size={22} />
+              </button>
 
-              <form className="space-y-6">
+            </div>
 
-                {/* Full Name */}
+            {/* =================================================
+                FORM
+            ================================================= */}
 
-                <div>
-                  <label
-                    htmlFor="fullName"
-                    className="mb-2 block text-base font-semibold text-white"
-                  >
-                    Full Name
-                  </label>
+            <div
+              className="overflow-y-auto px-6 py-7 sm:px-8"
+              style={{
+                scrollbarWidth: "none",
+                msOverflowStyle: "none",
+              }}
+            >
 
-                  <input
-                    id="fullName"
-                    name="fullName"
-                    type="text"
-                    placeholder="Enter your full name"
-                    className="h-14 w-full rounded-xl border border-white/10 bg-white/[0.06] px-5 text-base text-white outline-none transition-all placeholder:text-slate-500 focus:border-[#B91C1C] focus:bg-white/[0.08] focus:ring-2 focus:ring-[#B91C1C]/20"
-                  />
-                </div>
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
 
-                {/* Email + Phone */}
+                {/* NAME + EMAIL */}
 
-                <div className="grid gap-6 sm:grid-cols-2">
+                <div className="grid gap-5 sm:grid-cols-2">
 
                   <div>
                     <label
-                      htmlFor="email"
-                      className="mb-2 block text-base font-semibold text-white"
+                      htmlFor="join-name"
+                      className="mb-2 block text-sm font-bold text-white"
                     >
-                      Email
+                      Full Name
+                      <span className="ml-1 text-[#EF4444]">
+                        *
+                      </span>
                     </label>
 
                     <input
-                      id="email"
-                      name="email"
+                      id="join-name"
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Enter your full name"
+                      disabled={isSubmitting}
+                      className="w-full rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3.5 text-base text-white outline-none transition-all placeholder:text-slate-500 focus:border-[#B91C1C] focus:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-50"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="join-email"
+                      className="mb-2 block text-sm font-bold text-white"
+                    >
+                      Email Address
+                      <span className="ml-1 text-[#EF4444]">
+                        *
+                      </span>
+                    </label>
+
+                    <input
+                      id="join-email"
                       type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       placeholder="Enter your email"
-                      className="h-14 w-full rounded-xl border border-white/10 bg-white/[0.06] px-5 text-base text-white outline-none transition-all placeholder:text-slate-500 focus:border-[#B91C1C] focus:bg-white/[0.08] focus:ring-2 focus:ring-[#B91C1C]/20"
+                      disabled={isSubmitting}
+                      className="w-full rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3.5 text-base text-white outline-none transition-all placeholder:text-slate-500 focus:border-[#B91C1C] focus:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-50"
+                    />
+                  </div>
+
+                </div>
+
+                {/* PHONE + POSITION */}
+
+                <div className="grid gap-5 sm:grid-cols-2">
+
+                  <div>
+                    <label
+                      htmlFor="join-phone"
+                      className="mb-2 block text-sm font-bold text-white"
+                    >
+                      Phone Number
+                      <span className="ml-1 text-[#EF4444]">
+                        *
+                      </span>
+                    </label>
+
+                    <input
+                      id="join-phone"
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="Enter your phone number"
+                      disabled={isSubmitting}
+                      className="w-full rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3.5 text-base text-white outline-none transition-all placeholder:text-slate-500 focus:border-[#B91C1C] focus:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-50"
                     />
                   </div>
 
                   <div>
                     <label
-                      htmlFor="phone"
-                      className="mb-2 block text-base font-semibold text-white"
+                      htmlFor="join-position"
+                      className="mb-2 block text-sm font-bold text-white"
                     >
-                      Phone
+                      Applying For
+                      <span className="ml-1 text-[#EF4444]">
+                        *
+                      </span>
                     </label>
 
                     <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      placeholder="Enter your phone number"
-                      className="h-14 w-full rounded-xl border border-white/10 bg-white/[0.06] px-5 text-base text-white outline-none transition-all placeholder:text-slate-500 focus:border-[#B91C1C] focus:bg-white/[0.08] focus:ring-2 focus:ring-[#B91C1C]/20"
+                      id="join-position"
+                      type="text"
+                      name="position"
+                      value={formData.position}
+                      onChange={handleChange}
+                      placeholder="Enter position"
+                      disabled={isSubmitting}
+                      className="w-full rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3.5 text-base text-white outline-none transition-all placeholder:text-slate-500 focus:border-[#B91C1C] focus:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-50"
                     />
                   </div>
 
                 </div>
 
-                {/* Applying For */}
+                {/* MESSAGE */}
 
                 <div>
                   <label
-                    htmlFor="applyingFor"
-                    className="mb-2 block text-base font-semibold text-white"
+                    htmlFor="join-message"
+                    className="mb-2 block text-sm font-bold text-white"
                   >
-                    Applying For
-                  </label>
-
-                  <select
-                    id="applyingFor"
-                    name="applyingFor"
-                    defaultValue=""
-                    className="h-14 w-full rounded-xl border border-white/10 bg-[#11112D] px-5 text-base text-white outline-none transition-all focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20"
-                  >
-                    <option value="" disabled>
-                      Select a position
-                    </option>
-
-                    <option value="security-guard">
-                      Security Guard
-                    </option>
-
-                    <option value="security-supervisor">
-                      Security Supervisor
-                    </option>
-
-                    <option value="customer-service">
-                      Customer Service / Reception
-                    </option>
-
-                    <option value="other">
-                      Other
-                    </option>
-                  </select>
-                </div>
-
-                {/* Upload CV */}
-
-                <div>
-                  <label
-                    htmlFor="cv"
-                    className="mb-2 block text-base font-semibold text-white"
-                  >
-                    Upload CV
-                  </label>
-
-                  <div className="rounded-xl border border-dashed border-white/15 bg-white/[0.03] p-4 transition-colors hover:border-[#B91C1C]/50">
-
-                    <input
-                      id="cv"
-                      name="cv"
-                      type="file"
-                      accept=".pdf,.doc,.docx"
-                      className="block w-full cursor-pointer text-sm text-slate-400 file:mr-4 file:cursor-pointer file:rounded-lg file:border-0 file:bg-[#B91C1C] file:px-5 file:py-3 file:text-sm file:font-bold file:text-white hover:file:bg-[#991B1B]"
-                    />
-
-                  </div>
-                </div>
-
-                {/* Comment */}
-
-                <div>
-                  <label
-                    htmlFor="comment"
-                    className="mb-2 block text-base font-semibold text-white"
-                  >
-                    Comment
+                    Message
+                    <span className="ml-1 text-[#EF4444]">
+                      *
+                    </span>
                   </label>
 
                   <textarea
-                    id="comment"
-                    name="comment"
+                    id="join-message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     rows={5}
                     placeholder="Tell us a little about yourself..."
-                    className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.06] px-5 py-4 text-base leading-7 text-white outline-none transition-all placeholder:text-slate-500 focus:border-[#B91C1C] focus:bg-white/[0.08] focus:ring-2 focus:ring-[#B91C1C]/20"
+                    disabled={isSubmitting}
+                    className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3.5 text-base leading-7 text-white outline-none transition-all placeholder:text-slate-500 focus:border-[#B91C1C] focus:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-50"
                   />
                 </div>
 
-                {/* =================================================
-                    BOTTOM ACTION
-                ================================================= */}
+                {/* RESUME */}
 
-                <div className="flex flex-col gap-5 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+                <div>
 
-                  <p className="max-w-md text-sm leading-6 text-slate-500">
-                    Your information will be reviewed by our recruitment
-                    team.
-                  </p>
+                  <label className="mb-2 block text-sm font-bold text-white">
+                    Resume
+                    <span className="ml-1 text-[#EF4444]">
+                      *
+                    </span>
+                  </label>
 
-                  <button
-                    type="submit"
-                    className="group inline-flex shrink-0 items-center justify-center gap-3 rounded-xl bg-[#B91C1C] px-8 py-4 text-base font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#991B1B] hover:shadow-[0_12px_30px_rgba(185,28,28,0.25)]"
+                  <label
+                    htmlFor="join-resume"
+                    className={`
+                      flex cursor-pointer items-center gap-4
+                      rounded-xl border border-dashed
+                      border-white/15
+                      bg-white/[0.04]
+                      px-5 py-5
+                      transition-all
+                      ${
+                        isSubmitting
+                          ? "pointer-events-none opacity-50"
+                          : "hover:border-[#B91C1C]/60 hover:bg-[#B91C1C]/5"
+                      }
+                    `}
                   >
-                    Send Application
 
-                    <ArrowUpRight
-                      size={21}
-                      className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#B91C1C]/10 text-xl text-[#FCA5A5]">
+                      ↑
+                    </div>
+
+                    <div className="min-w-0">
+
+                      <p className="truncate text-sm font-bold text-white sm:text-base">
+                        {resume
+                          ? resume.name
+                          : "Upload your resume"}
+                      </p>
+
+                      <p className="mt-1 text-xs text-slate-500 sm:text-sm">
+                        PDF, DOC or DOCX · Maximum 5 MB
+                      </p>
+
+                    </div>
+
+                    <input
+                      ref={fileInputRef}
+                      id="join-resume"
+                      type="file"
+                      accept=".pdf,.doc,.docx"
+                      onChange={handleResumeChange}
+                      disabled={isSubmitting}
+                      className="hidden"
                     />
-                  </button>
+
+                  </label>
 
                 </div>
+
+                {/* SUBMIT */}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#B91C1C] px-6 py-4 text-base font-bold text-white shadow-lg shadow-red-950/20 transition-all duration-300 hover:bg-[#991B1B] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+
+                  {isSubmitting ? (
+                    <>
+                      <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+
+                      Submitting Application...
+                    </>
+                  ) : (
+                    <>
+                      Submit Application
+
+                      <span className="text-xl">
+                        →
+                      </span>
+                    </>
+                  )}
+
+                </button>
+
+                <p className="text-center text-xs leading-5 text-slate-500">
+                  Your information will be securely reviewed
+                  by our recruitment team.
+                </p>
 
               </form>
 
             </div>
+
           </div>
+
+          <style jsx global>{`
+            .overflow-y-auto::-webkit-scrollbar {
+              display: none;
+            }
+          `}</style>
+
         </div>
       )}
     </>
