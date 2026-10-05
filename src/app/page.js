@@ -8,6 +8,7 @@ import MissionVision from "@/components/home/MissionVision";
 import FAQSection from "@/components/faq/FAQSection";
 import Footer from "@/components/layout/Footer";
 import Team from "@/components/home/Team";
+import BookingSection from "@/components/home/BookingSection";
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
         <WhyChoose/>
         <MissionVision/>
         <Team/>
-      
+        <BookingSection/>
         <FAQSection/>
     
       </main>

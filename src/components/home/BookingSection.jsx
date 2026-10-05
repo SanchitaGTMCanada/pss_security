@@ -1,393 +1,476 @@
-import {
-  ArrowUpRight,
-  CalendarDays,
-  Clock3,
-  Mail,
-  Phone,
-  ShieldCheck,
-} from "lucide-react";
+"use client";
 
+import { useState } from "react";
+import Swal from "sweetalert2";
 import Container from "@/components/ui/Container";
 
+import {
+  Mail,
+  Phone,
+  User,
+  MessageSquare,
+  Send,
+} from "lucide-react";
+
 export default function BookingSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
+    try {
+      console.log("📩 Sending enquiry:", formData);
+
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      console.log("📡 API status:", response.status);
+
+      const result = await response.json();
+
+      console.log("📨 API response:", result);
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message || "Unable to send your enquiry."
+        );
+      }
+
+      // SUCCESS POPUP
+      await Swal.fire({
+        icon: "success",
+        title: "Enquiry Sent!",
+        text: "Thank you for contacting us. Our team will get back to you shortly.",
+        confirmButtonText: "Okay",
+        confirmButtonColor: "#B91C1C",
+        background: "#ffffff",
+        color: "#05051A",
+        customClass: {
+          popup: "rounded-2xl",
+          title: "text-2xl font-bold",
+          confirmButton: "rounded-lg px-6 py-3",
+        },
+      });
+
+      // Clear form only after successful submission
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("❌ Enquiry submission error:", error);
+
+      // ERROR POPUP
+      Swal.fire({
+        icon: "error",
+        title: "Unable to Send",
+        text:
+          error.message ||
+          "Something went wrong while sending your enquiry. Please try again.",
+        confirmButtonText: "Try Again",
+        confirmButtonColor: "#B91C1C",
+        background: "#ffffff",
+        color: "#05051A",
+        customClass: {
+          popup: "rounded-2xl",
+          title: "text-2xl font-bold",
+          confirmButton: "rounded-lg px-6 py-3",
+        },
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <section className="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-32">
+    <section
+      id="contact"
+      className="relative overflow-hidden bg-[#05051A] py-20 sm:py-24 lg:py-28"
+    >
       {/* =====================================================
-          BACKGROUND
+          BACKGROUND DECORATION
       ====================================================== */}
 
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute right-0 top-0 h-[600px] w-[600px] rounded-full bg-[#B91C1C]/5 blur-[130px]" />
+      <div className="pointer-events-none absolute -left-40 top-20 h-[450px] w-[450px] rounded-full bg-[#B91C1C]/10 blur-[140px]" />
 
-        <div className="absolute bottom-0 left-0 h-[450px] w-[450px] rounded-full bg-[#05051A]/5 blur-[120px]" />
+      <div className="pointer-events-none absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-[#B91C1C]/10 blur-[150px]" />
+
+      <div className="pointer-events-none absolute inset-0 opacity-[0.035]">
+        <div
+          className="h-full w-full"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+            backgroundSize: "70px 70px",
+          }}
+        />
       </div>
 
       <Container>
-        {/* =====================================================
-            INTRO
-        ====================================================== */}
+        <div className="relative z-10 grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-20">
 
-        <div className="relative z-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          {/* =====================================================
+              LEFT CONTENT
+          ====================================================== */}
+
           <div>
-            <div className="mb-6 flex items-center gap-3">
+
+            {/* Small Label */}
+            <div className="mb-7 inline-flex items-center gap-3">
               <span className="h-[2px] w-12 bg-[#B91C1C]" />
 
-              <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#B91C1C]">
-                Book Our Services
+              <span className="text-sm font-bold uppercase tracking-[0.25em] text-[#FCA5A5]">
+                Get In Touch
               </span>
             </div>
 
-            <h2 className="max-w-2xl text-4xl font-black leading-[0.95] tracking-tight text-[#05051A] sm:text-5xl lg:text-7xl">
-              Let&apos;s make your
-              <span className="block">
-                <span className="text-[#B91C1C]">next step</span> simple.
+            {/* Heading */}
+            <h2 className="max-w-xl text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Let&apos;s discuss your
+
+              <span className="mt-2 block text-[#B91C1C]">
+                security needs.
               </span>
             </h2>
-          </div>
 
-          <div className="lg:ml-auto lg:max-w-md">
-            <p className="text-base leading-8 text-slate-600">
-              Looking for professional security or customer service
-              personnel? Send us your requirements and our team will get back
-              to you.
+            {/* Description */}
+            <p className="mt-7 max-w-xl text-lg leading-8 text-slate-300 sm:text-xl">
+              Tell us what you need and our team will get back to you with
+              the right security solution for your property, people, or
+              business.
             </p>
-          </div>
-        </div>
 
-        {/* =====================================================
-            BOOKING AREA
-        ====================================================== */}
+            {/* Contact Information */}
+            <div className="mt-10 space-y-5">
 
-        <div className="relative z-10 mt-16 grid gap-8 lg:grid-cols-[0.65fr_1.35fr]">
-          {/* =================================================
-              LEFT INFORMATION COLUMN
-          ================================================== */}
-
-          <div className="relative overflow-hidden rounded-[32px] bg-[#05051A] p-8 sm:p-10 lg:p-12">
-            {/* Decorative red circle */}
-            <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#B91C1C]/30 blur-[80px]" />
-
-            <div className="pointer-events-none absolute -bottom-32 -left-24 h-72 w-72 rounded-full bg-[#B91C1C]/10 blur-[80px]" />
-
-            <div className="relative z-10">
-              {/* Icon */}
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#B91C1C] shadow-xl shadow-red-950/30">
-                <ShieldCheck
-                  size={30}
-                  className="text-white"
-                  strokeWidth={1.5}
-                />
-              </div>
-
-              <p className="mt-10 text-xs font-bold uppercase tracking-[0.25em] text-[#FCA5A5]">
-                Why book with us?
-              </p>
-
-              <h3 className="mt-3 text-3xl font-bold leading-tight text-white sm:text-4xl">
-                Professional people.
-                <span className="block text-[#FCA5A5]">
-                  Dependable service.
-                </span>
-              </h3>
-
-              <p className="mt-5 text-sm leading-7 text-slate-400">
-                We understand that every environment is different. Our
-                services are designed around your people, property and
-                business requirements.
-              </p>
-
-              {/* Service summary */}
-              <div className="mt-10 space-y-3">
-                <div className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition-all hover:border-[#B91C1C]/50 hover:bg-white/[0.07]">
-                  <div>
-                    <p className="text-sm font-bold text-white">
-                      Security Services
-                    </p>
-
-                    <p className="mt-1 text-xs text-slate-500">
-                      Professional protection
-                    </p>
-                  </div>
-
-                  <ArrowUpRight
-                    size={18}
-                    className="text-[#FCA5A5] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+              {/* Phone */}
+              <a
+                href="tel:+18674457900"
+                className="group flex items-center gap-5"
+              >
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] text-[#FCA5A5] transition-all duration-300 group-hover:border-[#B91C1C]/50 group-hover:bg-[#B91C1C]/10">
+                  <Phone
+                    size={24}
+                    strokeWidth={1.8}
                   />
                 </div>
 
-                <div className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition-all hover:border-[#B91C1C]/50 hover:bg-white/[0.07]">
-                  <div>
-                    <p className="text-sm font-bold text-white">
-                      Customer Service / Reception
-                    </p>
-
-                    <p className="mt-1 text-xs text-slate-500">
-                      Professional front-of-house support
-                    </p>
-                  </div>
-
-                  <ArrowUpRight
-                    size={18}
-                    className="text-[#FCA5A5] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-                  />
-                </div>
-              </div>
-
-              {/* Contact */}
-              <div className="mt-10 border-t border-white/10 pt-7">
-                <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
-                  Prefer direct contact?
-                </p>
-
-                <div className="mt-5 space-y-4">
-                  <div className="flex items-center gap-3 text-sm text-slate-300">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5">
-                      <Phone
-                        size={16}
-                        className="text-[#FCA5A5]"
-                      />
-                    </div>
-
-                    <span>Speak with our team</span>
-                  </div>
-
-                  <div className="flex items-center gap-3 text-sm text-slate-300">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5">
-                      <Mail
-                        size={16}
-                        className="text-[#FCA5A5]"
-                      />
-                    </div>
-
-                    <span>Send us an enquiry</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* =================================================
-              FORM
-          ================================================== */}
-
-          <div className="relative overflow-hidden rounded-[32px] border border-slate-200 bg-[#F7F7F5] p-7 sm:p-10 lg:p-12">
-            {/* Red accent */}
-            <div className="absolute left-0 top-10 h-24 w-1 rounded-r-full bg-[#B91C1C]" />
-
-            {/* Decorative number */}
-            <span className="pointer-events-none absolute -right-2 -top-10 text-[180px] font-black leading-none text-slate-200/60">
-              01
-            </span>
-
-            <div className="relative z-10">
-              <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#B91C1C]">
-                    Booking Request
+                  <p className="text-sm font-semibold uppercase tracking-wider text-slate-500">
+                    Call Us
                   </p>
 
-                  <h3 className="mt-2 text-2xl font-bold text-[#05051A] sm:text-3xl">
-                    Tell us what you need
-                  </h3>
+                  <p className="mt-1 text-lg font-bold text-white sm:text-xl">
+                    +1 867-445-7900
+                  </p>
+                </div>
+              </a>
+
+              {/* Email */}
+              <a
+                href="mailto:info@preventativesecurityservices.ca"
+                className="group flex items-center gap-5"
+              >
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] text-[#FCA5A5] transition-all duration-300 group-hover:border-[#B91C1C]/50 group-hover:bg-[#B91C1C]/10">
+                  <Mail
+                    size={24}
+                    strokeWidth={1.8}
+                  />
                 </div>
 
-                <p className="max-w-xs text-xs leading-5 text-slate-500">
-                  Complete the form and our team will contact you.
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-wider text-slate-500">
+                    Email Us
+                  </p>
+
+                  <p className="mt-1 break-all text-lg font-bold text-white sm:text-xl">
+                    info@preventativesecurityservices.ca
+                  </p>
+                </div>
+              </a>
+
+            </div>
+
+            {/* Bottom Statement */}
+            <div className="mt-10 border-l-2 border-[#B91C1C] pl-5">
+              <p className="text-base font-semibold leading-7 text-slate-300 sm:text-lg">
+                Professional people.
+                <br />
+                Reliable protection.
+              </p>
+            </div>
+
+          </div>
+
+          {/* =====================================================
+              FORM
+          ====================================================== */}
+
+          <div className="relative">
+
+            {/* Red Accent */}
+            <div className="absolute -right-2 -top-2 h-20 w-20 border-r-2 border-t-2 border-[#B91C1C]" />
+
+            <div className="relative rounded-[30px] border border-white/10 bg-[#0B0B24] p-7 shadow-2xl sm:p-10 lg:p-12">
+
+              {/* Form Header */}
+              <div className="mb-9">
+
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#B91C1C]/10 text-[#FCA5A5]">
+                  <MessageSquare
+                    size={26}
+                    strokeWidth={1.8}
+                  />
+                </div>
+
+                <h3 className="text-3xl font-black text-white sm:text-4xl">
+                  Send an Enquiry
+                </h3>
+
+                <p className="mt-3 text-base leading-7 text-slate-400 sm:text-lg">
+                  Fill in the details below and our team will contact you.
                 </p>
+
               </div>
 
-              <form className="mt-9 space-y-5">
-                {/* Name */}
+              {/* FORM */}
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
+
+                {/* Full Name */}
                 <div>
+
                   <label
-                    htmlFor="booking-name"
-                    className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-slate-500"
+                    htmlFor="name"
+                    className="mb-2 block text-base font-semibold text-slate-200"
                   >
                     Full Name
                   </label>
 
-                  <input
-                    id="booking-name"
-                    type="text"
-                    placeholder="Enter your full name"
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-4 text-sm text-[#05051A] outline-none transition-all placeholder:text-slate-400 focus:border-[#B91C1C] focus:ring-4 focus:ring-[#B91C1C]/5"
-                  />
-                </div>
-
-                {/* Email / Phone */}
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div>
-                    <label
-                      htmlFor="booking-email"
-                      className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-slate-500"
-                    >
-                      Email Address
-                    </label>
-
-                    <input
-                      id="booking-email"
-                      type="email"
-                      placeholder="you@example.com"
-                      className="w-full rounded-xl border border-slate-200 bg-white px-4 py-4 text-sm text-[#05051A] outline-none transition-all placeholder:text-slate-400 focus:border-[#B91C1C] focus:ring-4 focus:ring-[#B91C1C]/5"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="booking-phone"
-                      className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-slate-500"
-                    >
-                      Phone Number
-                    </label>
-
-                    <input
-                      id="booking-phone"
-                      type="tel"
-                      placeholder="Your phone number"
-                      className="w-full rounded-xl border border-slate-200 bg-white px-4 py-4 text-sm text-[#05051A] outline-none transition-all placeholder:text-slate-400 focus:border-[#B91C1C] focus:ring-4 focus:ring-[#B91C1C]/5"
-                    />
-                  </div>
-                </div>
-
-                {/* Service */}
-                <div>
-                  <label
-                    htmlFor="booking-service"
-                    className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-slate-500"
-                  >
-                    Service Required
-                  </label>
-
                   <div className="relative">
-                    <select
-                      id="booking-service"
-                      defaultValue=""
-                      className="w-full cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white px-4 py-4 pr-12 text-sm text-slate-700 outline-none transition-all focus:border-[#B91C1C] focus:ring-4 focus:ring-[#B91C1C]/5"
-                    >
-                      <option value="" disabled>
-                        Select a service
-                      </option>
 
-                      <option value="security-services">
-                        Security Services
-                      </option>
+                    <User
+                      size={21}
+                      className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500"
+                    />
 
-                      <option value="customer-service-reception">
-                        Customer Service / Reception
-                      </option>
-                    </select>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Enter your full name"
+                      required
+                      disabled={isSubmitting}
+                      className="h-14 w-full rounded-xl border border-white/10 bg-[#05051A] pl-14 pr-5 text-base text-white outline-none transition-all placeholder:text-slate-600 focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 disabled:cursor-not-allowed disabled:opacity-60"
+                    />
 
-                    <svg
-                      className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-400"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path d="m6 9 6 6 6-6" />
-                    </svg>
                   </div>
+
                 </div>
 
-                {/* Date / Time */}
-                <div className="grid gap-5 sm:grid-cols-2">
+                {/* Email + Phone */}
+                <div className="grid gap-6 sm:grid-cols-2">
+
+                  {/* Email */}
                   <div>
+
                     <label
-                      htmlFor="booking-date"
-                      className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-slate-500"
+                      htmlFor="email"
+                      className="mb-2 block text-base font-semibold text-slate-200"
                     >
-                      Preferred Date
+                      Email
                     </label>
 
                     <div className="relative">
-                      <CalendarDays
-                        size={17}
-                        className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+
+                      <Mail
+                        size={21}
+                        className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500"
                       />
 
                       <input
-                        id="booking-date"
-                        type="date"
-                        className="w-full rounded-xl border border-slate-200 bg-white py-4 pl-11 pr-4 text-sm text-[#05051A] outline-none transition-all focus:border-[#B91C1C] focus:ring-4 focus:ring-[#B91C1C]/5"
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="Your email"
+                        required
+                        disabled={isSubmitting}
+                        className="h-14 w-full rounded-xl border border-white/10 bg-[#05051A] pl-14 pr-4 text-base text-white outline-none transition-all placeholder:text-slate-600 focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 disabled:cursor-not-allowed disabled:opacity-60"
                       />
+
                     </div>
+
                   </div>
 
+                  {/* Phone */}
                   <div>
+
                     <label
-                      htmlFor="booking-time"
-                      className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-slate-500"
+                      htmlFor="phone"
+                      className="mb-2 block text-base font-semibold text-slate-200"
                     >
-                      Preferred Time
+                      Phone
                     </label>
 
                     <div className="relative">
-                      <Clock3
-                        size={17}
-                        className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+
+                      <Phone
+                        size={21}
+                        className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500"
                       />
 
                       <input
-                        id="booking-time"
-                        type="time"
-                        className="w-full rounded-xl border border-slate-200 bg-white py-4 pl-11 pr-4 text-sm text-[#05051A] outline-none transition-all focus:border-[#B91C1C] focus:ring-4 focus:ring-[#B91C1C]/5"
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="Your phone number"
+                        required
+                        disabled={isSubmitting}
+                        className="h-14 w-full rounded-xl border border-white/10 bg-[#05051A] pl-14 pr-4 text-base text-white outline-none transition-all placeholder:text-slate-600 focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 disabled:cursor-not-allowed disabled:opacity-60"
                       />
+
                     </div>
+
                   </div>
+
                 </div>
 
                 {/* Message */}
                 <div>
+
                   <label
-                    htmlFor="booking-message"
-                    className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-slate-500"
+                    htmlFor="message"
+                    className="mb-2 block text-base font-semibold text-slate-200"
                   >
-                    Additional Details
+                    Message
                   </label>
 
-                  <textarea
-                    id="booking-message"
-                    rows={4}
-                    placeholder="Tell us about your requirements..."
-                    className="w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-4 text-sm text-[#05051A] outline-none transition-all placeholder:text-slate-400 focus:border-[#B91C1C] focus:ring-4 focus:ring-[#B91C1C]/5"
-                  />
+                  <div className="relative">
+
+                    <MessageSquare
+                      size={21}
+                      className="absolute left-5 top-5 text-slate-500"
+                    />
+
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Tell us about your security requirements..."
+                      required
+                      disabled={isSubmitting}
+                      rows={5}
+                      className="w-full resize-none rounded-xl border border-white/10 bg-[#05051A] py-4 pl-14 pr-5 text-base leading-7 text-white outline-none transition-all placeholder:text-slate-600 focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 disabled:cursor-not-allowed disabled:opacity-60"
+                    />
+
+                  </div>
+
                 </div>
 
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="group flex w-full items-center justify-between rounded-xl bg-[#B91C1C] p-2 pl-6 text-sm font-bold text-white shadow-lg shadow-red-900/10 transition-all duration-300 hover:bg-[#05051A]"
+                  disabled={isSubmitting}
+                  className="group inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[#B91C1C] px-7 py-4 text-lg font-bold text-white shadow-lg shadow-red-950/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#991B1B] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
                 >
-                  <span>Request a Booking</span>
 
-                  <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-white text-[#B91C1C] transition-transform duration-300 group-hover:translate-x-1">
-                    <ArrowUpRight size={19} />
-                  </span>
+                  {isSubmitting ? (
+                    <>
+                      <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Submit Enquiry
+
+                      <Send
+                        size={21}
+                        className="transition-transform duration-300 group-hover:translate-x-1"
+                      />
+                    </>
+                  )}
+
                 </button>
+
               </form>
+
+              {/* Bottom Note */}
+              <div className="mt-7 flex items-center gap-3 border-t border-white/10 pt-6">
+
+                <span className="h-2.5 w-2.5 rounded-full bg-[#B91C1C]" />
+
+                <p className="text-sm leading-6 text-slate-500 sm:text-base">
+                  Your information will only be used to respond to your
+                  enquiry.
+                </p>
+
+              </div>
+
             </div>
+
           </div>
+
         </div>
 
-        {/* =====================================================
-            BOTTOM LINE
-        ====================================================== */}
+        {/* Bottom Divider */}
+        <div className="relative z-10 mt-16 border-t border-white/10 pt-7">
 
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <div className="flex items-center gap-3">
-            <span className="h-2 w-2 rounded-full bg-[#B91C1C]" />
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 
-            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">
-              Professional & Reliable
+            <p className="text-base font-semibold text-slate-500 sm:text-lg">
+              Preventative Security Services Ltd.
             </p>
+
+            <div className="flex items-center gap-3">
+
+              <span className="h-2 w-2 rounded-full bg-[#B91C1C]" />
+
+              <span className="text-sm font-bold uppercase tracking-[0.2em] text-slate-500">
+                Professional • Reliable • Local
+              </span>
+
+            </div>
+
           </div>
 
-          <p className="text-xs text-slate-400">
-            Security • Customer Service • Reception
-          </p>
         </div>
+
       </Container>
     </section>
   );
