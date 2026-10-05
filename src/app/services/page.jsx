@@ -12,9 +12,11 @@ import {
   Clock3,
   Footprints,
   GraduationCap,
+  Handshake,
   HeartPulse,
   Home,
   LockKeyhole,
+  MapPin,
   Shield,
   ShieldCheck,
   ShoppingBag,
@@ -33,49 +35,26 @@ const securityServices = [
     title: "Access Control",
     text: "Professional monitoring of entrances and exits to maintain a secure and controlled environment.",
     icon: LockKeyhole,
-    accent: "#B91C1C",
-    light: "#FEF2F2",
-    border: "#FECACA",
   },
   {
     title: "Patrolling",
     text: "Regular foot and vehicle patrols designed to identify risks and deter unwanted activity.",
     icon: Footprints,
-    accent: "#1D4ED8",
-    light: "#EFF6FF",
-    border: "#BFDBFE",
   },
   {
     title: "Emergency Response",
     text: "A trained security presence ready to respond quickly to incidents, alarms, and unexpected situations.",
     icon: Siren,
-    accent: "#C2410C",
-    light: "#FFF7ED",
-    border: "#FED7AA",
   },
   {
-    title: "CCTV Monitoring",
-    text: "Professional surveillance support to monitor activity and assist with incident detection and documentation.",
+    title: "CCTV & Surveillance",
+    text: "Professional surveillance support to monitor activity and assist with incident detection.",
     icon: Camera,
-    accent: "#7C3AED",
-    light: "#F5F3FF",
-    border: "#DDD6FE",
   },
   {
     title: "Incident Reporting",
     text: "Clear and accurate reporting that keeps property managers and stakeholders informed.",
     icon: ClipboardCheck,
-    accent: "#047857",
-    light: "#ECFDF5",
-    border: "#A7F3D0",
-  },
-  {
-    title: "Security Consultation",
-    text: "Practical recommendations designed around your property, operations, and specific security requirements.",
-    icon: ShieldCheck,
-    accent: "#0F766E",
-    light: "#F0FDFA",
-    border: "#99F6E4",
   },
 ];
 
@@ -83,26 +62,36 @@ const securityServices = [
    WHY CHOOSE US
 ========================================================= */
 
-const advantages = [
+const whyChooseUs = [
   {
-    icon: ShieldCheck,
-    title: "Professional Personnel",
-    text: "Trained professionals who understand visibility, communication, and accountability.",
+    icon: MapPin,
+    title: "Northern Experience",
+    text: "Skilled Northern safety personnel.",
   },
   {
     icon: Users,
-    title: "Client Focused",
-    text: "Security programs designed around the specific needs of your property and operations.",
+    title: "Customized Solutions",
+    text: "Tailored security solutions for every client property.",
   },
   {
-    icon: Shield,
-    title: "Proactive Protection",
-    text: "A visible presence focused on identifying potential risks before they become larger problems.",
+    icon: Clock3,
+    title: "24/7 Availability",
+    text: "Round-the-clock security and front-desk services.",
   },
   {
-    icon: ClipboardCheck,
-    title: "Clear Reporting",
-    text: "Reliable communication and documentation to keep you informed about your property.",
+    icon: ShieldCheck,
+    title: "Certified Professionals",
+    text: "Trained, licensed, and uniformed security professionals.",
+  },
+  {
+    icon: Handshake,
+    title: "Integrated Approach",
+    text: "Scalable solutions to adapt to evolving needs.",
+  },
+  {
+    icon: Building2,
+    title: "Corporate Solutions",
+    text: "Expertise in managing commercial facilities",
   },
 ];
 
@@ -155,228 +144,210 @@ const industries = [
   },
 ];
 
+/* =========================================================
+   OFFICER SUPPORT
+========================================================= */
+
+const officerSupport = [
+"Visitor management and sign-in procedures",
+  "Lobby monitoring and access coordination",
+  "Reception desk operations and concierge-style services",
+  "Assistance to tenants, staff, and contractors",
+  "Emergency call handling and situation guidance",
+];
+
+/* =========================================================
+   SERVICES PAGE
+========================================================= */
+
 export default function ServicesPage() {
   return (
     <main className="overflow-hidden bg-white">
 
       {/* =====================================================
-          HERO
+          HERO — DARK
       ====================================================== */}
 
-      <section className="relative min-h-[650px] overflow-hidden bg-[#05051A]">
-
-        {/* Background image */}
+      <section className="relative min-h-[760px] overflow-hidden bg-[#05051A]">
 
         <div className="absolute inset-0">
-
           <Image
             src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=2200&q=90"
             alt="Professional security services"
             fill
             priority
             unoptimized
-            className="object-cover object-center"
             sizes="100vw"
+            className="object-cover object-center"
           />
 
-          {/* Image overlays */}
+          <div className="absolute inset-0 bg-[#05051A]/60" />
 
-          <div className="absolute inset-0 bg-[#05051A]/55" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#05051A] via-[#05051A]/85 to-[#05051A]/20" />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-[#05051A] via-[#05051A]/75 to-[#05051A]/20" />
-
+          <div className="absolute inset-0 bg-gradient-to-t from-[#05051A] via-transparent to-transparent" />
         </div>
 
-        {/* Red accent */}
-
-        <div className="pointer-events-none absolute -right-40 top-1/3 h-[500px] w-[500px] rounded-full bg-[#B91C1C]/20 blur-[150px]" />
+        <div className="pointer-events-none absolute -right-40 top-1/3 h-[600px] w-[600px] rounded-full bg-[#B91C1C]/20 blur-[160px]" />
 
         <Container>
+          <div className="relative z-10 flex min-h-[760px] items-center">
 
-          <div className="relative z-10 flex min-h-[650px] items-center">
+            <div className="max-w-5xl py-28">
 
-            <div className="max-w-4xl py-24">
+              <div className="mb-8 flex items-center gap-4">
+                <span className="h-[2px] w-16 bg-[#EF4444]" />
 
-              {/* Small label */}
-
-              <div className="mb-7 flex items-center gap-3">
-
-                <span className="h-[2px] w-10 bg-[#EF4444]" />
-
-                <span className="text-xs font-bold uppercase tracking-[0.3em] text-white/75">
+                <span className="text-base font-bold uppercase tracking-[0.3em] text-white/80 sm:text-lg">
                   Preventative Security Services
                 </span>
-
               </div>
 
-              {/* Heading */}
-
-              <h1 className="text-5xl font-bold leading-[0.95] tracking-[-0.04em] text-white sm:text-6xl lg:text-8xl">
-
-                Security designed
-
+              <h1 className="max-w-5xl text-5xl font-black leading-[0.95] tracking-[-0.04em] text-white sm:text-7xl lg:text-[92px]">
+                Comprehensive
                 <span className="block text-[#EF4444]">
-                  around you.
+                  Security Solutions
                 </span>
-
               </h1>
 
-              <p className="mt-8 max-w-2xl text-base leading-8 text-white/65 sm:text-lg">
-                Professional security and customer service solutions designed
-                to protect your people, property, and business.
+              <p className="mt-9 max-w-3xl text-lg leading-8 text-white/75 sm:text-2xl sm:leading-9">
+               Professional Reliable Local
               </p>
 
-              {/* Buttons */}
-
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-11 flex flex-wrap gap-5">
 
                 <Link
-                  href="/contact"
-                  className="group inline-flex items-center gap-3 rounded-xl bg-[#B91C1C] px-7 py-4 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#991B1B]"
+                  href="#contact"
+                  className="group inline-flex items-center gap-3 rounded-xl bg-[#B91C1C] px-8 py-5 text-lg font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#991B1B]"
                 >
-                  Get a Consultation
+                  Get a Free Consultation
 
                   <ArrowUpRight
-                    size={17}
+                    size={22}
                     className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
                   />
-
                 </Link>
 
                 <a
                   href="#security"
-                  className="group inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/10 px-7 py-4 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white/15"
+                  className="group inline-flex items-center gap-3 rounded-xl border border-white/25 bg-white/10 px-8 py-5 text-lg font-bold text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white/15"
                 >
                   Explore Services
 
                   <ArrowDown
-                    size={16}
+                    size={21}
                     className="transition-transform duration-300 group-hover:translate-y-1"
                   />
-
                 </a>
 
               </div>
-
             </div>
-
           </div>
-
         </Container>
 
-        {/* Bottom info */}
+        {/* Trust Bar */}
 
-        <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-[#05051A]/60 backdrop-blur-md">
-
+        <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-[#05051A]/85 backdrop-blur-xl">
           <Container>
 
-            <div className="flex flex-wrap items-center gap-x-8 gap-y-3 py-5">
+            <div className="flex flex-wrap gap-x-12 gap-y-5 py-6">
 
-              <div className="flex items-center gap-2">
+              <TrustPoint
+                icon={ShieldCheck}
+                text="Professional"
+              />
 
-                <span className="h-2 w-2 rounded-full bg-[#EF4444]" />
+              <TrustPoint
+                icon={Check}
+                text="Reliable"
+              />
 
-                <span className="text-xs font-semibold uppercase tracking-wider text-white/60">
-                  Professional
-                </span>
+              <TrustPoint
+                icon={Clock3}
+                text="24/7 Support"
+              />
 
-              </div>
-
-              <div className="h-4 w-px bg-white/15" />
-
-              <div className="flex items-center gap-2">
-
-                <ShieldCheck
-                  size={15}
-                  className="text-[#EF4444]"
-                />
-
-                <span className="text-xs font-semibold uppercase tracking-wider text-white/60">
-                  Reliable
-                </span>
-
-              </div>
-
-              <div className="h-4 w-px bg-white/15" />
-
-              <div className="flex items-center gap-2">
-
-                <Clock3
-                  size={15}
-                  className="text-[#EF4444]"
-                />
-
-                <span className="text-xs font-semibold uppercase tracking-wider text-white/60">
-                  24/7 Support
-                </span>
-
-              </div>
+              <TrustPoint
+                icon={Users}
+                text="Experienced Team"
+              />
 
             </div>
 
           </Container>
-
         </div>
 
       </section>
 
+
       {/* =====================================================
-          INTRODUCTION
+          INTRODUCTION — LIGHT
       ====================================================== */}
 
-      <section className="bg-white py-20 sm:py-24 lg:py-28">
+      <section className="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-32">
+
+        <div className="pointer-events-none absolute right-0 top-0 h-[450px] w-[450px] rounded-full bg-[#B91C1C]/[0.035] blur-[120px]" />
 
         <Container>
 
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
+          <div className="relative z-10 grid items-center gap-12 lg:grid-cols-[0.35fr_1fr] lg:gap-20">
 
-            {/* Left */}
+            <div className="hidden lg:block">
 
-            <div>
+              <div className="border-l-2 border-[#B91C1C] pl-7">
 
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#FECACA] bg-[#FEF2F2] text-[#B91C1C]">
-                <ShieldCheck size={27} />
-              </div>
-
-              <p className="mt-6 text-xs font-bold uppercase tracking-[0.25em] text-[#B91C1C]">
-                Protection With Purpose
-              </p>
-
-              <h2 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-[#05051A] sm:text-5xl lg:text-6xl">
-
-                More than security.
-
-                <span className="block text-[#B91C1C]">
-                  Complete peace of mind.
+                <span className="block text-[110px] font-black leading-none text-[#05051A]/[0.06]">
+                  01
                 </span>
 
-              </h2>
+                <span className="mt-4 block text-base font-bold uppercase tracking-[0.3em] text-[#B91C1C]">
+                  Our Purpose
+                </span>
+
+              </div>
 
             </div>
 
-            {/* Right */}
+            <div>
 
-            <div className="lg:pt-2">
+              <div className="mb-6 flex items-center gap-4 lg:hidden">
 
-              <p className="text-lg leading-8 text-[#334155]">
-                Every property has different requirements. That's why our
-                security solutions are built around the environment we
-                protect, rather than using a one-size-fits-all approach.
+                <span className="h-[2px] w-12 bg-[#B91C1C]" />
+
+                <p className="text-base font-bold uppercase tracking-[0.25em] text-[#B91C1C]">
+                  Our Purpose
+                </p>
+
+              </div>
+
+              <h2 className="max-w-5xl text-4xl font-black leading-[1.02] tracking-tight text-[#05051A] sm:text-5xl lg:text-7xl">
+                Securing What
+                <span className="block text-[#B91C1C]">
+                  Matters Most
+                </span>
+              </h2>
+
+              <p className="mt-7 max-w-4xl text-lg leading-8 text-[#475569] sm:text-xl lg:text-[22px] lg:leading-9">
+                We understand that every environment has unique security
+                requirements. Our approach combines professional personnel,
+                proactive protection, clear communication, and dependable
+                service to create safer environments for people, properties,
+                and businesses.
               </p>
 
-              <p className="mt-6 text-base leading-8 text-[#64748B]">
-                From commercial buildings and residential communities to
-                industrial facilities and public-facing environments, our
-                professionals provide a visible and dependable presence.
-              </p>
+              <div className="mt-9 flex flex-wrap gap-4">
 
-              <div className="mt-8 flex items-center gap-2">
+                <span className="border border-[#B91C1C]/20 bg-[#FEF2F2] px-5 py-3 text-base font-bold text-[#991B1B]">
+                  People
+                </span>
 
-                <div className="h-1 w-10 rounded-full bg-[#B91C1C]" />
+                <span className="border border-[#B91C1C]/20 bg-[#FEF2F2] px-5 py-3 text-base font-bold text-[#991B1B]">
+                  Property
+                </span>
 
-                <div className="h-1 w-3 rounded-full bg-[#CBD5E1]" />
-
-                <div className="h-1 w-2 rounded-full bg-[#E2E8F0]" />
+                <span className="border border-[#B91C1C]/20 bg-[#FEF2F2] px-5 py-3 text-base font-bold text-[#991B1B]">
+                  Business
+                </span>
 
               </div>
 
@@ -385,239 +356,300 @@ export default function ServicesPage() {
           </div>
 
         </Container>
-
       </section>
 
+
       {/* =====================================================
-          SECURITY SERVICES
+          SECURITY SERVICES — LIGHT
       ====================================================== */}
 
-      <section
-        id="security"
-        className="bg-[#F8F9FA] py-20 sm:py-24 lg:py-28"
-      >
+   <section
+  id="security"
+  className="relative overflow-hidden bg-[#05051A] py-20 sm:py-24 lg:py-32"
+>
+  {/* Red ambient glow */}
+  <div className="pointer-events-none absolute -left-40 top-1/2 h-[550px] w-[550px] -translate-y-1/2 rounded-full bg-[#B91C1C]/10 blur-[160px]" />
 
-        <Container>
+  <div className="pointer-events-none absolute -right-40 top-20 h-[450px] w-[450px] rounded-full bg-[#B91C1C]/10 blur-[140px]" />
 
-          {/* Heading */}
+  <Container>
 
-          <div className="mb-14 flex flex-col justify-between gap-7 lg:flex-row lg:items-end">
+    <div className="relative z-10 mb-16 grid gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-end">
 
-            <div>
+      <div>
+        <p className="text-base font-bold uppercase tracking-[0.25em] text-[#FCA5A5] sm:text-lg">
+          Security Guard Services
+        </p>
 
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#FECACA] bg-[#FEF2F2] text-[#B91C1C]">
-                <Shield
-                  size={26}
-                  strokeWidth={1.8}
-                />
-              </div>
+        <h2 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-7xl">
+          Protection that is
 
-              <p className="mt-6 text-xs font-bold uppercase tracking-[0.25em] text-[#B91C1C]">
-                Security Guard Services
-              </p>
+          <span className="block text-[#EF4444]">
+            present when needed.
+          </span>
+        </h2>
+      </div>
 
-              <h2 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-[#05051A] sm:text-5xl lg:text-6xl">
+      <p className="text-lg leading-8 text-slate-400 sm:text-xl">
+        Our trained security professionals provide a visible,
+        dependable presence designed to protect people, property,
+        and operations.
+      </p>
 
-                Professional protection,
+    </div>
 
-                <span className="block text-[#B91C1C]">
-                  where you need it.
-                </span>
+    <div className="relative z-10 grid gap-5 lg:grid-cols-12">
 
-              </h2>
+      {/* Main Card */}
+      <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#0B0B24] p-8 sm:p-10 lg:col-span-7">
 
+        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[#B91C1C]/10 blur-[90px]" />
+
+        <div className="relative z-10">
+
+          <div className="flex items-start justify-between">
+
+            <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-[#B91C1C]/40 bg-[#10102D] text-[#FCA5A5]">
+              <LockKeyhole
+                size={38}
+                strokeWidth={1.6}
+              />
             </div>
 
-            <p className="max-w-md text-sm leading-7 text-[#64748B]">
-              Our security professionals provide a consistent and proactive
-              presence tailored to the needs of your property.
-            </p>
+            <span className="text-7xl font-black text-white/[0.04]">
+              01
+            </span>
 
           </div>
 
-          {/* =================================================
-              SERVICE CARDS
-          ================================================== */}
+          <h3 className="mt-14 text-3xl font-black text-white sm:text-4xl">
+            Access Control
+          </h3>
 
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <p className="mt-5 max-w-xl text-lg leading-8 text-slate-400 sm:text-xl">
+            Monitoring and managing entry points to restrict unauthorized access
+          </p>
 
-            {securityServices.map((service) => {
+          <div className="mt-12 flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#FCA5A5]">
+            <span className="h-2 w-2 rounded-full bg-[#B91C1C]" />
+            Controlled Access
+          </div>
 
-              const Icon = service.icon;
+        </div>
 
-              return (
-                <div
-                  key={service.title}
-                  className="group relative rounded-[24px] border bg-white p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_45px_rgba(15,23,42,0.08)]"
-                  style={{
-                    borderColor: service.border,
-                  }}
-                >
+      </div>
 
-                  {/* Top line */}
 
-                  <div
-                    className="absolute left-7 right-7 top-0 h-[3px] rounded-b-full opacity-0 transition-all duration-300 group-hover:opacity-100"
-                    style={{
-                      backgroundColor: service.accent,
-                    }}
-                  />
+      {/* Patrol */}
+      <div className="group rounded-[28px] border border-white/10 bg-[#10102D] p-8 transition-all duration-300 hover:-translate-y-1 hover:border-[#B91C1C]/50 lg:col-span-5">
 
-                  {/* Icon */}
+        <div className="flex items-start justify-between">
 
-                  <div className="flex items-start justify-between">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[#B91C1C]/40 bg-[#0B0B24] text-[#FCA5A5]">
+            <Footprints size={31} />
+          </div>
 
-                    <div
-                      className="flex h-16 w-16 items-center justify-center rounded-2xl border"
-                      style={{
-                        backgroundColor: service.light,
-                        borderColor: service.border,
-                        color: service.accent,
-                      }}
-                    >
-                      <Icon
-                        size={28}
-                        strokeWidth={1.8}
-                      />
-                    </div>
+          <span className="text-4xl font-black text-white/[0.05]">
+            02
+          </span>
 
-                    <div
-                      className="flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-300 group-hover:text-white"
-                      style={{
-                        borderColor: service.border,
-                        color: service.accent,
-                      }}
-                    >
-                      <ArrowUpRight size={16} />
-                    </div>
+        </div>
 
-                  </div>
+        <h3 className="mt-8 text-2xl font-black text-white sm:text-3xl">
+          Patrolling (Foot & Vehicle)
+        </h3>
 
-                  {/* Content */}
+        <p className="mt-4 text-lg leading-8 text-slate-400">
+          Regular patrols to detect and report suspicious activity.
+        </p>
 
-                  <div className="mt-8">
+      </div>
 
-                    <h3
-                      className="text-xl font-bold text-[#05051A] transition-colors duration-300"
-                    >
-                      {service.title}
-                    </h3>
 
-                    <p className="mt-3 text-sm leading-7 text-[#64748B]">
-                      {service.text}
-                    </p>
+      {/* Emergency */}
+      <div className="relative overflow-hidden rounded-[28px] bg-[#B91C1C] p-8 lg:col-span-5">
 
-                  </div>
+        <div className="absolute -right-12 -top-12 text-white/[0.08]">
+          <Siren
+            size={180}
+            strokeWidth={1}
+          />
+        </div>
 
-                  {/* Bottom */}
+        <div className="relative z-10">
 
-                  <div className="mt-8 flex items-center gap-2">
+          <div className="flex items-center justify-between">
 
-                    <span
-                      className="h-1.5 w-1.5 rounded-full"
-                      style={{
-                        backgroundColor: service.accent,
-                      }}
-                    />
+            <div className="flex h-16 w-16 items-center justify-center bg-white text-[#B91C1C]">
+              <Siren size={32} />
+            </div>
 
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#94A3B8]">
-                      Security Service
-                    </span>
-
-                  </div>
-
-                </div>
-              );
-            })}
+            <span className="text-4xl font-black text-white/20">
+              03
+            </span>
 
           </div>
 
-        </Container>
+          <h3 className="mt-8 text-2xl font-black text-white sm:text-3xl">
+            Emergency Response
+          </h3>
 
-      </section>
+          <p className="mt-4 text-lg leading-8 text-white/75">
+           Immediate on-site action in response to alarms, incidents, and safety threats
+          </p>
+
+        </div>
+
+      </div>
+
+
+      {/* CCTV */}
+      <div className="group rounded-[28px] border border-white/10 border-t-4 border-t-[#B91C1C] bg-[#0B0B24] p-8 lg:col-span-5">
+
+        <div className="flex items-center gap-5">
+
+          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-[#10102D] text-[#FCA5A5]">
+            <Camera size={31} />
+          </div>
+
+          <div>
+
+            <span className="text-sm font-black uppercase tracking-[0.2em] text-white/25">
+              04
+            </span>
+
+            <h3 className="mt-1 text-2xl font-black text-white">
+              CCTV & Surveillance
+            </h3>
+
+          </div>
+
+        </div>
+
+        <p className="mt-5 text-lg leading-8 text-slate-400">
+          Real-time security system monitoring with incident documentation
+        </p>
+
+      </div>
+
+
+      {/* Incident */}
+      <div className="group rounded-[28px] border border-white/10 bg-[#10102D] p-8 lg:col-span-5">
+
+        <div className="flex items-start justify-between">
+
+          <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[#B91C1C]/40 bg-[#0B0B24] text-[#FCA5A5]">
+            <ClipboardCheck size={31} />
+          </div>
+
+          <span className="text-4xl font-black text-white/10">
+            05
+          </span>
+
+        </div>
+
+        <h3 className="mt-8 text-2xl font-black text-white sm:text-3xl">
+          Incident Reporting
+        </h3>
+
+        <p className="mt-4 text-lg leading-8 text-slate-400">
+          Timely, accurate reports on events, risks,
+and resolution
+        </p>
+
+      </div>
+
+    </div>
+
+  </Container>
+</section>
+
 
       {/* =====================================================
-          WHY CHOOSE US
+          WHY CHOOSE US — LIGHT
       ====================================================== */}
 
-      <section className="bg-white py-20 sm:py-24 lg:py-28">
+      <section className="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-32">
+
+        <div className="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-[#B91C1C]/[0.035] blur-[150px]" />
 
         <Container>
 
-          <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <div className="relative z-10">
 
-            {/* Left */}
+            <div className="grid gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-end">
 
-            <div>
+              <div>
 
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#FECACA] bg-[#FEF2F2] text-[#B91C1C]">
-                <ShieldCheck size={27} />
+                <p className="text-base font-bold uppercase tracking-[0.3em] text-[#B91C1C] sm:text-lg">
+                  Why Choose Us?
+                </p>
+
+                <h2 className="mt-5 text-4xl font-black leading-[1.02] text-[#05051A] sm:text-5xl lg:text-7xl">
+                  Experience you can
+                  <span className="block text-[#B91C1C]">
+                    depend on.
+                  </span>
+                </h2>
+
               </div>
 
-              <p className="mt-6 text-xs font-bold uppercase tracking-[0.25em] text-[#B91C1C]">
-                Why Choose PSS
-              </p>
-
-              <h2 className="mt-5 text-4xl font-bold leading-[1.05] text-[#05051A] sm:text-5xl lg:text-6xl">
-
-                Security that
-
-                <span className="block text-[#B91C1C]">
-                  works for you.
-                </span>
-
-              </h2>
-
-              <p className="mt-6 max-w-md text-base leading-8 text-[#64748B]">
-                Effective security is about understanding your environment,
-                identifying potential risks, and creating a professional
-                presence that gives people confidence.
+              <p className="max-w-2xl text-lg leading-8 text-[#64748B] sm:text-xl">
+                Our services are built around experienced people,
+                customized solutions, dependable availability, and
+                a commitment to professional service.
               </p>
 
             </div>
 
-            {/* Right cards */}
 
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
 
-              {advantages.map((item, index) => {
+              {whyChooseUs.map((item, index) => {
 
                 const Icon = item.icon;
 
                 return (
                   <div
                     key={item.title}
-                    className="group rounded-[22px] border border-[#E2E8F0] bg-[#F8FAFC] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#FECACA] hover:bg-white hover:shadow-[0_15px_35px_rgba(15,23,42,0.07)]"
+                    className="group relative overflow-hidden border border-slate-200 bg-[#F8F9FA] p-8 transition-all duration-500 hover:-translate-y-2 hover:border-[#B91C1C]/40 hover:bg-white hover:shadow-[0_20px_50px_rgba(5,5,26,0.08)]"
                   >
 
-                    <div className="flex items-center justify-between">
+                    <span className="absolute -right-3 -top-8 text-[100px] font-black leading-none text-[#05051A]/[0.035]">
+                      0{index + 1}
+                    </span>
 
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#FECACA] bg-[#FEF2F2] text-[#B91C1C] transition-all duration-300 group-hover:bg-[#B91C1C] group-hover:text-white">
+                    <div className="relative z-10">
 
-                        <Icon
-                          size={22}
-                          strokeWidth={1.8}
-                        />
+                      <div className="flex items-center justify-between">
+
+                        <div className="flex h-16 w-16 items-center justify-center border border-[#B91C1C]/20 bg-[#FEF2F2] text-[#B91C1C] transition-all duration-300 group-hover:bg-[#B91C1C] group-hover:text-white">
+                          <Icon
+                            size={31}
+                            strokeWidth={1.7}
+                          />
+                        </div>
+
+                        <span className="text-sm font-bold text-slate-300">
+                          0{index + 1}
+                        </span>
 
                       </div>
 
-                      <span className="text-xs font-bold tracking-[0.2em] text-[#CBD5E1]">
-                        0{index + 1}
-                      </span>
+                      <h3 className="mt-9 text-2xl font-black text-[#05051A] sm:text-3xl">
+                        {item.title}
+                      </h3>
+
+                      <div className="mt-4 h-[2px] w-10 bg-[#B91C1C] transition-all duration-500 group-hover:w-20" />
+
+                      <p className="mt-5 text-base leading-8 text-[#64748B] sm:text-lg">
+                        {item.text}
+                      </p>
 
                     </div>
 
-                    <h3 className="mt-7 text-lg font-bold text-[#05051A]">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-6 text-[#64748B]">
-                      {item.text}
-                    </p>
-
                   </div>
                 );
-
               })}
 
             </div>
@@ -625,115 +657,151 @@ export default function ServicesPage() {
           </div>
 
         </Container>
-
       </section>
 
+
       {/* =====================================================
-          OUR APPROACH
+          CUSTOMER SERVICE — LIGHT GRAY
       ====================================================== */}
 
-      <section className="bg-[#F8F9FA] py-20 sm:py-24 lg:py-28">
+  <section className="relative overflow-hidden bg-[#F8F9FA] py-12 sm:py-14 lg:py-16">
+  {/* Subtle Background Decoration */}
+  <div className="pointer-events-none absolute -left-24 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full border border-[#B91C1C]/10" />
+  <div className="pointer-events-none absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-[#B91C1C]/[0.025] blur-3xl" />
+
+  <Container>
+    <div className="relative w-full overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_15px_45px_rgba(5,5,26,0.05)]">
+
+      {/* Left Red Accent */}
+      <div className="absolute left-0 top-0 h-full w-1.5 bg-[#B91C1C]" />
+
+      {/* Content */}
+      <div className="relative px-7 py-8 sm:px-10 sm:py-9 lg:px-14 lg:py-10">
+
+        {/* Decorative Number */}
+        <span className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 text-[110px] font-black leading-none text-[#05051A]/[0.025] lg:block">
+          02
+        </span>
+
+        <div className="relative z-10">
+
+          {/* Label */}
+          <div className="flex items-center gap-3">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#FEF2F2] text-sm font-black text-[#B91C1C]">
+              02
+            </span>
+
+            <span className="h-px w-8 bg-[#B91C1C]" />
+
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#B91C1C] sm:text-base">
+              Customer Service & Reception
+            </p>
+          </div>
+
+          {/* Heading */}
+          <h2 className="mt-5 text-3xl font-black leading-tight tracking-tight text-[#05051A] sm:text-4xl lg:text-5xl">
+            Where Security Meets{" "}
+            <span className="text-[#B91C1C]">
+              Hospitality.
+            </span>
+          </h2>
+
+          {/* Description */}
+          <p className="mt-4 max-w-5xl text-base leading-7 text-[#475569] sm:text-lg sm:leading-8 lg:text-xl">
+            Beyond safeguarding physical assets, our security officers are
+            trained to deliver exceptional customer service and reception
+            support. We understand that professionalism and courtesy are
+            essential in commercial environments.
+          </p>
+
+          {/* Bottom Line */}
+          <div className="mt-6 flex flex-col gap-3 border-t border-slate-200 pt-5 sm:flex-row sm:items-center sm:justify-between">
+
+            <div className="flex items-center gap-3">
+              <span className="h-2 w-2 rounded-full bg-[#B91C1C]" />
+
+              <p className="text-sm font-bold text-[#05051A] sm:text-base">
+                Professional service. Secure environment.
+              </p>
+            </div>
+
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 sm:text-sm">
+              PSS
+            </span>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+
+      {/* =====================================================
+          OFFICERS CAN ASSIST — DARK
+      ====================================================== */}
+
+      <section className="relative overflow-hidden bg-[#05051A] py-20 sm:py-24 lg:py-32">
+
+        <div className="pointer-events-none absolute -right-40 top-1/2 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#B91C1C]/15 blur-[160px]" />
 
         <Container>
 
-          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
-
-            {/* Image */}
-
-            <div className="relative overflow-hidden rounded-[30px]">
-
-              <div className="relative h-[500px] sm:h-[600px]">
-
-                <Image
-                  src="https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=1400&q=90"
-                  alt="Professional security guard"
-                  fill
-                  unoptimized
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 55vw"
-                />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-[#05051A]/70 via-transparent to-transparent" />
-
-              </div>
-
-              {/* Floating card */}
-
-              <div className="absolute bottom-6 left-6 rounded-2xl border border-white/20 bg-white/95 p-5 shadow-xl backdrop-blur-xl sm:left-8">
-
-                <div className="flex items-center gap-3">
-
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#FEF2F2] text-[#B91C1C]">
-
-                    <ShieldCheck size={20} />
-
-                  </div>
-
-                  <div>
-
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#94A3B8]">
-                      Our Approach
-                    </p>
-
-                    <p className="mt-1 text-base font-bold text-[#05051A]">
-                      Visible & Proactive
-                    </p>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
+          <div className="relative z-10 grid items-center gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
 
             {/* Content */}
 
             <div>
 
-              <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#B91C1C]">
-                A Better Approach
-              </p>
+              <div className="flex items-center gap-4">
 
-              <h2 className="mt-5 text-4xl font-bold leading-[1.05] text-[#05051A] sm:text-5xl">
-
-                Protection built
-
-                <span className="block text-[#B91C1C]">
-                  around your needs.
+                <span className="text-7xl font-black text-[#B91C1C]/20">
+                  05
                 </span>
 
-              </h2>
+                <div className="h-px w-16 bg-[#B91C1C]" />
 
-              <p className="mt-6 text-base leading-8 text-[#64748B]">
-                We believe security should complement your property and
-                operations rather than get in the way of them.
+              </div>
+
+              <p className="mt-7 text-base font-bold uppercase tracking-[0.25em] text-[#FCA5A5] sm:text-lg">
+                Professional Support
               </p>
 
-              <div className="mt-9 space-y-5">
+              <h2 className="mt-5 text-4xl font-black leading-[1.02] text-white sm:text-5xl lg:text-6xl">
+                Our Officers Can
+                <span className="block text-[#EF4444]">
+                  Assist With:
+                </span>
+              </h2>
 
-                {[
-                  "Customized security plans",
-                  "Professional and trained personnel",
-                  "Reliable communication",
-                  "Flexible coverage",
-                ].map((item) => (
+              <p className="mt-7 text-lg leading-8 text-white/55 sm:text-xl">
+                Our team helps create a secure, organized, and professional
+                environment while supporting visitors, tenants, employees,
+                and guests.
+              </p>
+
+              <div className="mt-10">
+
+                {officerSupport.map((item, index) => (
 
                   <div
                     key={item}
-                    className="flex items-center gap-4"
+                    className="group flex items-center gap-5 border-b border-white/10 py-5"
                   >
 
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#FECACA] bg-[#FEF2F2] text-[#B91C1C]">
+                    <span className="text-sm font-black text-[#B91C1C]">
+                      0{index + 1}
+                    </span>
 
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#B91C1C] text-white">
                       <Check
-                        size={16}
+                        size={17}
                         strokeWidth={3}
                       />
-
                     </div>
 
-                    <span className="text-sm font-semibold text-[#334155]">
+                    <span className="text-base leading-7 text-white/70 transition-colors group-hover:text-white sm:text-lg">
                       {item}
                     </span>
 
@@ -743,295 +811,591 @@ export default function ServicesPage() {
 
               </div>
 
-              <Link
-                href="/contact"
-                className="group mt-10 inline-flex items-center gap-3 border-b-2 border-[#B91C1C] pb-2 text-sm font-bold text-[#05051A]"
-              >
-                Talk to our team
-
-                <ArrowRight
-                  size={17}
-                  className="text-[#B91C1C] transition-transform duration-300 group-hover:translate-x-1"
-                />
-
-              </Link>
-
             </div>
 
-          </div>
-
-        </Container>
-
-      </section>
-
-      {/* =====================================================
-          CUSTOMER SERVICE
-      ====================================================== */}
-
-      <section className="bg-[#05051A] py-20 sm:py-24 lg:py-28">
-
-        <Container>
-
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
 
             {/* Image */}
 
-            <div className="relative order-1 overflow-hidden rounded-[30px]">
+            <div className="relative">
 
-              <div className="relative h-[480px] sm:h-[560px]">
+              <div className="absolute -bottom-8 -left-8 hidden h-40 w-40 border-b-2 border-l-2 border-[#B91C1C] lg:block" />
 
-                <Image
-                  src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1400&q=90"
-                  alt="Professional customer service team"
-                  fill
-                  unoptimized
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
+              <div className="relative overflow-hidden">
 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#05051A]/80 via-transparent to-transparent" />
+                <div className="relative h-[450px] sm:h-[600px]">
 
-              </div>
-
-              <div className="absolute bottom-6 left-6">
-
-                <div className="flex items-center gap-3 rounded-full border border-white/15 bg-[#05051A]/70 px-4 py-2 backdrop-blur-md">
-
-                  <Users
-                    size={15}
-                    className="text-[#EF4444]"
+                  <Image
+                    src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=90"
+                    alt="Professional customer service and security support"
+                    fill
+                    unoptimized
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
                   />
 
-                  <span className="text-xs font-semibold text-white">
-                    Professional Customer Service
-                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#05051A]/90 via-transparent to-transparent" />
 
                 </div>
 
-              </div>
+                <div className="absolute bottom-7 left-7 right-7">
 
-            </div>
+                  <div className="flex items-center justify-between border border-white/15 bg-[#05051A]/85 p-6 backdrop-blur-xl">
 
-            {/* Content */}
+                    <div>
 
-            <div className="order-2">
+                      <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#FCA5A5]">
+                        On-Site Support
+                      </p>
 
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#7F1D1D] bg-[#450A0A] text-[#FCA5A5]">
-                <Users size={27} />
-              </div>
-
-              <p className="mt-6 text-xs font-bold uppercase tracking-[0.25em] text-[#FCA5A5]">
-                Customer Service & Reception
-              </p>
-
-              <h2 className="mt-5 text-4xl font-bold leading-[1.05] text-white sm:text-5xl">
-
-                Security meets
-
-                <span className="block text-[#EF4444]">
-                  hospitality.
-                </span>
-
-              </h2>
-
-              <p className="mt-6 text-base leading-8 text-white/50">
-                Our customer service solutions combine security awareness
-                with a professional and welcoming presence.
-              </p>
-
-              <div className="mt-8 space-y-4">
-
-                {receptionServices.map((service) => (
-
-                  <div
-                    key={service}
-                    className="flex items-center gap-3"
-                  >
-
-                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#7F1D1D] bg-[#450A0A] text-[#FCA5A5]">
-
-                      <Check
-                        size={13}
-                        strokeWidth={3}
-                      />
+                      <p className="mt-2 text-xl font-bold text-white">
+                        Professional. Present. Prepared.
+                      </p>
 
                     </div>
 
-                    <span className="text-sm text-white/70">
-                      {service}
-                    </span>
-
-                  </div>
-
-                ))}
-
-              </div>
-
-              <Link
-                href="/contact"
-                className="group mt-10 inline-flex items-center gap-3 rounded-xl bg-white px-6 py-4 text-sm font-semibold text-[#05051A] transition-all duration-300 hover:-translate-y-1"
-              >
-                Discuss Your Requirements
-
-                <ArrowUpRight
-                  size={17}
-                  className="text-[#B91C1C] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                />
-
-              </Link>
-
-            </div>
-
-          </div>
-
-        </Container>
-
-      </section>
-
-      {/* =====================================================
-          INDUSTRIES
-      ====================================================== */}
-
-      <section className="bg-white py-20 sm:py-24 lg:py-28">
-
-        <Container>
-
-          <div className="mb-14">
-
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#FECACA] bg-[#FEF2F2] text-[#B91C1C]">
-              <Building2 size={25} />
-            </div>
-
-            <p className="mt-6 text-xs font-bold uppercase tracking-[0.25em] text-[#B91C1C]">
-              Industries We Serve
-            </p>
-
-            <h2 className="mt-5 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-[#05051A] sm:text-5xl lg:text-6xl">
-
-              Security for every{" "}
-
-              <span className="text-[#B91C1C]">
-                environment.
-              </span>
-
-            </h2>
-
-          </div>
-
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-
-            {industries.map((industry) => {
-
-              const Icon = industry.icon;
-
-              return (
-                <div
-                  key={industry.title}
-                  className="group rounded-[22px] border border-[#E2E8F0] bg-[#F8FAFC] p-7 transition-all duration-300 hover:-translate-y-2 hover:border-[#FECACA] hover:bg-white hover:shadow-[0_18px_40px_rgba(15,23,42,0.07)]"
-                >
-
-                  <div className="flex items-center justify-between">
-
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#FECACA] bg-[#FEF2F2] text-[#B91C1C] transition-all duration-300 group-hover:bg-[#B91C1C] group-hover:text-white">
-
-                      <Icon
-                        size={25}
-                        strokeWidth={1.8}
-                      />
-
-                    </div>
-
-                    <ArrowUpRight
-                      size={18}
-                      className="text-[#CBD5E1] transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-[#B91C1C]"
+                    <Shield
+                      size={38}
+                      className="text-[#B91C1C]"
                     />
 
                   </div>
 
-                  <h3 className="mt-9 text-xl font-bold text-[#05051A]">
-                    {industry.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-6 text-[#64748B]">
-                    {industry.text}
-                  </p>
-
                 </div>
-              );
 
-            })}
+              </div>
+
+            </div>
 
           </div>
 
         </Container>
-
       </section>
 
+
       {/* =====================================================
-          FINAL CTA
+          CTA — LIGHT
       ====================================================== */}
 
-      <section className="bg-[#F8F9FA] py-16 sm:py-20">
+      <section className="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-28">
 
         <Container>
 
-          <div className="relative overflow-hidden rounded-[30px] border border-[#E2E8F0] bg-white px-6 py-12 shadow-[0_15px_50px_rgba(15,23,42,0.06)] sm:px-10 lg:px-16 lg:py-16">
+          <div className="relative overflow-hidden bg-[#F3F4F6] px-8 py-14 sm:px-12 lg:px-16 lg:py-20">
 
-            {/* Accent */}
+            <div className="absolute left-0 top-0 h-full w-2 bg-[#B91C1C]" />
 
-            <div className="absolute bottom-0 left-0 top-0 w-1 bg-[#B91C1C]" />
+            <span className="pointer-events-none absolute -right-8 -top-20 text-[220px] font-black leading-none text-[#05051A]/[0.035]">
+              06
+            </span>
 
-            <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#B91C1C]/5 blur-[80px]" />
+            <div className="relative z-10 flex flex-col justify-between gap-10 lg:flex-row lg:items-center">
 
-            <div className="relative z-10 flex flex-col justify-between gap-8 lg:flex-row lg:items-center">
+              <div className="max-w-4xl">
 
-              <div className="max-w-2xl">
+                <p className="text-base font-bold uppercase tracking-[0.25em] text-[#B91C1C] sm:text-lg">
+                  Ready to get started?
+                </p>
 
-                <div className="flex items-center gap-3">
-
-                  <ShieldCheck
-                    size={18}
-                    className="text-[#B91C1C]"
-                  />
-
-                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#B91C1C]">
-                    Let's Work Together
-                  </p>
-
-                </div>
-
-                <h2 className="mt-5 text-3xl font-bold leading-tight tracking-tight text-[#05051A] sm:text-4xl lg:text-5xl">
-                  Ready to create a safer environment?
+                <h2 className="mt-5 text-4xl font-black leading-[1.02] tracking-tight text-[#05051A] sm:text-5xl lg:text-7xl">
+                  Secure your space
+                  <span className="block text-[#B91C1C]">
+                    with confidence.
+                  </span>
                 </h2>
 
-                <p className="mt-4 text-sm leading-7 text-[#64748B] sm:text-base">
+                <p className="mt-6 text-lg leading-8 text-[#64748B] sm:text-xl">
                   Tell us about your property, your requirements, and the
-                  level of protection you need.
+                  level of protection or support you need.
                 </p>
 
               </div>
 
               <Link
-                href="/contact"
-                className="group inline-flex shrink-0 items-center justify-center gap-3 rounded-xl bg-[#B91C1C] px-7 py-4 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#991B1B]"
-              >
-                Contact PSS
+  href="tel:+18674457900"
+  className="group inline-flex shrink-0 items-center justify-center gap-3 rounded-xl bg-[#B91C1C] px-8 py-5 text-lg font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#991B1B]"
+>
+  Schedule a Call
 
-                <ArrowUpRight
-                  size={17}
-                  className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                />
-
-              </Link>
+  <ArrowUpRight
+    size={22}
+    className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+  />
+</Link>
 
             </div>
 
           </div>
 
         </Container>
+      </section>
 
+
+      {/* =====================================================
+          INDUSTRIES — DARK
+      ====================================================== */}
+
+      <section className="relative overflow-hidden bg-[#05051A] py-20 sm:py-24 lg:py-32">
+
+        <div className="pointer-events-none absolute -left-40 top-20 h-[550px] w-[550px] rounded-full bg-[#B91C1C]/10 blur-[150px]" />
+
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-[#B91C1C]/10 blur-[160px]" />
+
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.025]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)
+            `,
+            backgroundSize: "70px 70px",
+          }}
+        />
+
+        <Container>
+
+          <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_0.65fr] lg:items-end">
+
+            <div>
+
+              <div className="mb-6 flex items-center gap-4">
+
+                <span className="h-px w-14 bg-[#B91C1C]" />
+
+                <p className="text-base font-bold uppercase tracking-[0.3em] text-[#FCA5A5] sm:text-lg">
+                  Industries We Serve
+                </p>
+
+              </div>
+
+              <h2 className="max-w-4xl text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-7xl">
+                Protection across
+                <span className="block text-[#B91C1C]">
+                  different environments.
+                </span>
+              </h2>
+
+            </div>
+
+            <p className="text-lg leading-8 text-slate-400 sm:text-xl">
+              Our security professionals provide dependable protection
+              across a wide range of environments, properties, and
+              operational settings.
+            </p>
+
+          </div>
+
+
+          {/* Industry Cards */}
+
+          <div className="relative z-10 mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-12">
+
+            <IndustryCard
+              industry={industries[0]}
+              number="01"
+              className="lg:col-span-7 lg:row-span-2"
+              large
+            />
+
+            <IndustryCard
+              industry={industries[1]}
+              number="02"
+              className="lg:col-span-5"
+              variant="outline"
+            />
+
+            <IndustryCard
+              industry={industries[2]}
+              number="03"
+              className="lg:col-span-5"
+              variant="red"
+            />
+
+            <IndustryCard
+              industry={industries[3]}
+              number="04"
+              className="lg:col-span-4"
+              variant="minimal"
+            />
+
+            <IndustryCard
+              industry={industries[4]}
+              number="05"
+              className="lg:col-span-4"
+              variant="glass"
+            />
+
+            <IndustryCard
+              industry={industries[5]}
+              number="06"
+              className="lg:col-span-4"
+              variant="line"
+            />
+
+          </div>
+
+
+          <div className="relative z-10 mt-16 border-t border-white/10 pt-8">
+
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+
+              <p className="max-w-3xl text-base font-medium leading-8 text-slate-500 sm:text-lg">
+                Professional security solutions designed around the
+                environment, people, and risks that matter most.
+              </p>
+
+              <div className="flex items-center gap-3">
+
+                <span className="h-2.5 w-2.5 rounded-full bg-[#B91C1C] shadow-[0_0_15px_rgba(185,28,28,0.7)]" />
+
+                <span className="text-sm font-bold uppercase tracking-[0.25em] text-slate-500 sm:text-base">
+                  PSS
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </Container>
       </section>
 
     </main>
+  );
+}
+
+
+/* =========================================================
+   TRUST POINT
+========================================================= */
+
+function TrustPoint({ icon: Icon, text }) {
+  return (
+    <div className="flex items-center gap-3">
+
+      <Icon
+        size={22}
+        className="text-[#EF4444]"
+      />
+
+      <span className="text-base font-bold uppercase tracking-wider text-white/70 sm:text-lg">
+        {text}
+      </span>
+
+    </div>
+  );
+}
+
+
+/* =========================================================
+   INDUSTRY CARD
+========================================================= */
+
+function IndustryCard({
+  industry,
+  number,
+  className = "",
+  variant = "default",
+  large = false,
+}) {
+
+  const Icon = industry.icon;
+
+
+  /* RED CARD */
+
+  if (variant === "red") {
+    return (
+      <div
+        className={`
+          group relative overflow-hidden
+          bg-[#B91C1C]
+          p-7
+          transition-all duration-500
+          hover:-translate-y-1
+          sm:p-8
+          ${className}
+        `}
+      >
+
+        <span className="absolute -right-5 -top-8 text-[110px] font-black leading-none text-white/[0.08]">
+          {number}
+        </span>
+
+        <div className="relative z-10">
+
+          <div className="flex items-center justify-between">
+
+            <div className="flex h-14 w-14 items-center justify-center bg-white text-[#B91C1C]">
+              <Icon size={29} />
+            </div>
+
+            <ArrowUpRight
+              size={24}
+              className="text-white/50 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white"
+            />
+
+          </div>
+
+          <h3 className="mt-8 text-2xl font-black text-white sm:text-3xl">
+            {industry.title}
+          </h3>
+
+          <p className="mt-4 max-w-md text-base leading-7 text-white/75 sm:text-lg">
+            {industry.text}
+          </p>
+
+        </div>
+
+      </div>
+    );
+  }
+
+
+  /* OUTLINE CARD */
+
+  if (variant === "outline") {
+    return (
+      <div
+        className={`
+          group relative overflow-hidden
+          border border-white/15
+          bg-transparent
+          p-7
+          transition-all duration-500
+          hover:border-[#B91C1C]/60
+          hover:bg-white/[0.035]
+          sm:p-8
+          ${className}
+        `}
+      >
+
+        <div className="flex items-start justify-between">
+
+          <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#B91C1C]/40 text-[#FCA5A5] transition-all duration-500 group-hover:bg-[#B91C1C] group-hover:text-white">
+            <Icon size={29} />
+          </div>
+
+          <span className="text-4xl font-black text-white/10">
+            {number}
+          </span>
+
+        </div>
+
+        <h3 className="mt-7 text-2xl font-black text-white sm:text-3xl">
+          {industry.title}
+        </h3>
+
+        <p className="mt-4 max-w-lg text-base leading-7 text-slate-400 sm:text-lg">
+          {industry.text}
+        </p>
+
+        <div className="mt-7 h-[2px] w-10 bg-[#B91C1C] transition-all duration-500 group-hover:w-20" />
+
+      </div>
+    );
+  }
+
+
+  /* MINIMAL CARD */
+
+  if (variant === "minimal") {
+    return (
+      <div
+        className={`
+          group relative
+          border-b border-white/15
+          bg-[#08081E]
+          p-7
+          transition-all duration-500
+          hover:border-[#B91C1C]
+          sm:p-8
+          ${className}
+        `}
+      >
+
+        <div className="flex items-center gap-5">
+
+          <span className="text-4xl font-black text-[#B91C1C]/40">
+            {number}
+          </span>
+
+          <Icon
+            size={31}
+            strokeWidth={1.6}
+            className="text-[#FCA5A5] transition-transform duration-500 group-hover:scale-110"
+          />
+
+        </div>
+
+        <h3 className="mt-7 text-2xl font-black text-white">
+          {industry.title}
+        </h3>
+
+        <p className="mt-4 text-base leading-7 text-slate-500">
+          {industry.text}
+        </p>
+
+      </div>
+    );
+  }
+
+
+  /* GLASS CARD */
+
+  if (variant === "glass") {
+    return (
+      <div
+        className={`
+          group relative overflow-hidden
+          border border-white/10
+          bg-white/[0.035]
+          p-7
+          backdrop-blur-md
+          transition-all duration-500
+          hover:-translate-y-2
+          hover:bg-white/[0.06]
+          sm:p-8
+          ${className}
+        `}
+      >
+
+        <div className="absolute -bottom-16 -right-16 h-40 w-40 rounded-full bg-[#B91C1C]/10 blur-[60px]" />
+
+        <div className="relative z-10">
+
+          <div className="flex items-center justify-between">
+
+            <span className="text-5xl font-black text-white/[0.06]">
+              {number}
+            </span>
+
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 text-[#FCA5A5]">
+              <Icon size={29} />
+            </div>
+
+          </div>
+
+          <h3 className="mt-7 text-2xl font-black text-white">
+            {industry.title}
+          </h3>
+
+          <p className="mt-4 text-base leading-7 text-slate-400">
+            {industry.text}
+          </p>
+
+        </div>
+
+      </div>
+    );
+  }
+
+
+  /* LINE CARD */
+
+  if (variant === "line") {
+    return (
+      <div
+        className={`
+          group relative overflow-hidden
+          border-l-4 border-[#B91C1C]
+          bg-[#0B0B24]
+          p-7
+          transition-all duration-500
+          hover:bg-[#10102D]
+          sm:p-8
+          ${className}
+        `}
+      >
+
+        <div className="flex items-start justify-between">
+
+          <div>
+
+            <span className="text-sm font-bold uppercase tracking-[0.25em] text-[#B91C1C]">
+              Industry
+            </span>
+
+            <h3 className="mt-4 text-2xl font-black text-white">
+              {industry.title}
+            </h3>
+
+          </div>
+
+          <span className="text-4xl font-black text-white/[0.06]">
+            {number}
+          </span>
+
+        </div>
+
+        <p className="mt-5 text-base leading-7 text-slate-400">
+          {industry.text}
+        </p>
+
+      </div>
+    );
+  }
+
+
+  /* LARGE CORPORATE CARD */
+
+  return (
+    <div
+      className={`
+        group relative overflow-hidden
+        border border-white/10
+        bg-[#0B0B24]
+        p-8
+        transition-all duration-500
+        hover:border-[#B91C1C]/50
+        sm:p-10
+        ${className}
+      `}
+    >
+
+      <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#B91C1C]/10 blur-[80px] transition-all duration-500 group-hover:bg-[#B91C1C]/20" />
+
+      <div className="relative z-10 flex h-full flex-col justify-between">
+
+        <div>
+
+          <div className="flex items-start justify-between">
+
+            <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-[#B91C1C]/30 bg-[#B91C1C]/10 text-[#FCA5A5] transition-all duration-500 group-hover:bg-[#B91C1C] group-hover:text-white">
+
+              <Icon
+                size={38}
+                strokeWidth={1.6}
+              />
+
+            </div>
+
+            <span className="text-7xl font-black leading-none text-white/[0.04]">
+              {number}
+            </span>
+
+          </div>
+
+          <h3 className="mt-14 text-3xl font-black text-white sm:text-4xl">
+            {industry.title}
+          </h3>
+
+          <p className="mt-5 max-w-xl text-lg leading-8 text-slate-400 sm:text-xl">
+            {industry.text}
+          </p>
+
+        </div>
+
+        <div className="mt-12 flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#FCA5A5]">
+
+          <span className="h-2 w-2 rounded-full bg-[#B91C1C]" />
+
+          Commercial Protection
+
+        </div>
+
+      </div>
+
+    </div>
   );
 }
