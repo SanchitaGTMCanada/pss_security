@@ -24,7 +24,7 @@ const teamMembers = [
 
 export default function Team() {
   return (
-    <section className="relative overflow-hidden bg-[#F7F7F5] py-16 sm:py-20 lg:py-24">
+    <section className="relative overflow-hidden bg-[#F7F7F5] py-16 sm:py-20 lg:py-24" id="team">
 
       {/* =====================================================
           BACKGROUND
@@ -62,10 +62,10 @@ export default function Team() {
 
             <h2 className="max-w-2xl text-4xl font-bold leading-[1.05] tracking-tight text-[#111111] sm:text-5xl lg:text-6xl">
 
-              The people behind
+             Meet Our
 
               <span className="block text-[#B91C1C]">
-                your protection.
+               Team
               </span>
 
             </h2>
@@ -137,9 +137,7 @@ export default function Team() {
 
                 <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7">
 
-                  <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#F87171]">
-                    {member.role}
-                  </p>
+                
 
                   <h3 className="text-2xl font-bold text-white sm:text-3xl">
                     {member.name}
@@ -184,31 +182,19 @@ export default function Team() {
             BOTTOM STATEMENT
         ================================================== */}
 
-        <div className="relative z-10 mt-10 flex flex-col justify-between gap-5 border-t border-black/10 pt-6 sm:flex-row sm:items-center">
+     <div className="relative z-10 mt-10 flex flex-col justify-between gap-5 border-t border-black/10 pt-6 sm:flex-row sm:items-center">
 
-          <div>
+  <div>
+    <p className="text-lg font-semibold text-[#111111] sm:text-xl">
+      Professional people. Reliable protection.
+    </p>
 
-            <p className="text-sm font-semibold text-[#111111] sm:text-base">
-              Professional people. Reliable protection.
-            </p>
+    <p className="mt-2 text-base text-[#6B7280] sm:text-lg">
+      A dedicated team ready to protect what matters most.
+    </p>
+  </div>
 
-            <p className="mt-1 text-xs text-[#6B7280]">
-              A dedicated team ready to protect what matters most.
-            </p>
-
-          </div>
-
-          <div className="flex items-center gap-3">
-
-            <span className="h-2.5 w-2.5 rounded-full bg-[#B91C1C] shadow-[0_0_10px_rgba(185,28,28,0.35)]" />
-
-            <span className="text-xs font-semibold uppercase tracking-[0.15em] text-[#555]">
-              Available 24/7
-            </span>
-
-          </div>
-
-        </div>
+</div>
 
       </Container>
 

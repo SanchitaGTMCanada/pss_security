@@ -1,6 +1,6 @@
-
 import Image from "next/image";
 import Link from "next/link";
+
 import {
   ArrowUpRight,
   Building2,
@@ -12,9 +12,18 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
+
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[#05051A] text-white">
+    <footer
+      className="relative overflow-hidden bg-[#05051A] text-white"
+      id="contact"
+    >
       {/* =====================================================
           DARK FOOTER BACKGROUND
       ====================================================== */}
@@ -30,6 +39,7 @@ export default function Footer() {
         />
       </div>
 
+      {/* Ambient Glow */}
       <div className="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#B91C1C]/15 blur-[130px]" />
 
       <div className="pointer-events-none absolute -bottom-40 -left-40 h-[450px] w-[450px] rounded-full bg-[#B91C1C]/10 blur-[120px]" />
@@ -45,11 +55,9 @@ export default function Footer() {
 
             <div className="relative overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(5,5,26,0.08)]">
 
-              {/* =================================================
-                  VERY SUBTLE BACKGROUND
-              ================================================== */}
-
+              {/* Subtle Background */}
               <div className="pointer-events-none absolute inset-0">
+
                 <div className="absolute inset-y-0 right-0 w-[48%] bg-gradient-to-l from-[#fff5f5] via-[#fffafa] to-transparent" />
 
                 <div
@@ -60,6 +68,7 @@ export default function Footer() {
                     backgroundSize: "35px 35px",
                   }}
                 />
+
               </div>
 
               {/* =================================================
@@ -75,18 +84,18 @@ export default function Footer() {
                 <div className="px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
 
                   {/* Label */}
+                  <div className="mb-6 flex items-center gap-4">
 
-                  <div className="mb-5 flex items-center gap-3">
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#B91C1C] shadow-[0_0_12px_rgba(185,28,28,0.35)]" />
+                    <span className="h-3 w-3 rounded-full bg-[#B91C1C] shadow-[0_0_12px_rgba(185,28,28,0.35)]" />
 
-                    <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#B91C1C]">
+                    <span className="text-base font-bold uppercase tracking-[0.25em] text-[#B91C1C]">
                       Let&apos;s work together
                     </span>
+
                   </div>
 
                   {/* Heading */}
-
-                  <h2 className="max-w-3xl text-3xl font-black leading-[1.08] tracking-tight text-[#05051A] sm:text-4xl lg:text-[58px]">
+                  <h2 className="max-w-3xl text-4xl font-black leading-[1.08] tracking-tight text-[#05051A] sm:text-5xl lg:text-[64px]">
                     Need reliable people
                     <span className="block text-[#B91C1C]">
                       you can count on?
@@ -94,51 +103,50 @@ export default function Footer() {
                   </h2>
 
                   {/* Description */}
-
-                  <p className="mt-6 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base lg:text-[17px]">
+                  <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl lg:text-[21px]">
                     Whether you need professional security personnel or
                     customer service and reception support, we are ready to
                     discuss your requirements.
                   </p>
 
-                  {/* Trust points */}
+                  {/* Trust Points */}
+                  <div className="mt-8 flex flex-wrap gap-x-7 gap-y-4">
 
-                  <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3">
-
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-3">
                       <CheckCircle2
-                        size={16}
+                        size={22}
                         className="text-[#B91C1C]"
                       />
 
-                      <span className="text-sm font-semibold text-slate-500">
+                      <span className="text-base font-semibold text-slate-500 sm:text-lg">
                         Professional
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-3">
                       <ShieldCheck
-                        size={16}
+                        size={22}
                         className="text-[#B91C1C]"
                       />
 
-                      <span className="text-sm font-semibold text-slate-500">
+                      <span className="text-base font-semibold text-slate-500 sm:text-lg">
                         Reliable
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-3">
                       <Building2
-                        size={16}
+                        size={22}
                         className="text-[#B91C1C]"
                       />
 
-                      <span className="text-sm font-semibold text-slate-500">
+                      <span className="text-base font-semibold text-slate-500 sm:text-lg">
                         Business Ready
                       </span>
                     </div>
 
                   </div>
+
                 </div>
 
                 {/* =================================================
@@ -147,62 +155,59 @@ export default function Footer() {
 
                 <div className="relative flex min-h-[360px] items-center justify-center overflow-hidden px-6 pb-12 sm:min-h-[400px] lg:min-h-[500px] lg:px-8 lg:pb-0">
 
-                  {/* Soft glow */}
-
+                  {/* Soft Glow */}
                   <div className="pointer-events-none absolute right-[15%] top-1/2 h-[280px] w-[280px] -translate-y-1/2 rounded-full bg-[#B91C1C]/10 blur-[70px]" />
 
-                  {/* Large outer ring */}
-
+                  {/* Outer Ring */}
                   <div className="absolute right-[8%] top-1/2 h-[300px] w-[300px] -translate-y-1/2 rounded-full border border-[#B91C1C]/10 sm:h-[350px] sm:w-[350px] lg:h-[390px] lg:w-[390px]" />
 
-                  {/* Second ring */}
-
+                  {/* Second Ring */}
                   <div className="absolute right-[13%] top-1/2 h-[235px] w-[235px] -translate-y-1/2 rounded-full border border-[#B91C1C]/10 sm:h-[280px] sm:w-[280px] lg:h-[310px] lg:w-[310px]" />
 
-                  {/* =================================================
-                      MAIN RED CIRCLE
-                  ================================================== */}
-
+                  {/* Main Red Circle */}
                   <div className="relative z-10 flex h-[190px] w-[190px] items-center justify-center rounded-full bg-[#B91C1C] shadow-[0_25px_60px_rgba(185,28,28,0.28)] sm:h-[220px] sm:w-[220px] lg:h-[245px] lg:w-[245px]">
-
-                    {/* Inner circle */}
 
                     <div className="flex h-[145px] w-[145px] flex-col items-center justify-center rounded-full border border-white/20 bg-white/10 sm:h-[170px] sm:w-[170px] lg:h-[190px] lg:w-[190px]">
 
                       <ShieldCheck
-                        size={58}
+                        size={64}
                         strokeWidth={1.4}
                         className="text-white"
                       />
 
-                      <span className="mt-3 text-[10px] font-bold uppercase tracking-[0.25em] text-white/80">
+                      <span className="mt-4 text-sm font-bold uppercase tracking-[0.25em] text-white/80">
                         Trusted Service
                       </span>
 
                     </div>
+
                   </div>
 
                   {/* =================================================
                       TOP FLOATING BADGE
                   ================================================== */}
 
-                  <div className="absolute right-[8%] top-[12%] z-20 flex items-center gap-3 rounded-2xl border border-white bg-white px-4 py-3 shadow-[0_12px_30px_rgba(5,5,26,0.12)] sm:right-[10%]">
+                  <div className="absolute right-[8%] top-[12%] z-20 flex items-center gap-4 rounded-2xl border border-white bg-white px-5 py-4 shadow-[0_12px_30px_rgba(5,5,26,0.12)] sm:right-[10%]">
 
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#B91C1C]/10">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#B91C1C]/10">
+
                       <Shield
-                        size={20}
+                        size={24}
                         className="text-[#B91C1C]"
                       />
+
                     </div>
 
                     <div>
-                      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+
+                      <p className="text-sm font-bold uppercase tracking-wider text-slate-400">
                         Protection
                       </p>
 
-                      <p className="text-sm font-bold text-[#05051A]">
+                      <p className="mt-1 text-base font-bold text-[#05051A]">
                         You can trust
                       </p>
+
                     </div>
 
                   </div>
@@ -211,23 +216,27 @@ export default function Footer() {
                       BOTTOM FLOATING BADGE
                   ================================================== */}
 
-                  <div className="absolute bottom-[12%] left-[8%] z-20 flex items-center gap-3 rounded-2xl border border-white bg-white px-4 py-3 shadow-[0_12px_30px_rgba(5,5,26,0.12)] sm:left-[10%]">
+                  <div className="absolute bottom-[12%] left-[8%] z-20 flex items-center gap-4 rounded-2xl border border-white bg-white px-5 py-4 shadow-[0_12px_30px_rgba(5,5,26,0.12)] sm:left-[10%]">
 
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#05051A]/5">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#05051A]/5">
+
                       <CheckCircle2
-                        size={20}
+                        size={24}
                         className="text-[#B91C1C]"
                       />
+
                     </div>
 
                     <div>
-                      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+
+                      <p className="text-sm font-bold uppercase tracking-wider text-slate-400">
                         Standard
                       </p>
 
-                      <p className="text-sm font-bold text-[#05051A]">
+                      <p className="mt-1 text-base font-bold text-[#05051A]">
                         Professional
                       </p>
+
                     </div>
 
                   </div>
@@ -235,41 +244,6 @@ export default function Footer() {
                 </div>
               </div>
 
-              {/* =================================================
-                  CTA BUTTON
-              ================================================== */}
-
-              <Link
-                href="/contact"
-                className="group absolute bottom-8 right-8 z-30 hidden items-center gap-3 rounded-full bg-[#05051A] px-5 py-3 text-sm font-bold text-white shadow-[0_12px_30px_rgba(5,5,26,0.18)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#B91C1C] sm:inline-flex lg:bottom-10 lg:right-10"
-              >
-                <span>
-                  Book a Service
-                </span>
-
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 transition-transform duration-300 group-hover:translate-x-1">
-                  <ArrowUpRight size={16} />
-                </span>
-              </Link>
-
-              {/* Mobile CTA */}
-
-              <div className="relative z-20 px-6 pb-8 sm:px-10 sm:pb-10 lg:hidden">
-
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center gap-3 rounded-full bg-[#B91C1C] px-5 py-3 text-sm font-bold text-white shadow-[0_12px_30px_rgba(185,28,28,0.22)] transition-all duration-300 hover:bg-[#991B1B]"
-                >
-                  <span>
-                    Book a Service
-                  </span>
-
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
-                    <ArrowUpRight size={16} />
-                  </span>
-                </Link>
-
-              </div>
             </div>
           </div>
         </div>
@@ -282,7 +256,9 @@ export default function Footer() {
 
           <div className="grid gap-12 lg:grid-cols-[1.5fr_0.7fr_0.7fr_1fr] lg:gap-16">
 
-            {/* BRAND */}
+            {/* =================================================
+                BRAND
+            ================================================== */}
 
             <div className="max-w-md">
 
@@ -299,36 +275,43 @@ export default function Footer() {
                 />
               </Link>
 
-              <p className="mt-7 text-sm leading-7 text-slate-400">
+              <p className="mt-7 text-lg leading-8 text-slate-400 sm:text-xl">
                 Professional security and customer service solutions designed
                 to help businesses create safer, more welcoming and dependable
                 environments.
               </p>
 
-              <div className="mt-7 flex items-center gap-3">
+              {/* =================================================
+                  SOCIAL ICONS
+              ================================================== */}
+
+              <div className="mt-8 flex items-center gap-4">
 
                 <SocialButton
                   href="#"
                   label="Facebook"
-                  text="f"
+                  icon={<FaFacebookF size={23} />}
                 />
 
                 <SocialButton
                   href="#"
                   label="Instagram"
-                  text="ig"
+                  icon={<FaInstagram size={23} />}
                 />
 
                 <SocialButton
                   href="#"
                   label="LinkedIn"
-                  text="in"
+                  icon={<FaLinkedinIn size={23} />}
                 />
 
               </div>
+
             </div>
 
-            {/* EXPLORE */}
+            {/* =================================================
+                EXPLORE
+            ================================================== */}
 
             <div>
 
@@ -336,32 +319,27 @@ export default function Footer() {
                 Explore
               </FooterTitle>
 
-              <div className="mt-6 space-y-4">
+              <div className="mt-7 space-y-5">
 
                 <FooterLink href="/">
                   Home
                 </FooterLink>
 
-                <FooterLink href="/about">
+                <FooterLink href="#about">
                   About Us
                 </FooterLink>
 
-                <FooterLink href="/services">
-                  Services
-                </FooterLink>
-
-                <FooterLink href="/team">
+                <FooterLink href="#team">
                   Our Team
                 </FooterLink>
 
-                <FooterLink href="/contact">
-                  Contact
-                </FooterLink>
-
               </div>
+
             </div>
 
-            {/* SERVICES */}
+            {/* =================================================
+                SERVICES
+            ================================================== */}
 
             <div>
 
@@ -369,28 +347,23 @@ export default function Footer() {
                 Services
               </FooterTitle>
 
-              <div className="mt-6 space-y-4">
+              <div className="mt-7 space-y-5">
 
-                <FooterLink href="/services/security">
+                <FooterLink href="/services">
                   Security Services
                 </FooterLink>
 
-                <FooterLink href="/services/customer-service-reception">
-                  Customer Service
-                </FooterLink>
-
-                <FooterLink href="/services/customer-service-reception">
-                  Reception Services
-                </FooterLink>
-
                 <FooterLink href="/services">
-                  All Services
+                  Customer Service / Reception
                 </FooterLink>
 
               </div>
+
             </div>
 
-            {/* CONTACT */}
+            {/* =================================================
+                CONTACT
+            ================================================== */}
 
             <div>
 
@@ -398,66 +371,81 @@ export default function Footer() {
                 Get in touch
               </FooterTitle>
 
-              <div className="mt-6 space-y-6">
+              <div className="mt-7 space-y-7">
 
+                {/* OFFICE */}
                 <div className="flex gap-4">
 
                   <ContactIcon icon={MapPin} />
 
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+
+                    <p className="text-sm font-semibold uppercase tracking-wider text-slate-500">
                       Office
                     </p>
 
-                    <p className="mt-1 text-sm leading-6 text-slate-300">
-                      Your business address
+                    <p className="mt-2 text-base leading-7 text-slate-300 sm:text-lg">
+                      P.O. Box 20072, 2nd Floor,
+                      <br />
+                      4910 – 50th Street Yellowknife,
+                      <br />
+                      NT X1A 3X8
                     </p>
+
                   </div>
 
                 </div>
 
+                {/* PHONE */}
                 <div className="flex gap-4">
 
                   <ContactIcon icon={Phone} />
 
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+
+                    <p className="text-sm font-semibold uppercase tracking-wider text-slate-500">
                       Phone
                     </p>
 
                     <a
-                      href="tel:+10000000000"
-                      className="mt-1 block text-sm text-slate-300 transition-colors hover:text-white"
+                      href="tel:+18674457900"
+                      className="mt-2 block text-base text-slate-300 transition-colors hover:text-white sm:text-lg"
                     >
-                      +1 000 000 0000
+                      +1 867-445-7900
                     </a>
+
                   </div>
 
                 </div>
 
+                {/* EMAIL */}
                 <div className="flex gap-4">
 
                   <ContactIcon icon={Mail} />
 
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+
+                    <p className="text-sm font-semibold uppercase tracking-wider text-slate-500">
                       Email
                     </p>
 
                     <a
-                      href="mailto:info@example.com"
-                      className="mt-1 block break-all text-sm text-slate-300 transition-colors hover:text-white"
+                      href="mailto:info@preventativesecurityservices.ca"
+                      className="mt-2 block break-all text-base text-slate-300 transition-colors hover:text-white sm:text-lg"
                     >
-                      info@example.com
+                      info@preventativesecurityservices.ca
                     </a>
+
                   </div>
 
                 </div>
 
               </div>
+
             </div>
 
           </div>
+
         </div>
 
         {/* =================================================
@@ -468,9 +456,9 @@ export default function Footer() {
 
           <div className="mx-auto max-w-[1400px] px-5 py-7 sm:px-8 lg:px-12">
 
-            <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
 
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
 
                 <TrustItem
                   icon={ShieldCheck}
@@ -494,13 +482,15 @@ export default function Footer() {
 
               </div>
 
-              <p className="text-xs text-slate-600">
+              <p className="text-sm text-slate-600 sm:text-base">
                 © {new Date().getFullYear()} Your Company Name. All rights
                 reserved.
               </p>
 
             </div>
+
           </div>
+
         </div>
 
         {/* =================================================
@@ -509,9 +499,9 @@ export default function Footer() {
 
         <div className="border-t border-white/5">
 
-          <div className="mx-auto flex max-w-[1400px] flex-col gap-4 px-5 py-5 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-12">
+          <div className="mx-auto flex max-w-[1400px] flex-col gap-5 px-5 py-6 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-12">
 
-            <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600">
+            <div className="flex flex-wrap items-center gap-5 text-sm text-slate-600 sm:text-base">
 
               <Link
                 href="/privacy-policy"
@@ -520,7 +510,7 @@ export default function Footer() {
                 Privacy Policy
               </Link>
 
-              <span className="h-1 w-1 rounded-full bg-slate-700" />
+              <span className="h-1.5 w-1.5 rounded-full bg-slate-700" />
 
               <Link
                 href="/terms"
@@ -531,11 +521,12 @@ export default function Footer() {
 
             </div>
 
-            <p className="text-xs text-slate-700">
+            <p className="text-sm text-slate-700 sm:text-base">
               Security • Customer Service • Reception
             </p>
 
           </div>
+
         </div>
 
       </div>
@@ -550,11 +541,13 @@ export default function Footer() {
 function FooterTitle({ children }) {
   return (
     <div>
-      <p className="text-xs font-bold uppercase tracking-[0.25em] text-white">
+
+      <p className="text-base font-bold uppercase tracking-[0.25em] text-white sm:text-lg">
         {children}
       </p>
 
-      <div className="mt-3 h-[2px] w-7 bg-[#B91C1C]" />
+      <div className="mt-4 h-[2px] w-9 bg-[#B91C1C]" />
+
     </div>
   );
 }
@@ -567,9 +560,9 @@ function FooterLink({ href, children }) {
   return (
     <Link
       href={href}
-      className="group flex items-center gap-2 text-sm text-slate-400 transition-colors duration-300 hover:text-white"
+      className="group flex items-center gap-3 text-base text-slate-400 transition-colors duration-300 hover:text-white sm:text-lg"
     >
-      <span className="h-px w-0 bg-[#B91C1C] transition-all duration-300 group-hover:w-4" />
+      <span className="h-px w-0 bg-[#B91C1C] transition-all duration-300 group-hover:w-5" />
 
       <span>
         {children}
@@ -582,14 +575,14 @@ function FooterLink({ href, children }) {
    SOCIAL BUTTON
 ========================================================= */
 
-function SocialButton({ href, label, text }) {
+function SocialButton({ href, label, icon }) {
   return (
     <a
       href={href}
       aria-label={label}
-      className="flex h-10 w-10 items-center justify-center border border-white/10 bg-white/[0.03] text-xs font-black uppercase text-slate-400 transition-all duration-300 hover:border-[#B91C1C]/50 hover:bg-[#B91C1C] hover:text-white"
+      className="flex h-14 w-14 items-center justify-center border border-white/10 bg-white/[0.03] text-slate-400 transition-all duration-300 hover:border-[#B91C1C]/50 hover:bg-[#B91C1C] hover:text-white"
     >
-      {text}
+      {icon}
     </a>
   );
 }
@@ -600,9 +593,9 @@ function SocialButton({ href, label, text }) {
 
 function ContactIcon({ icon: Icon }) {
   return (
-    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03]">
+    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03]">
       <Icon
-        size={17}
+        size={21}
         className="text-[#F87171]"
       />
     </div>
@@ -615,16 +608,18 @@ function ContactIcon({ icon: Icon }) {
 
 function TrustItem({ icon: Icon, text }) {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-3">
+
       <Icon
-        size={14}
+        size={19}
         strokeWidth={1.6}
         className="text-[#B91C1C]"
       />
 
-      <span className="text-xs font-semibold text-slate-500">
+      <span className="text-sm font-semibold text-slate-500 sm:text-base">
         {text}
       </span>
+
     </div>
   );
 }

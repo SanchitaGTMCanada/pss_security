@@ -31,52 +31,45 @@ export default function Header() {
   </Link>
 </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden items-center justify-between gap-14 lg:flex">
-            <Link
-              href="/"
-              className="text-sm font-medium text-slate-700 transition-colors hover:text-[var(--primary)]"
-            >
-              Home
-            </Link>
+{/* Desktop Navigation */}
+<nav className="hidden items-center justify-between gap-14 lg:flex">
 
-            {/* <Link
-              href="/about"
-              className="text-sm font-medium text-slate-700 transition-colors hover:text-[var(--primary)]"
-            >
-              About
-            </Link> */}
+  <Link
+    href="/services"
+    className="text-lg font-medium text-slate-700 transition-all hover:text-[#B91C1C] hover:underline hover:underline-offset-4 hover:decoration-2"
+  >
+    Services
+  </Link>
 
-            <Link
-              href="/services"
-              className="text-sm font-medium text-slate-700 transition-colors hover:text-[var(--primary)]"
-            >
-              Services
-            </Link>
+  <Link
+    href="#team"
+    className="text-lg font-medium text-slate-700 transition-all hover:text-[#B91C1C] hover:underline hover:underline-offset-4 hover:decoration-2"
+  >
+    Team
+  </Link>
 
-            <Link
-              href="/team"
-              className="text-sm font-medium text-slate-700 transition-colors hover:text-[var(--primary)]"
-            >
-              Team
-            </Link>
+  <Link
+    href="/services"
+    className="text-lg font-medium text-slate-700 transition-all hover:text-[#B91C1C] hover:underline hover:underline-offset-4 hover:decoration-2"
+  >
+    Join Us
+  </Link>
 
-            <Link
-              href="/contact"
-              className="text-sm font-medium text-slate-700 transition-colors hover:text-[var(--primary)]"
-            >
-              Contact 
-            </Link>
-          </nav>
+  <Link
+    href="#contact"
+    className="text-lg font-medium text-slate-700 transition-all hover:text-[#B91C1C] hover:underline hover:underline-offset-4 hover:decoration-2"
+  >
+    Contact Us
+  </Link>
 
-          {/* Desktop Book Now */}
+</nav>  {/* Desktop Book Now */}
           <div className="hidden justify-end lg:flex">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-lg bg-[#B91C1C] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#8F1111]"
-            >
-              Book Now
-            </Link>
+          <Link
+  href="/contact"
+  className="inline-flex items-center justify-center rounded-lg bg-[#B91C1C] px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-[#8F1111]"
+>
+  Book Now
+</Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -95,55 +88,49 @@ export default function Header() {
         {isMenuOpen && (
           <div className="border-t border-slate-200 py-5 lg:hidden">
             <nav className="flex flex-col">
-              <Link
-                href="/"
-                onClick={closeMenu}
-                className="border-b border-slate-100 py-4 text-sm font-medium text-slate-700"
-              >
-                Home
-              </Link>
 
-              <Link
-                href="/about"
-                onClick={closeMenu}
-                className="border-b border-slate-100 py-4 text-sm font-medium text-slate-700"
-              >
-                About
-              </Link>
+  <Link
+    href="/services"
+    onClick={closeMenu}
+    className="border-b border-slate-100 py-4 text-lg font-medium text-slate-700"
+  >
+    Services
+  </Link>
 
-              <Link
-                href="/services"
-                onClick={closeMenu}
-                className="border-b border-slate-100 py-4 text-sm font-medium text-slate-700"
-              >
-                Services
-              </Link>
+  <Link
+    href="/team"
+    onClick={closeMenu}
+    className="border-b border-slate-100 py-4 text-lg font-medium text-slate-700"
+  >
+    Team
+  </Link>
 
-              <Link
-                href="/team"
-                onClick={closeMenu}
-                className="border-b border-slate-100 py-4 text-sm font-medium text-slate-700"
-              >
-                Team
-              </Link>
+  <Link
+    href="/services"
+    onClick={closeMenu}
+    className="border-b border-slate-100 py-4 text-lg font-medium text-slate-700"
+  >
+    Join Us
+  </Link>
 
-              <Link
-                href="/contact"
-                onClick={closeMenu}
-                className="border-b border-slate-100 py-4 text-sm font-medium text-slate-700"
-              >
-                Contact
-              </Link>
+  <Link
+    href="/contact"
+    onClick={closeMenu}
+    className="border-b border-slate-100 py-4 text-lg font-medium text-slate-700"
+  >
+    Contact Us
+  </Link>
 
-              {/* Mobile Book Now */}
-              <Link
-                href="/contact"
-                onClick={closeMenu}
-                className="mt-5 inline-flex items-center justify-center rounded-lg bg-[#B91C1C] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#8F1111]"
-              >
-                Book Now
-              </Link>
-            </nav>
+  {/* Mobile Book Now */}
+  <Link
+    href="/contact"
+    onClick={closeMenu}
+    className="mt-5 inline-flex items-center justify-center rounded-lg bg-[#B91C1C] px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-[#8F1111]"
+  >
+    Book Now
+  </Link>
+
+</nav>
           </div>
         )}
       </Container>

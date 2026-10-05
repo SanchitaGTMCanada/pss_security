@@ -7,7 +7,7 @@ const cards = [
     label: "OUR MISSION",
     title: "Protect. Support. Serve.",
     description:
-      "To provide dependable security and customer service solutions through professional people, clear communication, and a commitment to every client we serve.",
+      "To protect people, property, and peace of mind with high-quality, responsive, and community-focused security services across the Northwest Territories.",
     icon: Target,
   },
   {
@@ -15,7 +15,7 @@ const cards = [
     label: "OUR VISION",
     title: "A safer, better experience.",
     description:
-      "To create environments where people feel safe, welcomed, respected, and confident through professional security and customer service.",
+      "To be the most trusted name in Northern security, known for professionalism, integrity, and innovation.",
     icon: Eye,
   },
 ];
@@ -38,26 +38,25 @@ export default function MissionVision() {
             SECTION HEADER
         ========================================== */}
 
-        <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <div className="mb-5 flex items-center justify-center gap-3">
-            <span className="h-px w-10 bg-[#B91C1C]" />
+      <div className="relative z-10 mx-auto max-w-4xl text-center">
+  <div className="mb-6 flex items-center justify-center gap-4">
+    <span className="h-px w-12 bg-[#B91C1C]" />
 
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FCA5A5]">
-              Our Purpose
-            </p>
+    <p className="text-base font-bold uppercase tracking-[0.3em] text-[#FCA5A5]">
+      Our Purpose
+    </p>
 
-            <span className="h-px w-10 bg-[#B91C1C]" />
-          </div>
+    <span className="h-px w-12 bg-[#B91C1C]" />
+  </div>
 
-          <h2 className="text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-            What we stand for.
-          </h2>
+  <h2 className="text-5xl font-black leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+    What we stand for.
+  </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-400">
-            Our mission and vision guide how we protect people, support
-            businesses, and deliver professional service.
-          </p>
-        </div>
+  <p className="mx-auto mt-7 max-w-3xl text-xl leading-9 text-slate-400">
+    Our mission and vision guide how we protect people and your trust is our greatest asset.
+  </p>
+</div>
 
         {/* =========================================
             MAIN CONTENT
@@ -104,7 +103,7 @@ export default function MissionVision() {
                   </span>
                 </div>
 
-                <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.3em] text-white/80">
+                <p className="mt-4 text-[12px] font-bold uppercase tracking-[0.3em] text-white/80">
                   Preventative Security Services
                 </p>
               </div>
@@ -131,21 +130,23 @@ export default function MissionVision() {
             BOTTOM STATEMENT
         ========================================== */}
 
-        <div className="relative z-10 mx-auto mt-16 max-w-6xl border-t border-white/10 pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
-            <p className="max-w-2xl text-sm leading-7 text-slate-500">
-              Professional people. Dependable service. Safer environments.
-            </p>
+       <div className="relative z-10 mx-auto mt-16 max-w-6xl border-t border-white/10 pt-8">
+  <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
 
-            <div className="flex items-center gap-3">
-              <span className="h-2 w-2 rounded-full bg-[#B91C1C]" />
+    <p className="max-w-2xl text-lg leading-8 text-slate-500">
+      Professional people. Dependable service. Safer environments.
+    </p>
 
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
-                PSS
-              </span>
-            </div>
-          </div>
-        </div>
+    <div className="flex items-center gap-4">
+      <span className="h-3 w-3 rounded-full bg-[#B91C1C]" />
+
+      <span className="text-base font-bold uppercase tracking-[0.2em] text-slate-500">
+        PSS
+      </span>
+    </div>
+
+  </div>
+</div>
       </Container>
     </section>
   );

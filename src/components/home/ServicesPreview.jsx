@@ -6,18 +6,18 @@ const services = [
   {
     number: "01",
     title: "Security Services",
-    description:
-      "Professional security personnel and protection solutions designed to help keep your people, property, and business safe.",
-    href: "/services/security",
+    // description:
+    //   "Professional security personnel and protection solutions designed to help keep your people, property, and business safe.",
+    href: "/services",
     image:
       "https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=1200&q=85",
   },
   {
     number: "02",
     title: "Customer Service / Reception",
-    description:
-      "Professional reception and customer service personnel creating a welcoming, organized, and secure experience for every visitor.",
-    href: "/services/customer-service-reception",
+    // description:
+    //   "Professional reception and customer service personnel creating a welcoming, organized, and secure experience for every visitor.",
+    href: "/services",
     image:
       "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85",
   },
@@ -25,7 +25,7 @@ const services = [
 
 export default function ServicesPreview() {
   return (
-    <section className="relative overflow-hidden bg-[#F4F4F4] py-20 sm:py-24 lg:py-28">
+    <section className="relative overflow-hidden bg-[#F4F4F4] py-20 sm:py-24 lg:py-28" id="services">
 
       {/* =====================================================
           DECORATIVE BACKGROUND
@@ -52,7 +52,7 @@ export default function ServicesPreview() {
               <span className="h-px w-10 bg-[#A51F20]" />
 
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#A51F20]">
-                What We Do
+               Our Services
               </p>
 
             </div>
@@ -64,7 +64,7 @@ export default function ServicesPreview() {
               Professional services.
 
               <span className="block text-[#454545]">
-                Built around people.
+               Commitment to 360° Protection
               </span>
 
             </h2>
@@ -145,9 +145,9 @@ export default function ServicesPreview() {
 
                   {/* Description */}
 
-                  <p className="mt-4 max-w-lg text-sm leading-7 text-[#F4F4F4]/75 sm:text-base">
+                  {/* <p className="mt-4 max-w-lg text-sm leading-7 text-[#F4F4F4]/75 sm:text-base">
                     {service.description}
-                  </p>
+                  </p> */}
 
                   {/* =================================================
                       CTA
@@ -156,7 +156,7 @@ export default function ServicesPreview() {
                   <div className="mt-7 inline-flex items-center gap-3 text-sm font-semibold text-white">
 
                     <span>
-                      Explore Service
+                    View More
                     </span>
 
                     <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#A51F20] transition-all duration-300 group-hover:translate-x-2 group-hover:bg-[#8F1B1C]">
@@ -175,52 +175,6 @@ export default function ServicesPreview() {
 
         </div>
 
-        {/* =================================================
-            BOTTOM TRUST STRIP
-        ================================================== */}
-
-        <div className="mt-10 flex flex-col gap-5 rounded-2xl border border-[#303030]/10 bg-white px-6 py-5 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:px-8">
-
-          {/* Trust Information */}
-
-          <div className="flex items-center gap-3">
-
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#A51F20]/10">
-
-              <span className="h-2.5 w-2.5 rounded-full bg-[#A51F20] shadow-[0_0_10px_rgba(165,31,32,0.35)]" />
-
-            </div>
-
-            <div>
-
-              <p className="text-sm font-semibold text-[#171717]">
-                Professional & Reliable
-              </p>
-
-              <p className="text-xs text-[#454545]/70">
-                Service you can depend on
-              </p>
-
-            </div>
-
-          </div>
-
-          {/* All Services */}
-
-          <Link
-            href="/services"
-            className="group inline-flex items-center gap-2 text-sm font-semibold text-[#171717] transition-colors hover:text-[#A51F20]"
-          >
-
-            View All Services
-
-            <span className="transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
-
-          </Link>
-
-        </div>
 
       </Container>
     </section>

@@ -4,7 +4,7 @@ import ServicesPreview from "@/components/home/ServicesPreview";
 import AboutPreview from "@/components/home/AboutPreview";
 import WhyChoose from "@/components/home/WhyChoose";
 import MissionVision from "@/components/home/MissionVision";
-import BookingSection from "@/components/home/BookingSection";
+
 import FAQSection from "@/components/faq/FAQSection";
 import Footer from "@/components/layout/Footer";
 import Team from "@/components/home/Team";
@@ -21,7 +21,7 @@ export default function Home() {
         <WhyChoose/>
         <MissionVision/>
         <Team/>
-        <BookingSection/>
+      
         <FAQSection/>
     
       </main>

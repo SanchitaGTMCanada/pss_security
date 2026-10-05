@@ -51,17 +51,15 @@ export default function Hero() {
 
             {/* Heading */}
             <h1 className="max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-              Protecting
+              Your safety
               <span className="block text-[#B91C1C]">
-                What Matters Most.
+                is our priority 
               </span>
             </h1>
 
             {/* Description */}
             <p className="mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-              Reliable security solutions built to protect your people,
-              property, and business. Professional protection when you need
-              it most.
+              Professional Reliable Local
             </p>
 
             {/* Buttons */}
@@ -70,7 +68,7 @@ export default function Hero() {
                 href="/contact"
                 className="group inline-flex items-center gap-3 rounded-lg bg-[#B91C1C] px-7 py-4 text-sm font-semibold text-white shadow-lg shadow-red-950/30 transition-all duration-300 hover:bg-[#8F1111]"
               >
-                Book a Security Service
+                Get a Free Consultation Today
 
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                   →
@@ -78,7 +76,7 @@ export default function Hero() {
               </Link>
 
               <Link
-                href="/services"
+                href="#services"
                 className="group inline-flex items-center gap-3 rounded-lg border border-white/15 bg-black/20 px-7 py-4 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/30 hover:bg-white/[0.08]"
               >
                 Explore Services
@@ -90,34 +88,34 @@ export default function Hero() {
             </div>
 
             {/* Trust Information */}
-            <div className="mt-10 flex items-center gap-4">
+    <div className="mt-10 flex items-center gap-4">
 
-              {/* PSS Circles */}
-              <div className="flex -space-x-2">
-                <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#05051A] bg-slate-700 text-xs font-bold text-white">
-                  P
-                </div>
+  {/* PSS Circles */}
+  <div className="flex -space-x-2">
+    <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#05051A] bg-slate-700 text-sm font-bold text-white">
+      P
+    </div>
 
-                <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#05051A] bg-slate-600 text-xs font-bold text-white">
-                  S
-                </div>
+    <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#05051A] bg-slate-600 text-sm font-bold text-white">
+      S
+    </div>
 
-                <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#05051A] bg-[#B91C1C] text-xs font-bold text-white">
-                  S
-                </div>
-              </div>
+    <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#05051A] bg-[#B91C1C] text-sm font-bold text-white">
+      S
+    </div>
+  </div>
 
-              <div>
-                <p className="text-sm font-semibold text-white">
-                  Trusted Security Professionals
-                </p>
+  <div>
+    <p className="text-base font-semibold text-white">
+      Trusted Security Professionals
+    </p>
 
-                <p className="text-xs text-slate-400">
-                  Protection you can depend on
-                </p>
-              </div>
+    <p className="text-sm text-slate-400">
+      Protection you can depend on
+    </p>
+  </div>
 
-            </div>
+</div>
           </div>
         </div>
       </Container>
