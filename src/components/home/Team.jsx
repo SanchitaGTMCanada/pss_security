@@ -15,7 +15,7 @@ const teamMembers = [
       "/homepage/allan.png",
   },
   {
-    name: "Manjinder Singh",
+    name: "MANJINDER SINGH",
     role: "GUARD",
     image:
       "/homepage/manjinder.png",
@@ -144,9 +144,9 @@ export default function Team() {
 
         {/* ROLE */}
 
-        <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-white/80 sm:text-base">
+        {/* <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-white/80 sm:text-base">
           {member.role}
-        </p>
+        </p> */}
 
         {/* Small line */}
 
