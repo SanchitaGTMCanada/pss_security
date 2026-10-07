@@ -4,13 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import Container from "@/components/ui/Container";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isJoinUsOpen, setIsJoinUsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [pageSearchResults, setPageSearchResults] = useState([]);
 
   const fileInputRef = useRef(null);
 
@@ -24,34 +28,405 @@ export default function Header() {
 
   const [resume, setResume] = useState(null);
 
+  /* ============================================================
+     STATIC SEARCH ITEMS
+  ============================================================ */
+
+  const staticSearchItems = [
+    {
+      title: "Services",
+      description:
+        "Explore our security and customer service solutions.",
+      href: "/services",
+      keywords:
+        "services security customer reception solutions",
+      type: "link",
+    },
+    {
+      title: "Our Team",
+      description:
+        "Meet the professionals behind Preventative Security Services.",
+      href: "/#team",
+      keywords:
+        "team staff professionals employees people",
+      type: "link",
+    },
+    {
+      title: "Contact Us",
+      description:
+        "Get in touch with Preventative Security Services.",
+      href: "/#contact",
+      keywords:
+        "contact phone email location consultation",
+      type: "link",
+    },
+    {
+      title: "Join Us",
+      description:
+        "Interested in joining our team? Submit your application.",
+      action: "join",
+      keywords:
+        "career jobs hiring recruitment work application",
+      type: "join",
+    },
+  ];
+
+  /* ============================================================
+     MENU
+  ============================================================ */
+
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
 
-  // =====================================================
-  // OPEN JOIN US
-  // =====================================================
+  /* ============================================================
+     SEARCH
+  ============================================================ */
+
+  const closeSearch = () => {
+    setIsSearchOpen(false);
+    setSearchQuery("");
+    setPageSearchResults([]);
+  };
+
+  /* ============================================================
+     SEARCH HOMEPAGE CONTENT
+     
+     This searches the ACTUAL rendered page.
+
+     Therefore names like:
+     Tanveer
+     Ranajit Batabyal
+     Partha Chakraborty
+     etc.
+     
+     can be found automatically.
+  ============================================================ */
+
+  useEffect(() => {
+    const query = searchQuery.trim().toLowerCase();
+
+    if (!query) {
+      setPageSearchResults([]);
+      return;
+    }
+
+    const elements = Array.from(
+      document.querySelectorAll(
+        "h1, h2, h3, h4, h5, h6, p, span, a, li"
+      )
+    );
+
+    const results = [];
+
+    elements.forEach((element) => {
+      /* Ignore anything inside the header */
+      if (element.closest("header")) {
+        return;
+      }
+
+      /* Ignore anything inside the Join Us modal */
+      if (element.closest('[role="dialog"]')) {
+        return;
+      }
+
+      const text = element.textContent
+        ?.replace(/\s+/g, " ")
+        .trim();
+
+      if (!text) {
+        return;
+      }
+
+      if (!text.toLowerCase().includes(query)) {
+        return;
+      }
+
+      /*
+        Ignore very large text blocks.
+        We want the actual matching element.
+      */
+      if (text.length > 180) {
+        return;
+      }
+
+      /*
+        Avoid duplicate results.
+      */
+      const alreadyExists = results.some(
+        (result) =>
+          result.title.toLowerCase() ===
+          text.toLowerCase()
+      );
+
+      if (alreadyExists) {
+        return;
+      }
+
+      results.push({
+        title: text,
+        description: "Found on this page",
+        type: "page",
+      });
+    });
+
+    setPageSearchResults(results.slice(0, 10));
+  }, [searchQuery]);
+
+  /* ============================================================
+     FILTER STATIC RESULTS
+  ============================================================ */
+
+  const filteredStaticResults =
+    staticSearchItems.filter((item) => {
+      const query = searchQuery.trim().toLowerCase();
+
+      if (!query) {
+        return true;
+      }
+
+      return (
+        item.title.toLowerCase().includes(query) ||
+        item.description
+          .toLowerCase()
+          .includes(query) ||
+        item.keywords
+          .toLowerCase()
+          .includes(query)
+      );
+    });
+
+  /* ============================================================
+     COMBINE SEARCH RESULTS
+  ============================================================ */
+
+  const combinedSearchResults = [
+    ...filteredStaticResults,
+    ...pageSearchResults,
+  ];
+
+  /* ============================================================
+     JOIN US
+  ============================================================ */
 
   const openJoinUs = () => {
-    setIsMenuOpen(false);
+    closeMenu();
+    closeSearch();
+
     setIsJoinUsOpen(true);
     document.body.style.overflow = "hidden";
   };
 
-  // =====================================================
-  // CLOSE JOIN US
-  // =====================================================
-
   const closeJoinUs = () => {
-    if (isSubmitting) return;
+    if (isSubmitting) {
+      return;
+    }
 
     setIsJoinUsOpen(false);
     document.body.style.overflow = "";
   };
 
-  // =====================================================
-  // CLEANUP
-  // =====================================================
+  /* ============================================================
+     FIND PAGE SEARCH RESULT
+  ============================================================ */
+
+  const findPageSearchElement = (text) => {
+    const elements = Array.from(
+      document.querySelectorAll(
+        "h1, h2, h3, h4, h5, h6, p, span, a, li"
+      )
+    );
+
+    return elements.find((element) => {
+      if (element.closest("header")) {
+        return false;
+      }
+
+      if (element.closest('[role="dialog"]')) {
+        return false;
+      }
+
+      const elementText = element.textContent
+        ?.replace(/\s+/g, " ")
+        .trim();
+
+      return (
+        elementText?.toLowerCase() ===
+        text?.toLowerCase()
+      );
+    });
+  };
+
+  /* ============================================================
+     SEARCH NAVIGATION
+  ============================================================ */
+
+  const handleSearchNavigation = (
+    event,
+    href,
+    item
+  ) => {
+    closeSearch();
+    closeMenu();
+
+    /* ----------------------------------------------------------
+       JOIN US
+    ---------------------------------------------------------- */
+
+    if (item?.action === "join") {
+      event.preventDefault();
+
+      openJoinUs();
+
+      return;
+    }
+
+    /* ----------------------------------------------------------
+       HOMEPAGE CONTENT RESULT
+    ---------------------------------------------------------- */
+
+    if (item?.type === "page") {
+      event.preventDefault();
+
+      /*
+        Wait until search dropdown disappears,
+        then find the actual element.
+      */
+      requestAnimationFrame(() => {
+        const target = findPageSearchElement(
+          item.title
+        );
+
+        if (!target) {
+          return;
+        }
+
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+
+        /*
+          Temporarily highlight the result.
+        */
+        target.classList.add(
+          "search-highlight-result"
+        );
+
+        setTimeout(() => {
+          target.classList.remove(
+            "search-highlight-result"
+          );
+        }, 2200);
+      });
+
+      return;
+    }
+
+    /* ----------------------------------------------------------
+       HOMEPAGE HASH NAVIGATION
+       
+       Team / Contact
+    ---------------------------------------------------------- */
+
+    if (
+      window.location.pathname === "/" &&
+      href?.startsWith("/#")
+    ) {
+      const targetId = href.substring(2);
+
+      const target =
+        document.getElementById(targetId);
+
+      if (target) {
+        event.preventDefault();
+
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+
+        window.history.replaceState(
+          null,
+          "",
+          href
+        );
+      }
+    }
+  };
+
+  /* ============================================================
+     BOOK NOW
+  ============================================================ */
+
+  const handleBookNow = (event) => {
+    closeMenu();
+    closeSearch();
+
+    if (window.location.pathname === "/") {
+      const target =
+        document.getElementById("contact");
+
+      if (target) {
+        event.preventDefault();
+
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+
+        window.history.replaceState(
+          null,
+          "",
+          "/#contact"
+        );
+      }
+    }
+  };
+
+  /* ============================================================
+     ESCAPE KEY
+  ============================================================ */
+
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key !== "Escape") {
+        return;
+      }
+
+      if (isSearchOpen) {
+        closeSearch();
+      }
+
+      if (
+        isJoinUsOpen &&
+        !isSubmitting
+      ) {
+        setIsJoinUsOpen(false);
+        document.body.style.overflow = "";
+      }
+    };
+
+    window.addEventListener(
+      "keydown",
+      handleEscape
+    );
+
+    return () => {
+      window.removeEventListener(
+        "keydown",
+        handleEscape
+      );
+    };
+  }, [
+    isSearchOpen,
+    isJoinUsOpen,
+    isSubmitting,
+  ]);
+
+  /* ============================================================
+     CLEANUP
+  ============================================================ */
 
   useEffect(() => {
     return () => {
@@ -59,28 +434,9 @@ export default function Header() {
     };
   }, []);
 
-  // =====================================================
-  // ESCAPE KEY
-  // =====================================================
-
-  useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === "Escape" && isJoinUsOpen && !isSubmitting) {
-        setIsJoinUsOpen(false);
-        document.body.style.overflow = "";
-      }
-    };
-
-    window.addEventListener("keydown", handleEscape);
-
-    return () => {
-      window.removeEventListener("keydown", handleEscape);
-    };
-  }, [isJoinUsOpen, isSubmitting]);
-
-  // =====================================================
-  // INPUT CHANGE
-  // =====================================================
+  /* ============================================================
+     FORM INPUT CHANGE
+  ============================================================ */
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -91,9 +447,9 @@ export default function Header() {
     }));
   };
 
-  // =====================================================
-  // RESUME
-  // =====================================================
+  /* ============================================================
+     RESUME CHANGE
+  ============================================================ */
 
   const handleResumeChange = (event) => {
     const file = event.target.files?.[0];
@@ -123,7 +479,8 @@ export default function Header() {
       return;
     }
 
-    const maxFileSize = 5 * 1024 * 1024;
+    const maxFileSize =
+      5 * 1024 * 1024;
 
     if (file.size > maxFileSize) {
       Swal.fire({
@@ -142,9 +499,9 @@ export default function Header() {
     setResume(file);
   };
 
-  // =====================================================
-  // RESET FORM
-  // =====================================================
+  /* ============================================================
+     RESET FORM
+  ============================================================ */
 
   const resetForm = () => {
     setFormData({
@@ -162,14 +519,16 @@ export default function Header() {
     }
   };
 
-  // =====================================================
-  // SUBMIT
-  // =====================================================
+  /* ============================================================
+     SUBMIT CAREER FORM
+  ============================================================ */
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (isSubmitting) return;
+    if (isSubmitting) {
+      return;
+    }
 
     if (
       !formData.name.trim() ||
@@ -204,27 +563,58 @@ export default function Header() {
 
       const data = new FormData();
 
-      data.append("name", formData.name.trim());
-      data.append("email", formData.email.trim());
-      data.append("phone", formData.phone.trim());
-      data.append("position", formData.position.trim());
-      data.append("message", formData.message.trim());
-      data.append("resume", resume);
+      data.append(
+        "name",
+        formData.name.trim()
+      );
 
-      const response = await fetch("/api/career", {
-        method: "POST",
-        body: data,
-      });
+      data.append(
+        "email",
+        formData.email.trim()
+      );
+
+      data.append(
+        "phone",
+        formData.phone.trim()
+      );
+
+      data.append(
+        "position",
+        formData.position.trim()
+      );
+
+      data.append(
+        "message",
+        formData.message.trim()
+      );
+
+      data.append(
+        "resume",
+        resume
+      );
+
+      const response = await fetch(
+        "/api/career",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
 
       let result;
 
       try {
         result = await response.json();
       } catch {
-        throw new Error("The server returned an invalid response.");
+        throw new Error(
+          "The server returned an invalid response."
+        );
       }
 
-      if (response.ok && result?.success === true) {
+      if (
+        response.ok &&
+        result?.success === true
+      ) {
         setIsJoinUsOpen(false);
         document.body.style.overflow = "";
 
@@ -254,7 +644,10 @@ export default function Header() {
         confirmButtonColor: "#B91C1C",
       });
     } catch (error) {
-      console.error("Career submission error:", error);
+      console.error(
+        "Career submission error:",
+        error
+      );
 
       await Swal.fire({
         icon: "error",
@@ -271,46 +664,62 @@ export default function Header() {
 
   return (
     <>
-      {/* =====================================================
-          STICKY HEADER
-          
-          IMPORTANT:
-          Only "sticky top-0" has been added.
-          No height, width, padding, logo size,
-          colors, shadow or spacing are changed.
-      ====================================================== */}
+      {/* ============================================================
+          HEADER
+      ============================================================ */}
 
       <header className="sticky top-0 z-[1000] border-b border-slate-200 bg-white">
         <Container>
-
-          {/* ORIGINAL HEIGHT — UNCHANGED */}
           <div className="flex h-20 items-center justify-between sm:h-24">
 
-            {/* =================================================
+            {/* ======================================================
                 LOGO
-            ================================================= */}
+            ====================================================== */}
 
-            <div className="flex items-center justify-start">
-              <Link
-                href="/"
-                className="flex items-center"
-              >
-                <Image
-                  src="/images/logo.png"
-                  alt="Preventative Security Services"
-                  width={310}
-                  height={120}
-                  priority
-                  className="h-25 w-auto object-contain"
-                />
-              </Link>
-            </div>
+        <div className="flex items-center justify-start">
+  <Link
+    href="/"
+    className="flex items-center"
+    onClick={(event) => {
+      closeMenu();
+      closeSearch();
 
-            {/* =================================================
+      // Already on homepage
+      if (window.location.pathname === "/") {
+        event.preventDefault();
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+
+        // Remove any existing hash such as #team or #contact
+        window.history.replaceState(
+          null,
+          "",
+          "/"
+        );
+      }
+    }}
+  >
+    <Image
+      src="/images/logo.png"
+      alt="Preventative Security Services"
+      width={310}
+      height={120}
+      priority
+      className="h-25 w-auto object-contain"
+    />
+  </Link>
+</div>
+
+            {/* ======================================================
                 DESKTOP NAVIGATION
-            ================================================= */}
+            ====================================================== */}
 
             <nav className="hidden items-center justify-between gap-14 lg:flex">
+
+              {/* SERVICES */}
 
               <Link
                 href="/services"
@@ -319,8 +728,20 @@ export default function Header() {
                 Services
               </Link>
 
+              {/* TEAM */}
+
               <Link
                 href="/#team"
+                onClick={(event) =>
+                  handleSearchNavigation(
+                    event,
+                    "/#team",
+                    {
+                      title: "Our Team",
+                      type: "link",
+                    }
+                  )
+                }
                 className="text-lg font-medium text-slate-700 transition-all hover:text-[#B91C1C] hover:underline hover:underline-offset-4 hover:decoration-2"
               >
                 Team
@@ -336,8 +757,20 @@ export default function Header() {
                 Join Us
               </button>
 
+              {/* CONTACT */}
+
               <Link
                 href="/#contact"
+                onClick={(event) =>
+                  handleSearchNavigation(
+                    event,
+                    "/#contact",
+                    {
+                      title: "Contact Us",
+                      type: "link",
+                    }
+                  )
+                }
                 className="text-lg font-medium text-slate-700 transition-all hover:text-[#B91C1C] hover:underline hover:underline-offset-4 hover:decoration-2"
               >
                 Contact Us
@@ -345,14 +778,167 @@ export default function Header() {
 
             </nav>
 
-            {/* =================================================
-                BOOK NOW
-            ================================================= */}
+            {/* ======================================================
+                RIGHT SIDE
+            ====================================================== */}
 
-            <div className="hidden justify-end lg:flex">
+            <div className="hidden items-center gap-4 lg:flex">
+
+              {/* ====================================================
+                  SEARCH
+              ==================================================== */}
+
+              <div className="relative">
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsSearchOpen(
+                      (previous) => !previous
+                    );
+
+                    setSearchQuery("");
+                  }}
+                  aria-label="Search"
+                  className={`flex h-11 w-11 items-center justify-center rounded-lg border transition-all ${
+                    isSearchOpen
+                      ? "border-[#B91C1C] bg-[#B91C1C]/5 text-[#B91C1C]"
+                      : "border-slate-200 text-slate-700 hover:border-[#B91C1C] hover:text-[#B91C1C]"
+                  }`}
+                >
+                  {isSearchOpen ? (
+                    <X size={21} />
+                  ) : (
+                    <Search size={21} />
+                  )}
+                </button>
+
+                {isSearchOpen && (
+                  <div className="absolute right-0 top-14 z-[2000] w-[380px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.15)]">
+
+                    {/* SEARCH INPUT */}
+
+                    <div className="border-b border-slate-200 p-3">
+
+                      <div className="flex items-center rounded-xl border border-slate-200 bg-slate-50 px-3">
+
+                        <Search
+                          size={18}
+                          className="shrink-0 text-slate-400"
+                        />
+
+                        <input
+                          type="text"
+                          autoFocus
+                          value={searchQuery}
+                          onChange={(event) =>
+                            setSearchQuery(
+                              event.target.value
+                            )
+                          }
+                          placeholder="Search website..."
+                          className="w-full bg-transparent px-3 py-3 text-sm text-slate-800 outline-none placeholder:text-slate-400"
+                        />
+
+                        {searchQuery && (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setSearchQuery("")
+                            }
+                            className="text-slate-400 transition-colors hover:text-slate-700"
+                          >
+                            <X size={17} />
+                          </button>
+                        )}
+
+                      </div>
+
+                    </div>
+
+                    {/* SEARCH RESULTS */}
+
+                    <div className="max-h-[420px] overflow-y-auto p-2">
+
+                      {combinedSearchResults.length >
+                      0 ? (
+                        combinedSearchResults.map(
+                          (item, index) => (
+                            <Link
+                              key={`${item.title}-${index}`}
+                              href={
+                                item.type === "page" ||
+                                item.action === "join"
+                                  ? "#"
+                                  : item.href
+                              }
+                              onClick={(event) =>
+                                handleSearchNavigation(
+                                  event,
+                                  item.href || "#",
+                                  item
+                                )
+                              }
+                              className="block rounded-xl px-4 py-3 transition-colors hover:bg-[#B91C1C]/5"
+                            >
+                              <div className="flex items-start gap-3">
+
+                                <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#B91C1C]/10 text-[#B91C1C]">
+                                  <Search
+                                    size={17}
+                                  />
+                                </div>
+
+                                <div className="min-w-0">
+
+                                  <p className="break-words text-sm font-bold text-slate-800">
+                                    {item.title}
+                                  </p>
+
+                                  <p className="mt-1 text-xs leading-5 text-slate-500">
+                                    {item.description ||
+                                      "Found on this page"}
+                                  </p>
+
+                                </div>
+
+                              </div>
+                            </Link>
+                          )
+                        )
+                      ) : (
+                        <div className="px-4 py-10 text-center">
+
+                          <Search
+                            size={30}
+                            className="mx-auto text-slate-300"
+                          />
+
+                          <p className="mt-3 text-sm font-semibold text-slate-700">
+                            No results found
+                          </p>
+
+                          <p className="mt-1 text-xs text-slate-400">
+                            Try another name or keyword.
+                          </p>
+
+                        </div>
+                      )}
+
+                    </div>
+
+                  </div>
+                )}
+
+              </div>
+
+              {/* ====================================================
+                  BOOK NOW
+              ==================================================== */}
 
               <Link
                 href="/#contact"
+                onClick={handleBookNow}
                 className="inline-flex items-center justify-center rounded-lg bg-[#B91C1C] px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-[#8F1111]"
               >
                 Book Now
@@ -360,13 +946,19 @@ export default function Header() {
 
             </div>
 
-            {/* =================================================
+            {/* ======================================================
                 MOBILE MENU BUTTON
-            ================================================= */}
+            ====================================================== */}
 
             <button
               type="button"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={() => {
+                setIsMenuOpen(
+                  (previous) => !previous
+                );
+
+                closeSearch();
+              }}
               aria-label={
                 isMenuOpen
                   ? "Close menu"
@@ -384,14 +976,109 @@ export default function Header() {
 
           </div>
 
-          {/* =====================================================
+          {/* ============================================================
               MOBILE MENU
-          ====================================================== */}
+          ============================================================ */}
 
           {isMenuOpen && (
             <div className="border-t border-slate-200 py-5 lg:hidden">
 
+              {/* MOBILE SEARCH */}
+
+              <div className="mb-4">
+
+                <div className="flex items-center rounded-xl border border-slate-200 bg-slate-50 px-3">
+
+                  <Search
+                    size={18}
+                    className="shrink-0 text-slate-400"
+                  />
+
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(event) =>
+                      setSearchQuery(
+                        event.target.value
+                      )
+                    }
+                    placeholder="Search website..."
+                    className="w-full bg-transparent px-3 py-3 text-sm text-slate-800 outline-none placeholder:text-slate-400"
+                  />
+
+                  {searchQuery && (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setSearchQuery("")
+                      }
+                      className="text-slate-400"
+                    >
+                      <X size={17} />
+                    </button>
+                  )}
+
+                </div>
+
+                {/* MOBILE SEARCH RESULTS */}
+
+                {searchQuery.trim() && (
+                  <div className="mt-2 max-h-[360px] overflow-y-auto rounded-xl border border-slate-200 bg-white shadow-lg">
+
+                    {combinedSearchResults.length >
+                    0 ? (
+                      combinedSearchResults.map(
+                        (item, index) => (
+                          <Link
+                            key={`${item.title}-${index}`}
+                            href={
+                              item.type === "page" ||
+                              item.action === "join"
+                                ? "#"
+                                : item.href
+                            }
+                            onClick={(event) =>
+                              handleSearchNavigation(
+                                event,
+                                item.href || "#",
+                                item
+                              )
+                            }
+                            className="block border-b border-slate-100 px-4 py-3 last:border-0 hover:bg-[#B91C1C]/5"
+                          >
+                            <p className="break-words text-sm font-bold text-slate-800">
+                              {item.title}
+                            </p>
+
+                            <p className="mt-1 text-xs leading-5 text-slate-500">
+                              {item.description ||
+                                "Found on this page"}
+                            </p>
+                          </Link>
+                        )
+                      )
+                    ) : (
+                      <div className="px-4 py-6 text-center">
+
+                        <p className="text-sm font-semibold text-slate-700">
+                          No results found
+                        </p>
+
+                        <p className="mt-1 text-xs text-slate-400">
+                          Try another name or keyword.
+                        </p>
+
+                      </div>
+                    )}
+
+                  </div>
+                )}
+
+              </div>
+
               <nav className="flex flex-col">
+
+                {/* SERVICES */}
 
                 <Link
                   href="/services"
@@ -401,13 +1088,26 @@ export default function Header() {
                   Services
                 </Link>
 
+                {/* TEAM */}
+
                 <Link
                   href="/#team"
-                  onClick={closeMenu}
+                  onClick={(event) =>
+                    handleSearchNavigation(
+                      event,
+                      "/#team",
+                      {
+                        title: "Our Team",
+                        type: "link",
+                      }
+                    )
+                  }
                   className="border-b border-slate-100 py-4 text-lg font-medium text-slate-700"
                 >
                   Team
                 </Link>
+
+                {/* JOIN US */}
 
                 <button
                   type="button"
@@ -417,17 +1117,30 @@ export default function Header() {
                   Join Us
                 </button>
 
+                {/* CONTACT */}
+
                 <Link
                   href="/#contact"
-                  onClick={closeMenu}
+                  onClick={(event) =>
+                    handleSearchNavigation(
+                      event,
+                      "/#contact",
+                      {
+                        title: "Contact Us",
+                        type: "link",
+                      }
+                    )
+                  }
                   className="border-b border-slate-100 py-4 text-lg font-medium text-slate-700"
                 >
                   Contact Us
                 </Link>
 
+                {/* BOOK NOW */}
+
                 <Link
                   href="/#contact"
-                  onClick={closeMenu}
+                  onClick={handleBookNow}
                   className="mt-5 inline-flex items-center justify-center rounded-lg bg-[#B91C1C] px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-[#8F1111]"
                 >
                   Book Now
@@ -441,16 +1154,19 @@ export default function Header() {
         </Container>
       </header>
 
-      {/* =====================================================
+      {/* ============================================================
           JOIN US MODAL
-      ====================================================== */}
+      ============================================================ */}
 
       {isJoinUsOpen && (
         <div
+          role="dialog"
+          aria-modal="true"
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 px-4 py-5 backdrop-blur-sm sm:py-8"
           onMouseDown={(event) => {
             if (
-              event.target === event.currentTarget &&
+              event.target ===
+                event.currentTarget &&
               !isSubmitting
             ) {
               closeJoinUs();
@@ -460,9 +1176,9 @@ export default function Header() {
 
           <div className="relative flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#08081C] shadow-[0_30px_100px_rgba(0,0,0,0.6)]">
 
-            {/* =================================================
+            {/* ======================================================
                 MODAL HEADER
-            ================================================= */}
+            ====================================================== */}
 
             <div className="relative shrink-0 border-b border-white/10 bg-[#0D0D25] px-6 py-6 sm:px-8">
 
@@ -496,9 +1212,9 @@ export default function Header() {
 
             </div>
 
-            {/* =================================================
+            {/* ======================================================
                 FORM
-            ================================================= */}
+            ====================================================== */}
 
             <div
               className="overflow-y-auto px-6 py-7 sm:px-8"
@@ -518,6 +1234,7 @@ export default function Header() {
                 <div className="grid gap-5 sm:grid-cols-2">
 
                   <div>
+
                     <label
                       htmlFor="join-name"
                       className="mb-2 block text-sm font-bold text-white"
@@ -538,9 +1255,11 @@ export default function Header() {
                       disabled={isSubmitting}
                       className="w-full rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3.5 text-base text-white outline-none transition-all placeholder:text-slate-500 focus:border-[#B91C1C] focus:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-50"
                     />
+
                   </div>
 
                   <div>
+
                     <label
                       htmlFor="join-email"
                       className="mb-2 block text-sm font-bold text-white"
@@ -561,6 +1280,7 @@ export default function Header() {
                       disabled={isSubmitting}
                       className="w-full rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3.5 text-base text-white outline-none transition-all placeholder:text-slate-500 focus:border-[#B91C1C] focus:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-50"
                     />
+
                   </div>
 
                 </div>
@@ -570,6 +1290,7 @@ export default function Header() {
                 <div className="grid gap-5 sm:grid-cols-2">
 
                   <div>
+
                     <label
                       htmlFor="join-phone"
                       className="mb-2 block text-sm font-bold text-white"
@@ -590,9 +1311,11 @@ export default function Header() {
                       disabled={isSubmitting}
                       className="w-full rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3.5 text-base text-white outline-none transition-all placeholder:text-slate-500 focus:border-[#B91C1C] focus:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-50"
                     />
+
                   </div>
 
                   <div>
+
                     <label
                       htmlFor="join-position"
                       className="mb-2 block text-sm font-bold text-white"
@@ -613,6 +1336,7 @@ export default function Header() {
                       disabled={isSubmitting}
                       className="w-full rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3.5 text-base text-white outline-none transition-all placeholder:text-slate-500 focus:border-[#B91C1C] focus:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-50"
                     />
+
                   </div>
 
                 </div>
@@ -620,6 +1344,7 @@ export default function Header() {
                 {/* MESSAGE */}
 
                 <div>
+
                   <label
                     htmlFor="join-message"
                     className="mb-2 block text-sm font-bold text-white"
@@ -640,6 +1365,7 @@ export default function Header() {
                     disabled={isSubmitting}
                     className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3.5 text-base leading-7 text-white outline-none transition-all placeholder:text-slate-500 focus:border-[#B91C1C] focus:bg-white/[0.08] disabled:cursor-not-allowed disabled:opacity-50"
                   />
+
                 </div>
 
                 {/* RESUME */}
@@ -655,19 +1381,11 @@ export default function Header() {
 
                   <label
                     htmlFor="join-resume"
-                    className={`
-                      flex cursor-pointer items-center gap-4
-                      rounded-xl border border-dashed
-                      border-white/15
-                      bg-white/[0.04]
-                      px-5 py-5
-                      transition-all
-                      ${
-                        isSubmitting
-                          ? "pointer-events-none opacity-50"
-                          : "hover:border-[#B91C1C]/60 hover:bg-[#B91C1C]/5"
-                      }
-                    `}
+                    className={`flex cursor-pointer items-center gap-4 rounded-xl border border-dashed border-white/15 bg-white/[0.04] px-5 py-5 transition-all ${
+                      isSubmitting
+                        ? "pointer-events-none opacity-50"
+                        : "hover:border-[#B91C1C]/60 hover:bg-[#B91C1C]/5"
+                    }`}
                   >
 
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#B91C1C]/10 text-xl text-[#FCA5A5]">
@@ -742,6 +1460,33 @@ export default function Header() {
           <style jsx global>{`
             .overflow-y-auto::-webkit-scrollbar {
               display: none;
+            }
+
+            .search-highlight-result {
+              animation: searchResultHighlight 2.2s
+                ease-in-out;
+            }
+
+            @keyframes searchResultHighlight {
+              0% {
+                box-shadow:
+                  0 0 0 0 rgba(185, 28, 28, 0);
+              }
+
+              25% {
+                box-shadow:
+                  0 0 0 8px rgba(185, 28, 28, 0.22);
+              }
+
+              55% {
+                box-shadow:
+                  0 0 0 8px rgba(185, 28, 28, 0.12);
+              }
+
+              100% {
+                box-shadow:
+                  0 0 0 0 rgba(185, 28, 28, 0);
+              }
             }
           `}</style>
 

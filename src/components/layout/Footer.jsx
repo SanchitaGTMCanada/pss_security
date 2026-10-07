@@ -48,207 +48,7 @@ export default function Footer() {
 
       <div className="relative z-10">
 
-        {/* =================================================
-            LIGHT CTA SECTION
-        ================================================== */}
-
-        <div className="border-b border-slate-200 bg-[#F7F8FA]">
-          <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:px-12 lg:py-20">
-
-            <div className="relative overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(5,5,26,0.08)]">
-
-              {/* Subtle Background */}
-              <div className="pointer-events-none absolute inset-0">
-
-                <div className="absolute inset-y-0 right-0 w-[48%] bg-gradient-to-l from-[#fff5f5] via-[#fffafa] to-transparent" />
-
-                <div
-                  className="absolute right-0 top-0 h-full w-[48%] opacity-[0.035]"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(#B91C1C 1px, transparent 1px), linear-gradient(90deg, #B91C1C 1px, transparent 1px)",
-                    backgroundSize: "35px 35px",
-                  }}
-                />
-
-              </div>
-
-              {/* =================================================
-                  MAIN CONTENT
-              ================================================== */}
-
-              <div className="relative z-10 grid min-h-[500px] items-center lg:grid-cols-[1.25fr_0.75fr]">
-
-                {/* =================================================
-                    LEFT CONTENT
-                ================================================== */}
-
-                <div className="px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
-
-                  {/* Label */}
-                  <div className="mb-6 flex items-center gap-4">
-
-                    <span className="h-3 w-3 rounded-full bg-[#B91C1C] shadow-[0_0_12px_rgba(185,28,28,0.35)]" />
-
-                    <span className="text-base font-bold uppercase tracking-[0.25em] text-[#B91C1C]">
-                      Let&apos;s work together
-                    </span>
-
-                  </div>
-
-                  {/* Heading */}
-                  <h2 className="max-w-3xl text-4xl font-black leading-[1.08] tracking-tight text-[#05051A] sm:text-5xl lg:text-[64px]">
-                    Need reliable people
-                    <span className="block text-[#B91C1C]">
-                      you can count on?
-                    </span>
-                  </h2>
-
-                  {/* Description */}
-                  <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl lg:text-[21px]">
-                    Whether you need professional security personnel or
-                    customer service and reception support, we are ready to
-                    discuss your requirements.
-                  </p>
-
-                  {/* Trust Points */}
-                  <div className="mt-8 flex flex-wrap gap-x-7 gap-y-4">
-
-                    <div className="flex items-center gap-3">
-                      <CheckCircle2
-                        size={22}
-                        className="text-[#B91C1C]"
-                      />
-
-                      <span className="text-base font-semibold text-slate-500 sm:text-lg">
-                        Professional
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <ShieldCheck
-                        size={22}
-                        className="text-[#B91C1C]"
-                      />
-
-                      <span className="text-base font-semibold text-slate-500 sm:text-lg">
-                        Reliable
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <Building2
-                        size={22}
-                        className="text-[#B91C1C]"
-                      />
-
-                      <span className="text-base font-semibold text-slate-500 sm:text-lg">
-                        Business Ready
-                      </span>
-                    </div>
-
-                  </div>
-
-                </div>
-
-                {/* =================================================
-                    RIGHT VISUAL AREA
-                ================================================== */}
-
-                <div className="relative flex min-h-[360px] items-center justify-center overflow-hidden px-6 pb-12 sm:min-h-[400px] lg:min-h-[500px] lg:px-8 lg:pb-0">
-
-                  {/* Soft Glow */}
-                  <div className="pointer-events-none absolute right-[15%] top-1/2 h-[280px] w-[280px] -translate-y-1/2 rounded-full bg-[#B91C1C]/10 blur-[70px]" />
-
-                  {/* Outer Ring */}
-                  <div className="absolute right-[8%] top-1/2 h-[300px] w-[300px] -translate-y-1/2 rounded-full border border-[#B91C1C]/10 sm:h-[350px] sm:w-[350px] lg:h-[390px] lg:w-[390px]" />
-
-                  {/* Second Ring */}
-                  <div className="absolute right-[13%] top-1/2 h-[235px] w-[235px] -translate-y-1/2 rounded-full border border-[#B91C1C]/10 sm:h-[280px] sm:w-[280px] lg:h-[310px] lg:w-[310px]" />
-
-                  {/* Main Red Circle */}
-                  <div className="relative z-10 flex h-[190px] w-[190px] items-center justify-center rounded-full bg-[#B91C1C] shadow-[0_25px_60px_rgba(185,28,28,0.28)] sm:h-[220px] sm:w-[220px] lg:h-[245px] lg:w-[245px]">
-
-                    <div className="flex h-[145px] w-[145px] flex-col items-center justify-center rounded-full border border-white/20 bg-white/10 sm:h-[170px] sm:w-[170px] lg:h-[190px] lg:w-[190px]">
-
-                      <ShieldCheck
-                        size={64}
-                        strokeWidth={1.4}
-                        className="text-white"
-                      />
-
-                      <span className="mt-4 text-sm font-bold uppercase tracking-[0.25em] text-white/80">
-                        Trusted Service
-                      </span>
-
-                    </div>
-
-                  </div>
-
-                  {/* =================================================
-                      TOP FLOATING BADGE
-                  ================================================== */}
-
-                  <div className="absolute right-[8%] top-[12%] z-20 flex items-center gap-4 rounded-2xl border border-white bg-white px-5 py-4 shadow-[0_12px_30px_rgba(5,5,26,0.12)] sm:right-[10%]">
-
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#B91C1C]/10">
-
-                      <Shield
-                        size={24}
-                        className="text-[#B91C1C]"
-                      />
-
-                    </div>
-
-                    <div>
-
-                      <p className="text-sm font-bold uppercase tracking-wider text-slate-400">
-                        Protection
-                      </p>
-
-                      <p className="mt-1 text-base font-bold text-[#05051A]">
-                        You can trust
-                      </p>
-
-                    </div>
-
-                  </div>
-
-                  {/* =================================================
-                      BOTTOM FLOATING BADGE
-                  ================================================== */}
-
-                  <div className="absolute bottom-[12%] left-[8%] z-20 flex items-center gap-4 rounded-2xl border border-white bg-white px-5 py-4 shadow-[0_12px_30px_rgba(5,5,26,0.12)] sm:left-[10%]">
-
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#05051A]/5">
-
-                      <CheckCircle2
-                        size={24}
-                        className="text-[#B91C1C]"
-                      />
-
-                    </div>
-
-                    <div>
-
-                      <p className="text-sm font-bold uppercase tracking-wider text-slate-400">
-                        Standard
-                      </p>
-
-                      <p className="mt-1 text-base font-bold text-[#05051A]">
-                        Professional
-                      </p>
-
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
+     
 
         {/* =================================================
             MAIN DARK FOOTER
@@ -491,8 +291,8 @@ export default function Footer() {
               </div>
 
               <p className="text-sm text-slate-600 sm:text-base">
-                © {new Date().getFullYear()} Your Company Name. All rights
-                reserved.
+                © {new Date().getFullYear()} Preventative Security Services Ltd. © COPYRIGHT 2026
+               
               </p>
 
             </div>
@@ -511,7 +311,7 @@ export default function Footer() {
 
             <div className="flex flex-wrap items-center gap-5 text-sm text-slate-600 sm:text-base">
 
-              <Link
+              {/* <Link
                 href="/privacy-policy"
                 className="transition-colors hover:text-slate-300"
               >
@@ -525,12 +325,12 @@ export default function Footer() {
                 className="transition-colors hover:text-slate-300"
               >
                 Terms & Conditions
-              </Link>
+              </Link> */}
 
             </div>
 
             <p className="text-sm text-slate-700 sm:text-base">
-              Security • Customer Service • Reception
+             Designed & Developed by GTM CANADA
             </p>
 
           </div>

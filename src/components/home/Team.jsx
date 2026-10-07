@@ -3,20 +3,20 @@ import Container from "@/components/ui/Container";
 
 const teamMembers = [
   {
-    name: "TANVEER SINGH(GUARD)",
-    role: "Chief Executive Officer",
+    name: "TANVEER SINGH",
+    role: "GUARD",
     image:
       "/homepage/tanveer.png",
   },
   {
-    name: "ALLAN SSENYONJO(GUARD)",
-    role: "Security Operations Manager",
+    name: "ALLAN SSENYONJO",
+    role: "GUARD",
     image:
       "/homepage/allan.png",
   },
   {
-    name: "Manjinder Singh(GUARD)",
-    role: "Senior Security Supervisor",
+    name: "Manjinder Singh",
+    role: "GUARD",
     image:
       "/homepage/manjinder.png",
   },
@@ -89,92 +89,97 @@ export default function Team() {
 
         <div className="relative z-10 grid gap-5 md:grid-cols-3">
 
-          {teamMembers.map((member, index) => (
-            <div
-              key={member.name}
-              className="group relative overflow-hidden rounded-[26px] border border-black/[0.07] bg-white shadow-[0_15px_45px_rgba(0,0,0,0.07)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,0,0,0.12)]"
-            >
+      {teamMembers.map((member, index) => (
+  <div
+    key={member.name}
+    className="group relative overflow-hidden rounded-[26px] border border-black/[0.07] bg-white shadow-[0_15px_45px_rgba(0,0,0,0.07)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,0,0,0.12)]"
+  >
+    {/* =================================================
+        PHOTO
+    ================================================== */}
 
-              {/* =================================================
-                  PHOTO
-              ================================================== */}
+    <div className="relative h-[500px] overflow-hidden sm:h-[540px] lg:h-[580px]">
 
-              <div className="relative h-[500px] overflow-hidden sm:h-[540px] lg:h-[580px]">
+      <Image
+        src={member.image}
+        alt={member.name}
+        fill
+        priority={index === 0}
+        className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+        sizes="(max-width: 768px) 100vw, 33vw"
+        unoptimized
+      />
 
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  priority={index === 0}
-                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  unoptimized
-                />
+      {/* =================================================
+          IMAGE GRADIENT
+      ================================================== */}
 
-                {/* =================================================
-                    IMAGE GRADIENT
-                ================================================== */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+      {/* =================================================
+          RED HOVER GLOW
+      ================================================== */}
 
-                {/* =================================================
-                    RED HOVER GLOW
-                ================================================== */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#B91C1C]/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#B91C1C]/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      {/* =================================================
+          MEMBER NUMBER
+      ================================================== */}
 
-                {/* =================================================
-                    MEMBER NUMBER
-                ================================================== */}
+      <div className="absolute left-5 top-5 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/25 text-xs font-bold text-white backdrop-blur-md">
+        0{index + 1}
+      </div>
 
-                <div className="absolute left-5 top-5 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/25 text-xs font-bold text-white backdrop-blur-md">
-                  0{index + 1}
-                </div>
+      {/* =================================================
+          MEMBER INFORMATION
+      ================================================== */}
 
-                {/* =================================================
-                    MEMBER INFORMATION
-                ================================================== */}
+      <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7">
 
-                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7">
+        {/* NAME */}
 
-                
+        <h3 className="text-2xl font-bold text-white sm:text-3xl">
+          {member.name}
+        </h3>
 
-                  <h3 className="text-2xl font-bold text-white sm:text-3xl">
-                    {member.name}
-                  </h3>
+        {/* ROLE */}
 
-                  {/* Small line */}
+        <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-white/80 sm:text-base">
+          {member.role}
+        </p>
 
-                  <div className="mt-4 h-[2px] w-10 bg-[#B91C1C] transition-all duration-500 group-hover:w-20" />
+        {/* Small line */}
 
-                </div>
+        <div className="mt-4 h-[2px] w-10 bg-[#B91C1C] transition-all duration-500 group-hover:w-20" />
 
-              </div>
+      </div>
 
-              {/* =================================================
-                  BOTTOM INFO
-              ================================================== */}
+    </div>
 
-              <div className="flex items-center justify-between px-5 py-4">
+    {/* =================================================
+        BOTTOM INFO
+    ================================================== */}
 
-                <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#777]">
-                  PSS Professional
-                </span>
+    <div className="flex items-center justify-between px-5 py-4">
 
-                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-black/10 text-sm text-[#555] transition-all duration-300 group-hover:border-[#B91C1C] group-hover:bg-[#B91C1C] group-hover:text-white">
-                  →
-                </div>
+      <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#777]">
+        {member.role}
+      </span>
 
-              </div>
+      <div className="flex h-8 w-8 items-center justify-center rounded-full border border-black/10 text-sm text-[#555] transition-all duration-300 group-hover:border-[#B91C1C] group-hover:bg-[#B91C1C] group-hover:text-white">
+        →
+      </div>
 
-              {/* =================================================
-                  BOTTOM RED LINE
-              ================================================== */}
+    </div>
 
-              <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-[#B91C1C] transition-all duration-500 group-hover:w-full" />
+    {/* =================================================
+        BOTTOM RED LINE
+    ================================================== */}
 
-            </div>
-          ))}
+    <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-[#B91C1C] transition-all duration-500 group-hover:w-full" />
+
+  </div>
+))}
 
         </div>
 

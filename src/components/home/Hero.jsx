@@ -1,9 +1,13 @@
+"use client";
+
+
+
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden" id="hero">
       {/* =====================================================
           BACKGROUND VIDEO
       ====================================================== */}
@@ -67,17 +71,26 @@ export default function Hero() {
                 BUTTONS
             ================================================== */}
             <div className="mt-10 flex flex-wrap gap-5">
+<Link
+  href="/#contact"
+  onClick={(e) => {
+    if (window.location.pathname === "/") {
+      e.preventDefault();
 
-              <Link
-                href="/#contact"
-                className="group inline-flex items-center gap-3 rounded-xl bg-[#B91C1C] px-8 py-5 text-base font-bold text-white shadow-lg shadow-red-950/30 transition-all duration-300 hover:-translate-y-1 hover:bg-[#8F1111] sm:px-9 sm:py-5 sm:text-lg"
-              >
-                Get a Free Consultation Today
+      document.getElementById("contact")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }}
+  className="group inline-flex items-center gap-3 rounded-xl bg-[#B91C1C] px-8 py-5 text-base font-bold text-white shadow-lg shadow-red-950/30 transition-all duration-300 hover:-translate-y-1 hover:bg-[#8F1111] sm:px-9 sm:py-5 sm:text-lg"
+>
+  Get a Free Consultation Today
 
-                <span className="text-xl transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
-              </Link>
+  <span className="text-xl transition-transform duration-300 group-hover:translate-x-1">
+    →
+  </span>
+</Link>
 
               <Link
                 href="/services"

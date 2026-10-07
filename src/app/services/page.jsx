@@ -217,7 +217,7 @@ export default function ServicesPage() {
               <div className="mt-11 flex flex-wrap gap-5">
 
                 <Link
-                  href="#contact"
+                  href="/#contact"
                   className="group inline-flex items-center gap-3 rounded-xl bg-[#B91C1C] px-8 py-5 text-lg font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#991B1B]"
                 >
                   Get a Free Consultation
@@ -228,17 +228,7 @@ export default function ServicesPage() {
                   />
                 </Link>
 
-                <a
-                  href="#security"
-                  className="group inline-flex items-center gap-3 rounded-xl border border-white/25 bg-white/10 px-8 py-5 text-lg font-bold text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white/15"
-                >
-                  Explore Services
-
-                  <ArrowDown
-                    size={21}
-                    className="transition-transform duration-300 group-hover:translate-y-1"
-                  />
-                </a>
+               
 
               </div>
             </div>
