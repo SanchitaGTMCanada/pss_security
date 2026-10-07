@@ -112,7 +112,7 @@ export default function BookingSection() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-[#05051A] py-20 sm:py-24 lg:py-28"
+      className="relative overflow-hidden bg-[#05051A] py-10 sm:py-10 lg:py-10"
     >
       {/* =====================================================
           BACKGROUND DECORATION

@@ -24,7 +24,7 @@ const teamMembers = [
 
 export default function Team() {
   return (
-    <section className="relative overflow-hidden bg-[#F7F7F5] py-16 sm:py-20 lg:py-24" id="team">
+    <section className="relative overflow-hidden bg-[#F7F7F5] py-10 sm:py-10 lg:py-10" id="team">
 
       {/* =====================================================
           BACKGROUND

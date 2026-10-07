@@ -22,7 +22,7 @@ const cards = [
 
 export default function MissionVision() {
   return (
-    <section className="relative overflow-hidden bg-[#05051A] py-20 sm:py-24 lg:py-32">
+    <section className="relative overflow-hidden bg-[#05051A] py-10 sm:py-10 lg:py-10">
       {/* =========================================
           BACKGROUND EFFECTS
       ========================================== */}

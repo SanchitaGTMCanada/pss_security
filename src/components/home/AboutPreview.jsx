@@ -1,10 +1,13 @@
+
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 
 export default function AboutPreview() {
   return (
-<section className="relative overflow-hidden bg-[#05051A] py-20 sm:py-24 lg:py-32">
+<section className="relative overflow-hidden bg-[#05051A] py-10 sm:py-10 lg:py-10">
   {/* Ambient Glow */}
   <div className="pointer-events-none absolute -right-40 top-20 h-[500px] w-[500px] rounded-full bg-[#B91C1C]/10 blur-[150px]" />
 
@@ -106,13 +109,29 @@ export default function AboutPreview() {
         </div>
 
         {/* Link */}
-        <Link
-          href="/contact"
-          className="mt-7 inline-flex items-center gap-2 text-base font-semibold text-[#B91C1C] transition-colors hover:text-red-400"
-        >
-          Learn more about us
-          <span>→</span>
-        </Link>
+  <Link
+  href="/#contact"
+  className="mt-7 inline-flex items-center gap-2 text-base font-semibold text-[#B91C1C] transition-colors hover:text-red-400"
+  onClick={(event) => {
+    if (window.location.pathname === "/") {
+      const target = document.getElementById("contact");
+
+      if (target) {
+        event.preventDefault();
+
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+
+        window.history.replaceState(null, "", "/#contact");
+      }
+    }
+  }}
+>
+  Learn more about us
+  <span>→</span>
+</Link>
       </div>
     </div>
 

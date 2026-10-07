@@ -54,7 +54,7 @@ const reasons = [
 
 export default function WhyChoose() {
   return (
-    <section className="relative overflow-hidden bg-[#F5F6F8] py-20 sm:py-24 lg:py-32">
+    <section className="relative overflow-hidden bg-[#F5F6F8] py-10 sm:py-10 lg:py-10">
       {/* Background Decoration */}
       <div className="pointer-events-none absolute -left-40 top-20 h-80 w-80 rounded-full bg-[#B91C1C]/5 blur-[100px]" />
 

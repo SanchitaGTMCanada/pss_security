@@ -25,7 +25,7 @@ const services = [
 
 export default function ServicesPreview() {
   return (
-    <section className="relative overflow-hidden bg-[#F4F4F4] py-20 sm:py-24 lg:py-28" id="services">
+    <section className="relative overflow-hidden bg-[#F4F4F4] py-10 sm:py-10 lg:py-10" id="services">
 
       {/* =====================================================
           DECORATIVE BACKGROUND

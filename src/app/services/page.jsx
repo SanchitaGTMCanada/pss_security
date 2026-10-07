@@ -274,7 +274,7 @@ export default function ServicesPage() {
           INTRODUCTION — LIGHT
       ====================================================== */}
 
-      <section className="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-32">
+      <section className="relative overflow-hidden bg-white py-10 sm:py-10 lg:py-10">
 
         <div className="pointer-events-none absolute right-0 top-0 h-[450px] w-[450px] rounded-full bg-[#B91C1C]/[0.035] blur-[120px]" />
 
@@ -355,7 +355,7 @@ export default function ServicesPage() {
 
    <section
   id="security"
-  className="relative overflow-hidden bg-[#05051A] py-20 sm:py-24 lg:py-32"
+  className="relative overflow-hidden bg-[#05051A] py-10 sm:py-10 lg:py-10"
 >
   {/* Red ambient glow */}
   <div className="pointer-events-none absolute -left-40 top-1/2 h-[550px] w-[550px] -translate-y-1/2 rounded-full bg-[#B91C1C]/10 blur-[160px]" />
@@ -388,168 +388,177 @@ export default function ServicesPage() {
 
     </div>
 
-    <div className="relative z-10 grid gap-5 lg:grid-cols-12">
+  <div className="relative z-10 grid w-full gap-4 lg:grid-cols-6">
 
-      {/* Main Card */}
-      <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#0B0B24] p-8 sm:p-10 lg:col-span-7">
+  {/* =========================
+      TOP ROW — 2 CARDS
+  ========================== */}
 
-        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[#B91C1C]/10 blur-[90px]" />
+  {/* 01 — Access Control */}
+  <div className="relative overflow-hidden rounded-[22px] border border-white/10 bg-[#0B0B24] p-6 lg:col-span-3">
 
-        <div className="relative z-10">
+    <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-[#B91C1C]/10 blur-[70px]" />
 
-          <div className="flex items-start justify-between">
+    <div className="relative z-10">
 
-            <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-[#B91C1C]/40 bg-[#10102D] text-[#FCA5A5]">
-              <LockKeyhole
-                size={38}
-                strokeWidth={1.6}
-              />
-            </div>
+      <div className="flex items-start justify-between">
 
-            <span className="text-7xl font-black text-white/[0.04]">
-              01
-            </span>
-
-          </div>
-
-          <h3 className="mt-14 text-3xl font-black text-white sm:text-4xl">
-            Access Control
-          </h3>
-
-          <p className="mt-5 max-w-xl text-lg leading-8 text-slate-400 sm:text-xl">
-            Monitoring and managing entry points to restrict unauthorized access
-          </p>
-
-          <div className="mt-12 flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#FCA5A5]">
-            <span className="h-2 w-2 rounded-full bg-[#B91C1C]" />
-            Controlled Access
-          </div>
-
-        </div>
-
-      </div>
-
-
-      {/* Patrol */}
-      <div className="group rounded-[28px] border border-white/10 bg-[#10102D] p-8 transition-all duration-300 hover:-translate-y-1 hover:border-[#B91C1C]/50 lg:col-span-5">
-
-        <div className="flex items-start justify-between">
-
-          <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[#B91C1C]/40 bg-[#0B0B24] text-[#FCA5A5]">
-            <Footprints size={31} />
-          </div>
-
-          <span className="text-4xl font-black text-white/[0.05]">
-            02
-          </span>
-
-        </div>
-
-        <h3 className="mt-8 text-2xl font-black text-white sm:text-3xl">
-          Patrolling (Foot & Vehicle)
-        </h3>
-
-        <p className="mt-4 text-lg leading-8 text-slate-400">
-          Regular patrols to detect and report suspicious activity.
-        </p>
-
-      </div>
-
-
-      {/* Emergency */}
-      <div className="relative overflow-hidden rounded-[28px] bg-[#B91C1C] p-8 lg:col-span-5">
-
-        <div className="absolute -right-12 -top-12 text-white/[0.08]">
-          <Siren
-            size={180}
-            strokeWidth={1}
+        <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-[#B91C1C]/40 bg-[#10102D] text-[#FCA5A5]">
+          <LockKeyhole
+            size={28}
+            strokeWidth={1.6}
           />
         </div>
 
-        <div className="relative z-10">
-
-          <div className="flex items-center justify-between">
-
-            <div className="flex h-16 w-16 items-center justify-center bg-white text-[#B91C1C]">
-              <Siren size={32} />
-            </div>
-
-            <span className="text-4xl font-black text-white/20">
-              03
-            </span>
-
-          </div>
-
-          <h3 className="mt-8 text-2xl font-black text-white sm:text-3xl">
-            Emergency Response
-          </h3>
-
-          <p className="mt-4 text-lg leading-8 text-white/75">
-           Immediate on-site action in response to alarms, incidents, and safety threats
-          </p>
-
-        </div>
+        <span className="text-5xl font-black text-white/[0.04]">
+          01
+        </span>
 
       </div>
 
+      <h3 className="mt-7 text-2xl font-black text-white sm:text-3xl">
+        Access Control
+      </h3>
 
-      {/* CCTV */}
-      <div className="group rounded-[28px] border border-white/10 border-t-4 border-t-[#B91C1C] bg-[#0B0B24] p-8 lg:col-span-5">
+      <p className="mt-3 max-w-lg text-base leading-7 text-slate-400">
+        Monitoring and managing entry points to restrict unauthorized access.
+      </p>
 
-        <div className="flex items-center gap-5">
+      <div className="mt-7 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#FCA5A5]">
+        <span className="h-1.5 w-1.5 rounded-full bg-[#B91C1C]" />
+        Controlled Access
+      </div>
 
-          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-[#10102D] text-[#FCA5A5]">
-            <Camera size={31} />
-          </div>
+    </div>
 
-          <div>
+  </div>
 
-            <span className="text-sm font-black uppercase tracking-[0.2em] text-white/25">
-              04
-            </span>
 
-            <h3 className="mt-1 text-2xl font-black text-white">
-              CCTV & Surveillance
-            </h3>
+  {/* 02 — Patrolling */}
+  <div className="group rounded-[22px] border border-white/10 bg-[#10102D] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#B91C1C]/50 lg:col-span-3">
 
-          </div>
+    <div className="flex items-start justify-between">
 
+      <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#B91C1C]/40 bg-[#0B0B24] text-[#FCA5A5]">
+        <Footprints size={28} />
+      </div>
+
+      <span className="text-4xl font-black text-white/[0.05]">
+        02
+      </span>
+
+    </div>
+
+    <h3 className="mt-6 text-2xl font-black text-white">
+      Patrolling (Foot & Vehicle)
+    </h3>
+
+    <p className="mt-3 text-base leading-7 text-slate-400">
+      Regular patrols to detect and report suspicious activity.
+    </p>
+
+  </div>
+
+
+  {/* =========================
+      BOTTOM ROW — FULL WIDTH
+      3 EQUAL CARDS
+  ========================== */}
+
+  {/* 03 — Emergency Response */}
+  <div className="relative min-w-0 overflow-hidden rounded-[22px] bg-[#B91C1C] p-6 lg:col-span-2">
+
+    <div className="absolute -right-10 -top-10 text-white/[0.08]">
+      <Siren
+        size={130}
+        strokeWidth={1}
+      />
+    </div>
+
+    <div className="relative z-10">
+
+      <div className="flex items-center justify-between">
+
+        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#B91C1C]">
+          <Siren size={25} />
         </div>
 
-        <p className="mt-5 text-lg leading-8 text-slate-400">
-          Real-time security system monitoring with incident documentation
-        </p>
+        <span className="text-3xl font-black text-white/20">
+          03
+        </span>
 
       </div>
 
+      <h3 className="mt-6 text-xl font-black text-white">
+        Emergency Response
+      </h3>
 
-      {/* Incident */}
-      <div className="group rounded-[28px] border border-white/10 bg-[#10102D] p-8 lg:col-span-5">
+      <p className="mt-3 text-sm leading-6 text-white/75">
+        Immediate on-site action in response to alarms, incidents, and
+        safety threats.
+      </p>
 
-        <div className="flex items-start justify-between">
+    </div>
 
-          <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[#B91C1C]/40 bg-[#0B0B24] text-[#FCA5A5]">
-            <ClipboardCheck size={31} />
-          </div>
+  </div>
 
-          <span className="text-4xl font-black text-white/10">
-            05
-          </span>
 
-        </div>
+  {/* 04 — CCTV */}
+  <div className="group min-w-0  lg:col-span-2 rounded-[22px] border border-white/10 border-t-4 border-t-[#B91C1C] bg-[#0B0B24] p-6 transition-all duration-300 hover:-translate-y-1">
 
-        <h3 className="mt-8 text-2xl font-black text-white sm:text-3xl">
-          Incident Reporting
+    <div className="flex items-center gap-4">
+
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#10102D] text-[#FCA5A5]">
+        <Camera size={26} />
+      </div>
+
+      <div className="min-w-0">
+
+        <span className="text-xs font-black uppercase tracking-[0.18em] text-white/25">
+          04
+        </span>
+
+        <h3 className="mt-1 text-lg font-black text-white">
+          CCTV & Surveillance
         </h3>
-
-        <p className="mt-4 text-lg leading-8 text-slate-400">
-          Timely, accurate reports on events, risks,
-and resolution
-        </p>
 
       </div>
 
     </div>
+
+    <p className="mt-4 text-sm leading-6 text-slate-400">
+      Real-time security system monitoring with incident documentation.
+    </p>
+
+  </div>
+
+
+  {/* 05 — Incident Reporting */}
+  <div className="group min-w-0  lg:col-span-2 rounded-[22px] border border-white/10 bg-[#10102D] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#B91C1C]/50">
+
+    <div className="flex items-start justify-between">
+
+      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#B91C1C]/40 bg-[#0B0B24] text-[#FCA5A5]">
+        <ClipboardCheck size={26} />
+      </div>
+
+      <span className="text-3xl font-black text-white/10">
+        05
+      </span>
+
+    </div>
+
+    <h3 className="mt-6 text-xl font-black text-white">
+      Incident Reporting
+    </h3>
+
+    <p className="mt-3 text-sm leading-6 text-slate-400">
+      Timely, accurate reports on events, risks, and resolution.
+    </p>
+
+  </div>
+
+</div>
 
   </Container>
 </section>
@@ -559,7 +568,7 @@ and resolution
           WHY CHOOSE US — LIGHT
       ====================================================== */}
 
-      <section className="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-32">
+      <section className="relative overflow-hidden bg-white py-10 sm:py-10 lg:py-10">
 
         <div className="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-[#B91C1C]/[0.035] blur-[150px]" />
 
@@ -654,7 +663,7 @@ and resolution
           CUSTOMER SERVICE — LIGHT GRAY
       ====================================================== */}
 
-  <section className="relative overflow-hidden bg-[#F8F9FA] py-12 sm:py-14 lg:py-16">
+  <section className="relative overflow-hidden bg-[#F8F9FA] py-10 sm:py-10 lg:py-10">
   {/* Subtle Background Decoration */}
   <div className="pointer-events-none absolute -left-24 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full border border-[#B91C1C]/10" />
   <div className="pointer-events-none absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-[#B91C1C]/[0.025] blur-3xl" />
@@ -732,7 +741,7 @@ and resolution
           OFFICERS CAN ASSIST — DARK
       ====================================================== */}
 
-      <section className="relative overflow-hidden bg-[#05051A] py-20 sm:py-24 lg:py-32">
+      <section className="relative overflow-hidden bg-[#05051A] py-10 sm:py-10 lg:py-10">
 
         <div className="pointer-events-none absolute -right-40 top-1/2 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#B91C1C]/15 blur-[160px]" />
 
@@ -866,7 +875,7 @@ and resolution
           CTA — LIGHT
       ====================================================== */}
 
-      <section className="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-28">
+      <section className="relative overflow-hidden bg-white py-10 sm:py-10 lg:py-10">
 
         <Container>
 
@@ -924,7 +933,7 @@ and resolution
           INDUSTRIES — DARK
       ====================================================== */}
 
-      <section className="relative overflow-hidden bg-[#05051A] py-20 sm:py-24 lg:py-32">
+      <section className="relative overflow-hidden bg-[#05051A] py-10 sm:py-10 lg:py-10">
 
         <div className="pointer-events-none absolute -left-40 top-20 h-[550px] w-[550px] rounded-full bg-[#B91C1C]/10 blur-[150px]" />
 
