@@ -168,7 +168,7 @@ export default function ServicesPage() {
           HERO — DARK
       ====================================================== */}
 
-      <section className="relative min-h-[760px] overflow-hidden bg-[#05051A]">
+      <section className="relative overflow-hidden bg-[#05051A]">
 
         <div className="absolute inset-0">
           <Image
@@ -188,42 +188,42 @@ export default function ServicesPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#05051A] via-transparent to-transparent" />
         </div>
 
-        <div className="pointer-events-none absolute -right-40 top-1/3 h-[600px] w-[600px] rounded-full bg-[#B91C1C]/20 blur-[160px]" />
+        <div className="pointer-events-none absolute -right-40 top-1/3 h-[420px] w-[420px] rounded-full bg-[#B91C1C]/20 blur-[160px]" />
 
         <Container>
-          <div className="relative z-10 flex min-h-[760px] items-center">
+          <div className="relative z-10 flex min-h-[560px] items-center py-2 sm:min-h-[600px] sm:py-4 lg:min-h-[540px]">
 
-            <div className="max-w-5xl py-28">
+            <div className="max-w-4xl">
 
-              <div className="mb-8 flex items-center gap-4">
+              <div className="mb-5 flex items-center gap-3">
                 <span className="h-[2px] w-16 bg-[#EF4444]" />
 
-                <span className="text-base font-bold uppercase tracking-[0.3em] text-white/80 sm:text-lg">
+                <span className="text-sm font-bold uppercase tracking-[0.25em] text-white/80 sm:text-base">
                   Preventative Security Services
                 </span>
               </div>
 
-              <h1 className="max-w-5xl text-5xl font-black leading-[0.95] tracking-[-0.04em] text-white sm:text-7xl lg:text-[92px]">
+              <h1 className="max-w-5xl text-4xl font-black leading-[0.98] tracking-[-0.04em] text-white sm:text-6xl lg:text-[72px]">
                 Comprehensive
                 <span className="block text-[#EF4444]">
                   Security Solutions
                 </span>
               </h1>
 
-              <p className="mt-9 max-w-3xl text-lg leading-8 text-white/75 sm:text-2xl sm:leading-9">
+              <p className="mt-6 max-w-2xl text-base leading-7 text-white/75 sm:text-xl sm:leading-8">
                Professional Reliable Local
               </p>
 
-              <div className="mt-11 flex flex-wrap gap-5">
+              <div className="mt-8 flex flex-wrap gap-4">
 
                 <Link
                   href="/#contact"
-                  className="group inline-flex items-center gap-3 rounded-xl bg-[#B91C1C] px-8 py-5 text-lg font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#991B1B]"
+                  className="group inline-flex items-center gap-3 rounded-lg bg-[#B91C1C] px-6 py-3.5 text-base font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#991B1B]"
                 >
                   Get a Free Consultation
 
                   <ArrowUpRight
-                    size={22}
+                    size={20}
                     className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
                   />
                 </Link>
@@ -240,7 +240,7 @@ export default function ServicesPage() {
         <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-[#05051A]/85 backdrop-blur-xl">
           <Container>
 
-            <div className="flex flex-wrap gap-x-12 gap-y-5 py-6">
+            <div className="flex flex-wrap gap-x-12 gap-y-5 py-4">
 
               <TrustPoint
                 icon={ShieldCheck}
@@ -280,17 +280,17 @@ export default function ServicesPage() {
 
         <Container>
 
-          <div className="relative z-10 grid items-center gap-12 lg:grid-cols-[0.35fr_1fr] lg:gap-20">
+          <div className="relative z-10 grid items-center gap-8 lg:grid-cols-[0.3fr_1fr] lg:gap-12">
 
             <div className="hidden lg:block">
 
               <div className="border-l-2 border-[#B91C1C] pl-7">
 
-                <span className="block text-[110px] font-black leading-none text-[#05051A]/[0.06]">
+                <span className="block text-[80px] font-black leading-none text-[#05051A]/[0.06]">
                   01
                 </span>
 
-                <span className="mt-4 block text-base font-bold uppercase tracking-[0.3em] text-[#B91C1C]">
+                <span className="mt-4 block text-sm font-bold uppercase tracking-[0.25em] text-[#B91C1C]">
                   Our Purpose
                 </span>
 
@@ -300,24 +300,24 @@ export default function ServicesPage() {
 
             <div>
 
-              <div className="mb-6 flex items-center gap-4 lg:hidden">
+              <div className="mb-4 flex items-center gap-3 lg:hidden">
 
                 <span className="h-[2px] w-12 bg-[#B91C1C]" />
 
-                <p className="text-base font-bold uppercase tracking-[0.25em] text-[#B91C1C]">
+                <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#B91C1C]">
                   Our Purpose
                 </p>
 
               </div>
 
-              <h2 className="max-w-5xl text-4xl font-black leading-[1.02] tracking-tight text-[#05051A] sm:text-5xl lg:text-7xl">
+              <h2 className="max-w-5xl text-3xl font-black leading-[1.05] tracking-tight text-[#05051A] sm:text-4xl lg:text-5xl">
                 Securing What
                 <span className="block text-[#B91C1C]">
                   Matters Most
                 </span>
               </h2>
 
-              <p className="mt-7 max-w-4xl text-lg leading-8 text-[#475569] sm:text-xl lg:text-[22px] lg:leading-9">
+              <p className="mt-5 max-w-4xl text-base leading-7 text-[#475569] sm:text-lg">
                 We understand that every environment has unique security
                 requirements. Our approach combines professional personnel,
                 proactive protection, clear communication, and dependable
@@ -325,17 +325,17 @@ export default function ServicesPage() {
                 and businesses.
               </p>
 
-              <div className="mt-9 flex flex-wrap gap-4">
+              <div className="mt-6 flex flex-wrap gap-3">
 
-                <span className="border border-[#B91C1C]/20 bg-[#FEF2F2] px-5 py-3 text-base font-bold text-[#991B1B]">
+                <span className="border border-[#B91C1C]/20 bg-[#FEF2F2] px-4 py-2 text-sm font-bold text-[#991B1B]">
                   People
                 </span>
 
-                <span className="border border-[#B91C1C]/20 bg-[#FEF2F2] px-5 py-3 text-base font-bold text-[#991B1B]">
+                <span className="border border-[#B91C1C]/20 bg-[#FEF2F2] px-4 py-2 text-sm font-bold text-[#991B1B]">
                   Property
                 </span>
 
-                <span className="border border-[#B91C1C]/20 bg-[#FEF2F2] px-5 py-3 text-base font-bold text-[#991B1B]">
+                <span className="border border-[#B91C1C]/20 bg-[#FEF2F2] px-4 py-2 text-sm font-bold text-[#991B1B]">
                   Business
                 </span>
 
@@ -358,20 +358,20 @@ export default function ServicesPage() {
   className="relative overflow-hidden bg-[#05051A] py-10 sm:py-10 lg:py-10"
 >
   {/* Red ambient glow */}
-  <div className="pointer-events-none absolute -left-40 top-1/2 h-[550px] w-[550px] -translate-y-1/2 rounded-full bg-[#B91C1C]/10 blur-[160px]" />
+  <div className="pointer-events-none absolute -left-40 top-1/2 h-[380px] w-[380px] -translate-y-1/2 rounded-full bg-[#B91C1C]/10 blur-[160px]" />
 
   <div className="pointer-events-none absolute -right-40 top-20 h-[450px] w-[450px] rounded-full bg-[#B91C1C]/10 blur-[140px]" />
 
   <Container>
 
-    <div className="relative z-10 mb-16 grid gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-end">
+    <div className="relative z-10 mb-10 grid gap-6 lg:grid-cols-[1fr_0.7fr] lg:items-end">
 
       <div>
-        <p className="text-base font-bold uppercase tracking-[0.25em] text-[#FCA5A5] sm:text-lg">
+        <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#FCA5A5] sm:text-base">
           Security Guard Services
         </p>
 
-        <h2 className="mt-5 max-w-4xl text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-7xl">
+        <h2 className="mt-3 max-w-4xl text-3xl font-black leading-[1.05] tracking-tight text-white sm:text-4xl lg:text-5xl">
           Protection that is
 
           <span className="block text-[#EF4444]">
@@ -380,7 +380,7 @@ export default function ServicesPage() {
         </h2>
       </div>
 
-      <p className="text-lg leading-8 text-slate-400 sm:text-xl">
+      <p className="text-base leading-7 text-slate-400 sm:text-lg">
         Our trained security professionals provide a visible,
         dependable presence designed to protect people, property,
         and operations.
@@ -388,14 +388,14 @@ export default function ServicesPage() {
 
     </div>
 
-  <div className="relative z-10 grid w-full gap-4 lg:grid-cols-6">
+  <div className="relative z-10 grid w-full gap-3 lg:grid-cols-6">
 
   {/* =========================
       TOP ROW — 2 CARDS
   ========================== */}
 
   {/* 01 — Access Control */}
-  <div className="relative overflow-hidden rounded-[22px] border border-white/10 bg-[#0B0B24] p-6 lg:col-span-3">
+  <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#0B0B24] p-5 lg:col-span-3">
 
     <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-[#B91C1C]/10 blur-[70px]" />
 
@@ -403,7 +403,7 @@ export default function ServicesPage() {
 
       <div className="flex items-start justify-between">
 
-        <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-[#B91C1C]/40 bg-[#10102D] text-[#FCA5A5]">
+        <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#B91C1C]/40 bg-[#10102D] text-[#FCA5A5]">
           <LockKeyhole
             size={28}
             strokeWidth={1.6}
@@ -416,11 +416,11 @@ export default function ServicesPage() {
 
       </div>
 
-      <h3 className="mt-7 text-2xl font-black text-white sm:text-3xl">
+      <h3 className="mt-5 text-xl font-black text-white sm:text-2xl">
         Access Control
       </h3>
 
-      <p className="mt-3 max-w-lg text-base leading-7 text-slate-400">
+      <p className="mt-2 max-w-lg text-sm leading-6 text-slate-400">
         Monitoring and managing entry points to restrict unauthorized access.
       </p>
 
@@ -435,11 +435,11 @@ export default function ServicesPage() {
 
 
   {/* 02 — Patrolling */}
-  <div className="group rounded-[22px] border border-white/10 bg-[#10102D] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#B91C1C]/50 lg:col-span-3">
+  <div className="group rounded-xl border border-white/10 bg-[#10102D] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#B91C1C]/50 lg:col-span-3">
 
     <div className="flex items-start justify-between">
 
-      <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#B91C1C]/40 bg-[#0B0B24] text-[#FCA5A5]">
+      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#B91C1C]/40 bg-[#0B0B24] text-[#FCA5A5]">
         <Footprints size={28} />
       </div>
 
@@ -449,11 +449,11 @@ export default function ServicesPage() {
 
     </div>
 
-    <h3 className="mt-6 text-2xl font-black text-white">
+    <h3 className="mt-5 text-xl font-black text-white">
       Patrolling (Foot & Vehicle)
     </h3>
 
-    <p className="mt-3 text-base leading-7 text-slate-400">
+    <p className="mt-2 text-sm leading-6 text-slate-400">
       Regular patrols to detect and report suspicious activity.
     </p>
 
@@ -466,7 +466,7 @@ export default function ServicesPage() {
   ========================== */}
 
   {/* 03 — Emergency Response */}
-  <div className="relative min-w-0 overflow-hidden rounded-[22px] bg-[#B91C1C] p-6 lg:col-span-2">
+  <div className="relative min-w-0 overflow-hidden rounded-xl bg-[#B91C1C] p-5 lg:col-span-2">
 
     <div className="absolute -right-10 -top-10 text-white/[0.08]">
       <Siren
@@ -489,11 +489,11 @@ export default function ServicesPage() {
 
       </div>
 
-      <h3 className="mt-6 text-xl font-black text-white">
+      <h3 className="mt-4 text-lg font-black text-white">
         Emergency Response
       </h3>
 
-      <p className="mt-3 text-sm leading-6 text-white/75">
+      <p className="mt-2 text-sm leading-5 text-white/75">
         Immediate on-site action in response to alarms, incidents, and
         safety threats.
       </p>
@@ -504,7 +504,7 @@ export default function ServicesPage() {
 
 
   {/* 04 — CCTV */}
-  <div className="group min-w-0  lg:col-span-2 rounded-[22px] border border-white/10 border-t-4 border-t-[#B91C1C] bg-[#0B0B24] p-6 transition-all duration-300 hover:-translate-y-1">
+  <div className="group min-w-0  lg:col-span-2 rounded-xl border border-white/10 border-t-4 border-t-[#B91C1C] bg-[#0B0B24] p-5 transition-all duration-300 hover:-translate-y-1">
 
     <div className="flex items-center gap-4">
 
@@ -526,7 +526,7 @@ export default function ServicesPage() {
 
     </div>
 
-    <p className="mt-4 text-sm leading-6 text-slate-400">
+    <p className="mt-3 text-sm leading-5 text-slate-400">
       Real-time security system monitoring with incident documentation.
     </p>
 
@@ -534,7 +534,7 @@ export default function ServicesPage() {
 
 
   {/* 05 — Incident Reporting */}
-  <div className="group min-w-0  lg:col-span-2 rounded-[22px] border border-white/10 bg-[#10102D] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#B91C1C]/50">
+  <div className="group min-w-0  lg:col-span-2 rounded-xl border border-white/10 bg-[#10102D] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#B91C1C]/50">
 
     <div className="flex items-start justify-between">
 
@@ -548,7 +548,7 @@ export default function ServicesPage() {
 
     </div>
 
-    <h3 className="mt-6 text-xl font-black text-white">
+    <h3 className="mt-4 text-lg font-black text-white">
       Incident Reporting
     </h3>
 
@@ -570,21 +570,21 @@ export default function ServicesPage() {
 
       <section className="relative overflow-hidden bg-white py-10 sm:py-10 lg:py-10">
 
-        <div className="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-[#B91C1C]/[0.035] blur-[150px]" />
+        <div className="pointer-events-none absolute right-0 top-0 h-[360px] w-[360px] rounded-full bg-[#B91C1C]/[0.035] blur-[150px]" />
 
         <Container>
 
           <div className="relative z-10">
 
-            <div className="grid gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-end">
+            <div className="grid gap-6 lg:grid-cols-[0.8fr_1fr] lg:items-end">
 
               <div>
 
-                <p className="text-base font-bold uppercase tracking-[0.3em] text-[#B91C1C] sm:text-lg">
+                <p className="text-sm font-bold uppercase tracking-[0.25em] text-[#B91C1C] sm:text-lg">
                   Why Choose Us?
                 </p>
 
-                <h2 className="mt-5 text-4xl font-black leading-[1.02] text-[#05051A] sm:text-5xl lg:text-7xl">
+                <h2 className="mt-3 text-3xl font-black leading-[1.05] text-[#05051A] sm:text-4xl lg:text-5xl">
                   Experience you can
                   <span className="block text-[#B91C1C]">
                     depend on.
@@ -602,7 +602,7 @@ export default function ServicesPage() {
             </div>
 
 
-            <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-7 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
 
               {whyChooseUs.map((item, index) => {
 
@@ -611,7 +611,7 @@ export default function ServicesPage() {
                 return (
                   <div
                     key={item.title}
-                    className="group relative overflow-hidden border border-slate-200 bg-[#F8F9FA] p-8 transition-all duration-500 hover:-translate-y-2 hover:border-[#B91C1C]/40 hover:bg-white hover:shadow-[0_20px_50px_rgba(5,5,26,0.08)]"
+                    className="group relative overflow-hidden border border-slate-200 bg-[#F8F9FA] p-5 transition-all duration-500 hover:-translate-y-2 hover:border-[#B91C1C]/40 hover:bg-white hover:shadow-[0_20px_50px_rgba(5,5,26,0.08)]"
                   >
 
                     <span className="absolute -right-3 -top-8 text-[100px] font-black leading-none text-[#05051A]/[0.035]">
@@ -622,9 +622,9 @@ export default function ServicesPage() {
 
                       <div className="flex items-center justify-between">
 
-                        <div className="flex h-16 w-16 items-center justify-center border border-[#B91C1C]/20 bg-[#FEF2F2] text-[#B91C1C] transition-all duration-300 group-hover:bg-[#B91C1C] group-hover:text-white">
+                        <div className="flex h-12 w-12 items-center justify-center border border-[#B91C1C]/20 bg-[#FEF2F2] text-[#B91C1C] transition-all duration-300 group-hover:bg-[#B91C1C] group-hover:text-white">
                           <Icon
-                            size={31}
+                            size={25}
                             strokeWidth={1.7}
                           />
                         </div>
@@ -635,13 +635,13 @@ export default function ServicesPage() {
 
                       </div>
 
-                      <h3 className="mt-9 text-2xl font-black text-[#05051A] sm:text-3xl">
+                      <h3 className="mt-5 text-xl font-black text-[#05051A] sm:text-2xl">
                         {item.title}
                       </h3>
 
-                      <div className="mt-4 h-[2px] w-10 bg-[#B91C1C] transition-all duration-500 group-hover:w-20" />
+                      <div className="mt-3 h-[2px] w-10 bg-[#B91C1C] transition-all duration-500 group-hover:w-20" />
 
-                      <p className="mt-5 text-base leading-8 text-[#64748B] sm:text-lg">
+                      <p className="mt-3 text-sm leading-6 text-[#64748B] sm:text-base">
                         {item.text}
                       </p>
 
@@ -669,16 +669,16 @@ export default function ServicesPage() {
   <div className="pointer-events-none absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-[#B91C1C]/[0.025] blur-3xl" />
 
   <Container>
-    <div className="relative w-full overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_15px_45px_rgba(5,5,26,0.05)]">
+    <div className="relative w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-[0_10px_30px_rgba(5,5,26,0.05)]">
 
       {/* Left Red Accent */}
       <div className="absolute left-0 top-0 h-full w-1.5 bg-[#B91C1C]" />
 
       {/* Content */}
-      <div className="relative px-7 py-8 sm:px-10 sm:py-9 lg:px-14 lg:py-10">
+      <div className="relative px-5 py-6 sm:px-7 sm:py-7 lg:px-9 lg:py-8">
 
         {/* Decorative Number */}
-        <span className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 text-[110px] font-black leading-none text-[#05051A]/[0.025] lg:block">
+        <span className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 text-[80px] font-black leading-none text-[#05051A]/[0.025] lg:block">
           02
         </span>
 
@@ -686,7 +686,7 @@ export default function ServicesPage() {
 
           {/* Label */}
           <div className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#FEF2F2] text-sm font-black text-[#B91C1C]">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#FEF2F2] text-sm font-black text-[#B91C1C]">
               02
             </span>
 
@@ -698,7 +698,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Heading */}
-          <h2 className="mt-5 text-3xl font-black leading-tight tracking-tight text-[#05051A] sm:text-4xl lg:text-5xl">
+          <h2 className="mt-4 text-2xl font-black leading-tight tracking-tight text-[#05051A] sm:text-3xl lg:text-4xl">
             Where Security Meets{" "}
             <span className="text-[#B91C1C]">
               Hospitality.
@@ -706,7 +706,7 @@ export default function ServicesPage() {
           </h2>
 
           {/* Description */}
-          <p className="mt-4 max-w-5xl text-base leading-7 text-[#475569] sm:text-lg sm:leading-8 lg:text-xl">
+          <p className="mt-3 max-w-5xl text-sm leading-6 text-[#475569] sm:text-base sm:leading-7">
             Beyond safeguarding physical assets, our security officers are
             trained to deliver exceptional customer service and reception
             support. We understand that professionalism and courtesy are
@@ -714,7 +714,7 @@ export default function ServicesPage() {
           </p>
 
           {/* Bottom Line */}
-          <div className="mt-6 flex flex-col gap-3 border-t border-slate-200 pt-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-4 flex flex-col gap-2 border-t border-slate-200 pt-4 sm:flex-row sm:items-center sm:justify-between">
 
             <div className="flex items-center gap-3">
               <span className="h-2 w-2 rounded-full bg-[#B91C1C]" />
@@ -743,11 +743,11 @@ export default function ServicesPage() {
 
       <section className="relative overflow-hidden bg-[#05051A] py-10 sm:py-10 lg:py-10">
 
-        <div className="pointer-events-none absolute -right-40 top-1/2 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#B91C1C]/15 blur-[160px]" />
+        <div className="pointer-events-none absolute -right-40 top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-[#B91C1C]/15 blur-[160px]" />
 
         <Container>
 
-          <div className="relative z-10 grid items-center gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
+          <div className="relative z-10 grid items-center gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-12">
 
             {/* Content */}
 
@@ -755,7 +755,7 @@ export default function ServicesPage() {
 
               <div className="flex items-center gap-4">
 
-                <span className="text-7xl font-black text-[#B91C1C]/20">
+                <span className="text-5xl font-black text-[#B91C1C]/20">
                   05
                 </span>
 
@@ -763,44 +763,44 @@ export default function ServicesPage() {
 
               </div>
 
-              <p className="mt-7 text-base font-bold uppercase tracking-[0.25em] text-[#FCA5A5] sm:text-lg">
+              <p className="mt-7 text-sm font-bold uppercase tracking-[0.2em] text-[#FCA5A5] sm:text-base">
                 Professional Support
               </p>
 
-              <h2 className="mt-5 text-4xl font-black leading-[1.02] text-white sm:text-5xl lg:text-6xl">
+              <h2 className="mt-3 text-3xl font-black leading-[1.05] text-white sm:text-4xl lg:text-5xl">
                 Our Officers Can
                 <span className="block text-[#EF4444]">
                   Assist With:
                 </span>
               </h2>
 
-              <p className="mt-7 text-lg leading-8 text-white/55 sm:text-xl">
+              <p className="mt-4 text-base leading-7 text-white/55 sm:text-lg">
                 Our team helps create a secure, organized, and professional
                 environment while supporting visitors, tenants, employees,
                 and guests.
               </p>
 
-              <div className="mt-10">
+              <div className="mt-7">
 
                 {officerSupport.map((item, index) => (
 
                   <div
                     key={item}
-                    className="group flex items-center gap-5 border-b border-white/10 py-5"
+                    className="group flex items-center gap-3 border-b border-white/10 py-3"
                   >
 
                     <span className="text-sm font-black text-[#B91C1C]">
                       0{index + 1}
                     </span>
 
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#B91C1C] text-white">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#B91C1C] text-white">
                       <Check
                         size={17}
                         strokeWidth={3}
                       />
                     </div>
 
-                    <span className="text-base leading-7 text-white/70 transition-colors group-hover:text-white sm:text-lg">
+                    <span className="text-sm leading-6 text-white/70 transition-colors group-hover:text-white sm:text-base">
                       {item}
                     </span>
 
@@ -821,7 +821,7 @@ export default function ServicesPage() {
 
               <div className="relative overflow-hidden">
 
-                <div className="relative h-[450px] sm:h-[600px]">
+                <div className="relative h-[340px] sm:h-[440px]">
 
                   <Image
                     src="/service/service-officers.png"
@@ -836,9 +836,9 @@ export default function ServicesPage() {
 
                 </div>
 
-                <div className="absolute bottom-7 left-7 right-7">
+                <div className="absolute bottom-4 left-4 right-4">
 
-                  <div className="flex items-center justify-between border border-white/15 bg-[#05051A]/85 p-6 backdrop-blur-xl">
+                  <div className="flex items-center justify-between border border-white/15 bg-[#05051A]/85 p-4 backdrop-blur-xl">
 
                     <div>
 
@@ -846,14 +846,14 @@ export default function ServicesPage() {
                         On-Site Support
                       </p>
 
-                      <p className="mt-2 text-xl font-bold text-white">
+                      <p className="mt-1 text-base font-bold text-white">
                         Professional. Present. Prepared.
                       </p>
 
                     </div>
 
                     <Shield
-                      size={38}
+                      size={30}
                       className="text-[#B91C1C]"
                     />
 
@@ -879,7 +879,7 @@ export default function ServicesPage() {
 
         <Container>
 
-          <div className="relative overflow-hidden bg-[#F3F4F6] px-8 py-14 sm:px-12 lg:px-16 lg:py-20">
+          <div className="relative overflow-hidden bg-[#F3F4F6] px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
 
             <div className="absolute left-0 top-0 h-full w-2 bg-[#B91C1C]" />
 
@@ -887,22 +887,22 @@ export default function ServicesPage() {
               06
             </span>
 
-            <div className="relative z-10 flex flex-col justify-between gap-10 lg:flex-row lg:items-center">
+            <div className="relative z-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-center">
 
               <div className="max-w-4xl">
 
-                <p className="text-base font-bold uppercase tracking-[0.25em] text-[#B91C1C] sm:text-lg">
+                <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#B91C1C] sm:text-lg">
                   Ready to get started?
                 </p>
 
-                <h2 className="mt-5 text-4xl font-black leading-[1.02] tracking-tight text-[#05051A] sm:text-5xl lg:text-7xl">
+                <h2 className="mt-5 text-3xl font-black leading-[1.05] tracking-tight text-[#05051A] sm:text-4xl lg:text-5xl">
                   Secure your space
                   <span className="block text-[#B91C1C]">
                     with confidence.
                   </span>
                 </h2>
 
-                <p className="mt-6 text-lg leading-8 text-[#64748B] sm:text-xl">
+                <p className="mt-4 text-base leading-7 text-[#64748B] sm:text-lg">
                   Tell us about your property, your requirements, and the
                   level of protection or support you need.
                 </p>
@@ -911,12 +911,12 @@ export default function ServicesPage() {
 
               <Link
   href="tel:+18674457900"
-  className="group inline-flex shrink-0 items-center justify-center gap-3 rounded-xl bg-[#B91C1C] px-8 py-5 text-lg font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#991B1B]"
+  className="group inline-flex shrink-0 items-center justify-center gap-3 rounded-lg bg-[#B91C1C] px-6 py-3.5 text-base font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#991B1B]"
 >
   Schedule a Call
 
   <ArrowUpRight
-    size={22}
+    size={20}
     className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
   />
 </Link>
@@ -933,129 +933,78 @@ export default function ServicesPage() {
           INDUSTRIES — DARK
       ====================================================== */}
 
-      <section className="relative overflow-hidden bg-[#05051A] py-10 sm:py-10 lg:py-10">
-
-        <div className="pointer-events-none absolute -left-40 top-20 h-[550px] w-[550px] rounded-full bg-[#B91C1C]/10 blur-[150px]" />
-
-        <div className="pointer-events-none absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-[#B91C1C]/10 blur-[160px]" />
-
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)
-            `,
-            backgroundSize: "70px 70px",
-          }}
-        />
+      <section className="relative overflow-hidden bg-[#05051A] py-8 sm:py-9">
+        <div className="pointer-events-none absolute -left-32 top-10 h-72 w-72 rounded-full bg-[#B91C1C]/10 blur-[120px]" />
+        <div className="pointer-events-none absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-[#B91C1C]/10 blur-[120px]" />
 
         <Container>
-
-          <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_0.65fr] lg:items-end">
-
+          {/* Section heading */}
+          <div className="relative z-10 grid gap-4 lg:grid-cols-[1fr_0.7fr] lg:items-end">
             <div>
-
-              <div className="mb-6 flex items-center gap-4">
-
-                <span className="h-px w-14 bg-[#B91C1C]" />
-
-                <p className="text-base font-bold uppercase tracking-[0.3em] text-[#FCA5A5] sm:text-lg">
+              <div className="mb-3 flex items-center gap-3">
+                <span className="h-px w-10 bg-[#B91C1C]" />
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#FCA5A5] sm:text-sm">
                   Industries We Serve
                 </p>
-
               </div>
 
-              <h2 className="max-w-4xl text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-7xl">
+              <h2 className="max-w-3xl text-3xl font-black leading-[1.05] tracking-tight text-white sm:text-4xl lg:text-5xl">
                 Protection across
                 <span className="block text-[#B91C1C]">
                   different environments.
                 </span>
               </h2>
-
             </div>
 
-            <p className="text-lg leading-8 text-slate-400 sm:text-xl">
-              Our security professionals provide dependable protection
-              across a wide range of environments, properties, and
-              operational settings.
+            <p className="max-w-xl text-sm leading-6 text-slate-400 sm:text-base">
+              Dependable security for a wide range of properties,
+              businesses, and operational environments.
+            </p>
+          </div>
+
+          {/* Compact industry cards */}
+          <div className="relative z-10 mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {industries.map((industry, index) => {
+              const Icon = industry.icon;
+
+              return (
+                <div
+                  key={industry.title}
+                  className="group flex items-start gap-4 border border-white/10 bg-white/[0.035] p-4 transition-all duration-300 hover:border-[#B91C1C]/50 hover:bg-white/[0.06]"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#B91C1C]/30 bg-[#B91C1C]/10 text-[#FCA5A5] transition-colors group-hover:bg-[#B91C1C] group-hover:text-white">
+                    <Icon size={21} strokeWidth={1.8} />
+                  </div>
+
+                  <div className="min-w-0">
+                    <div className="mb-1 flex items-center gap-2">
+                      <span className="text-[10px] font-bold tracking-wider text-[#B91C1C]">
+                        0{index + 1}
+                      </span>
+                      <h3 className="text-base font-bold text-white sm:text-lg">
+                        {industry.title}
+                      </h3>
+                    </div>
+
+                    <p className="text-xs leading-5 text-slate-400 sm:text-sm">
+                      {industry.text}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="relative z-10 mt-6 flex flex-col gap-2 border-t border-white/10 pt-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-xs leading-5 text-slate-500 sm:text-sm">
+              Professional security solutions designed around the
+              environment, people, and risks that matter most.
             </p>
 
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
+              PSS
+            </span>
           </div>
-
-
-          {/* Industry Cards */}
-
-          <div className="relative z-10 mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-12">
-
-            <IndustryCard
-              industry={industries[0]}
-              number="01"
-              className="lg:col-span-7 lg:row-span-2"
-              large
-            />
-
-            <IndustryCard
-              industry={industries[1]}
-              number="02"
-              className="lg:col-span-5"
-              variant="outline"
-            />
-
-            <IndustryCard
-              industry={industries[2]}
-              number="03"
-              className="lg:col-span-5"
-              variant="red"
-            />
-
-            <IndustryCard
-              industry={industries[3]}
-              number="04"
-              className="lg:col-span-4"
-              variant="minimal"
-            />
-
-            <IndustryCard
-              industry={industries[4]}
-              number="05"
-              className="lg:col-span-4"
-              variant="glass"
-            />
-
-            <IndustryCard
-              industry={industries[5]}
-              number="06"
-              className="lg:col-span-4"
-              variant="line"
-            />
-
-          </div>
-
-
-          <div className="relative z-10 mt-16 border-t border-white/10 pt-8">
-
-            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-
-              <p className="max-w-3xl text-base font-medium leading-8 text-slate-500 sm:text-lg">
-                Professional security solutions designed around the
-                environment, people, and risks that matter most.
-              </p>
-
-              <div className="flex items-center gap-3">
-
-                <span className="h-2.5 w-2.5 rounded-full bg-[#B91C1C] shadow-[0_0_15px_rgba(185,28,28,0.7)]" />
-
-                <span className="text-sm font-bold uppercase tracking-[0.25em] text-slate-500 sm:text-base">
-                  PSS
-                </span>
-
-              </div>
-
-            </div>
-
-          </div>
-
         </Container>
       </section>
 
@@ -1073,11 +1022,11 @@ function TrustPoint({ icon: Icon, text }) {
     <div className="flex items-center gap-3">
 
       <Icon
-        size={22}
+        size={20}
         className="text-[#EF4444]"
       />
 
-      <span className="text-base font-bold uppercase tracking-wider text-white/70 sm:text-lg">
+      <span className="text-sm font-bold uppercase tracking-wider text-white/70 sm:text-base">
         {text}
       </span>
 
@@ -1109,15 +1058,15 @@ function IndustryCard({
         className={`
           group relative overflow-hidden
           bg-[#B91C1C]
-          p-7
+          p-5
           transition-all duration-500
           hover:-translate-y-1
-          sm:p-8
+          sm:p-6
           ${className}
         `}
       >
 
-        <span className="absolute -right-5 -top-8 text-[110px] font-black leading-none text-white/[0.08]">
+        <span className="absolute -right-5 -top-8 text-[80px] font-black leading-none text-white/[0.08]">
           {number}
         </span>
 
@@ -1125,7 +1074,7 @@ function IndustryCard({
 
           <div className="flex items-center justify-between">
 
-            <div className="flex h-14 w-14 items-center justify-center bg-white text-[#B91C1C]">
+            <div className="flex h-12 w-12 items-center justify-center bg-white text-[#B91C1C]">
               <Icon size={29} />
             </div>
 
@@ -1136,11 +1085,11 @@ function IndustryCard({
 
           </div>
 
-          <h3 className="mt-8 text-2xl font-black text-white sm:text-3xl">
+          <h3 className="mt-5 text-xl font-black text-white sm:text-2xl">
             {industry.title}
           </h3>
 
-          <p className="mt-4 max-w-md text-base leading-7 text-white/75 sm:text-lg">
+          <p className="mt-3 max-w-md text-sm leading-6 text-white/75 sm:text-base">
             {industry.text}
           </p>
 
@@ -1160,18 +1109,18 @@ function IndustryCard({
           group relative overflow-hidden
           border border-white/15
           bg-transparent
-          p-7
+          p-5
           transition-all duration-500
           hover:border-[#B91C1C]/60
           hover:bg-white/[0.035]
-          sm:p-8
+          sm:p-6
           ${className}
         `}
       >
 
         <div className="flex items-start justify-between">
 
-          <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#B91C1C]/40 text-[#FCA5A5] transition-all duration-500 group-hover:bg-[#B91C1C] group-hover:text-white">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#B91C1C]/40 text-[#FCA5A5] transition-all duration-500 group-hover:bg-[#B91C1C] group-hover:text-white">
             <Icon size={29} />
           </div>
 
@@ -1181,11 +1130,11 @@ function IndustryCard({
 
         </div>
 
-        <h3 className="mt-7 text-2xl font-black text-white sm:text-3xl">
+        <h3 className="mt-5 text-xl font-black text-white sm:text-2xl">
           {industry.title}
         </h3>
 
-        <p className="mt-4 max-w-lg text-base leading-7 text-slate-400 sm:text-lg">
+        <p className="mt-3 max-w-lg text-sm leading-6 text-slate-400 sm:text-base">
           {industry.text}
         </p>
 
@@ -1205,10 +1154,10 @@ function IndustryCard({
           group relative
           border-b border-white/15
           bg-[#08081E]
-          p-7
+          p-5
           transition-all duration-500
           hover:border-[#B91C1C]
-          sm:p-8
+          sm:p-6
           ${className}
         `}
       >
@@ -1220,18 +1169,18 @@ function IndustryCard({
           </span>
 
           <Icon
-            size={31}
+            size={25}
             strokeWidth={1.6}
             className="text-[#FCA5A5] transition-transform duration-500 group-hover:scale-110"
           />
 
         </div>
 
-        <h3 className="mt-7 text-2xl font-black text-white">
+        <h3 className="mt-5 text-xl font-black text-white">
           {industry.title}
         </h3>
 
-        <p className="mt-4 text-base leading-7 text-slate-500">
+        <p className="mt-3 text-sm leading-6 text-slate-500">
           {industry.text}
         </p>
 
@@ -1249,12 +1198,12 @@ function IndustryCard({
           group relative overflow-hidden
           border border-white/10
           bg-white/[0.035]
-          p-7
+          p-5
           backdrop-blur-md
           transition-all duration-500
           hover:-translate-y-2
           hover:bg-white/[0.06]
-          sm:p-8
+          sm:p-6
           ${className}
         `}
       >
@@ -1269,17 +1218,17 @@ function IndustryCard({
               {number}
             </span>
 
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 text-[#FCA5A5]">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 text-[#FCA5A5]">
               <Icon size={29} />
             </div>
 
           </div>
 
-          <h3 className="mt-7 text-2xl font-black text-white">
+          <h3 className="mt-5 text-xl font-black text-white">
             {industry.title}
           </h3>
 
-          <p className="mt-4 text-base leading-7 text-slate-400">
+          <p className="mt-3 text-sm leading-6 text-slate-400">
             {industry.text}
           </p>
 
@@ -1299,10 +1248,10 @@ function IndustryCard({
           group relative overflow-hidden
           border-l-4 border-[#B91C1C]
           bg-[#0B0B24]
-          p-7
+          p-5
           transition-all duration-500
           hover:bg-[#10102D]
-          sm:p-8
+          sm:p-6
           ${className}
         `}
       >
@@ -1344,10 +1293,10 @@ function IndustryCard({
         group relative overflow-hidden
         border border-white/10
         bg-[#0B0B24]
-        p-8
+        p-6
         transition-all duration-500
         hover:border-[#B91C1C]/50
-        sm:p-10
+        sm:p-7
         ${className}
       `}
     >
@@ -1360,10 +1309,10 @@ function IndustryCard({
 
           <div className="flex items-start justify-between">
 
-            <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-[#B91C1C]/30 bg-[#B91C1C]/10 text-[#FCA5A5] transition-all duration-500 group-hover:bg-[#B91C1C] group-hover:text-white">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#B91C1C]/30 bg-[#B91C1C]/10 text-[#FCA5A5] transition-all duration-500 group-hover:bg-[#B91C1C] group-hover:text-white">
 
               <Icon
-                size={38}
+                size={30}
                 strokeWidth={1.6}
               />
 
@@ -1375,17 +1324,17 @@ function IndustryCard({
 
           </div>
 
-          <h3 className="mt-14 text-3xl font-black text-white sm:text-4xl">
+          <h3 className="mt-8 text-2xl font-black text-white sm:text-3xl">
             {industry.title}
           </h3>
 
-          <p className="mt-5 max-w-xl text-lg leading-8 text-slate-400 sm:text-xl">
+          <p className="mt-5 max-w-xl text-base leading-7 text-slate-400 sm:text-lg">
             {industry.text}
           </p>
 
         </div>
 
-        <div className="mt-12 flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#FCA5A5]">
+        <div className="mt-7 flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#FCA5A5]">
 
           <span className="h-2 w-2 rounded-full bg-[#B91C1C]" />
 

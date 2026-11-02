@@ -1,432 +1,548 @@
+
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Swal from "sweetalert2";
+import Container from "@/components/ui/Container";
 
 import {
-  ArrowUpRight,
-  Building2,
-  CheckCircle2,
   Mail,
-  MapPin,
   Phone,
-  Shield,
-  ShieldCheck,
+  MapPin,
+  User,
+  MessageSquare,
+  Send,
 } from "lucide-react";
 
 import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
- 
 } from "react-icons/fa";
+
 import { FaXTwitter } from "react-icons/fa6";
 
+const socialLinks = [
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/people/Preventative-Security-Services-Ltd/61576388536208/",
+    icon: FaFacebookF,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/preventivesecurityservices/",
+    icon: FaInstagram,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/preventative-security-services/",
+    icon: FaLinkedinIn,
+  },
+  {
+    label: "X",
+    href: "https://x.com/preventivess",
+    icon: FaXTwitter,
+  },
+];
+
+const footerLinks = [
+  {
+    title: "Explore",
+    links: [
+      { label: "Home", href: "/" },
+      { label: "About Us", href: "#about" },
+      { label: "Our Team", href: "#team" },
+    ],
+  },
+  {
+    title: "Services",
+    links: [
+      { label: "Security Services", href: "/services" },
+      {
+        label: "Customer Service / Reception",
+        href: "/services",
+      },
+    ],
+  },
+];
+
 export default function Footer() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
+    try {
+      console.log("Sending enquiry:", formData);
+
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      console.log("API status:", response.status);
+
+      const result = await response.json();
+
+      console.log("API response:", result);
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message || "Unable to send your enquiry."
+        );
+      }
+
+      await Swal.fire({
+        icon: "success",
+        title: "Enquiry Sent!",
+        text: "Thank you for contacting us. Our team will get back to you shortly.",
+        confirmButtonText: "Okay",
+        confirmButtonColor: "#B91C1C",
+        background: "#ffffff",
+        color: "#05051A",
+        customClass: {
+          popup: "rounded-2xl",
+          title: "text-2xl font-bold",
+          confirmButton: "rounded-lg px-6 py-3",
+        },
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Enquiry submission error:", error);
+
+      Swal.fire({
+        icon: "error",
+        title: "Unable to Send",
+        text:
+          error.message ||
+          "Something went wrong while sending your enquiry. Please try again.",
+        confirmButtonText: "Try Again",
+        confirmButtonColor: "#B91C1C",
+        background: "#ffffff",
+        color: "#05051A",
+        customClass: {
+          popup: "rounded-2xl",
+          title: "text-2xl font-bold",
+          confirmButton: "rounded-lg px-6 py-3",
+        },
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <footer
-      className="relative overflow-hidden bg-[#05051A] text-white"
-      id="footer"
-    >
-      {/* =====================================================
-          DARK FOOTER BACKGROUND
-      ====================================================== */}
+    <div className="relative overflow-hidden bg-[#05051A] text-white">
 
-      <div className="pointer-events-none absolute inset-0 opacity-[0.025]">
-        <div
-          className="h-full w-full"
-          style={{
-            backgroundImage:
-              "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
-            backgroundSize: "55px 55px",
-          }}
-        />
-      </div>
+      {/* ================= CONTACT SECTION ================= */}
 
-      {/* Ambient Glow */}
-      <div className="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#B91C1C]/15 blur-[130px]" />
+      <section
+        id="contact"
+        className="relative py-10 sm:py-12 lg:py-14"
+      >
+        {/* Background Glow */}
 
-      <div className="pointer-events-none absolute -bottom-40 -left-40 h-[450px] w-[450px] rounded-full bg-[#B91C1C]/10 blur-[120px]" />
+        <div className="pointer-events-none absolute -right-40 top-0 h-80 w-80 rounded-full bg-[#B91C1C]/10 blur-[120px]" />
 
-      <div className="relative z-10">
+        <Container>
+          <div className="relative z-10 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-12">
 
-     
+            {/* CONTACT INFORMATION */}
 
-        {/* =================================================
-            MAIN DARK FOOTER
-        ================================================== */}
+            <div>
+              <div className="mb-3 flex items-center gap-2">
+                <span className="h-[2px] w-7 bg-[#B91C1C]" />
 
-        <div className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 lg:px-12 lg:py-20">
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#FCA5A5]">
+                  Get In Touch
+                </span>
+              </div>
 
-          <div className="grid gap-12 lg:grid-cols-[1.5fr_0.7fr_0.7fr_1fr] lg:gap-16">
+              <h2 className="max-w-lg text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-[42px]">
+                Let&apos;s discuss your{" "}
+                <span className="text-[#B91C1C]">
+                  security needs.
+                </span>
+              </h2>
 
-            {/* =================================================
-                BRAND
-            ================================================== */}
-
-            <div className="max-w-md">
-
-              <Link
-                href="/"
-                className="inline-flex items-center"
-              >
-                <Image
-                  src="/images/logo.png"
-                  alt="Company Logo"
-                  width={310}
-                  height={120}
-                  className="h-auto max-h-24 w-auto max-w-[260px] object-contain"
-                />
-              </Link>
-
-              <p className="mt-7 text-lg leading-8 text-slate-400 sm:text-xl">
-                Professional security and customer service solutions designed
-                to help businesses create safer, more welcoming and dependable
-                environments.
+              <p className="mt-4 max-w-md text-base leading-7 text-slate-400">
+                Tell us what you need. Our team will help you
+                find the right security solution for your
+                property, people, or business.
               </p>
 
-              {/* =================================================
-                  SOCIAL ICONS
-              ================================================== */}
+              {/* CONTACT DETAILS */}
 
-<div className="mt-8 flex items-center gap-4">
+              <div className="mt-7 space-y-4">
 
-  <SocialButton
-    href="https://www.facebook.com/people/Preventative-Security-Services-Ltd/61576388536208/"
-    label="Facebook"
-    icon={<FaFacebookF size={23} />}
-  />
+                {/* PHONE */}
 
-  <SocialButton
-    href="https://www.instagram.com/preventivesecurityservices/"
-    label="Instagram"
-    icon={<FaInstagram size={23} />}
-  />
-
-  <SocialButton
-    href="https://www.linkedin.com/company/preventative-security-services/"
-    label="LinkedIn"
-    icon={<FaLinkedinIn size={23} />}
-  />
-
-  <SocialButton
-    href="https://x.com/preventivess"
-    label="X"
-    icon={<FaXTwitter size={21} />}
-  />
-
-</div>
-
-            </div>
-
-            {/* =================================================
-                EXPLORE
-            ================================================== */}
-
-            <div>
-
-              <FooterTitle>
-                Explore
-              </FooterTitle>
-
-              <div className="mt-7 space-y-5">
-
-                <FooterLink href="/">
-                  Home
-                </FooterLink>
-
-                <FooterLink href="#about">
-                  About Us
-                </FooterLink>
-
-                <FooterLink href="#team">
-                  Our Team
-                </FooterLink>
-
-              </div>
-
-            </div>
-
-            {/* =================================================
-                SERVICES
-            ================================================== */}
-
-            <div>
-
-              <FooterTitle>
-                Services
-              </FooterTitle>
-
-              <div className="mt-7 space-y-5">
-
-                <FooterLink href="/services">
-                  Security Services
-                </FooterLink>
-
-                <FooterLink href="/services">
-                  Customer Service / Reception
-                </FooterLink>
-
-              </div>
-
-            </div>
-
-            {/* =================================================
-                CONTACT
-            ================================================== */}
-
-            <div>
-
-              <FooterTitle>
-                Get in touch
-              </FooterTitle>
-
-              <div className="mt-7 space-y-7">
-
-                {/* OFFICE */}
-                <div className="flex gap-4">
-
-                  <ContactIcon icon={MapPin} />
+                <a
+                  href="tel:+18674457900"
+                  className="group flex items-center gap-3"
+                >
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-[#FCA5A5] transition-all group-hover:border-[#B91C1C] group-hover:bg-[#B91C1C] group-hover:text-white">
+                    <Phone size={18} />
+                  </div>
 
                   <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                      Call Us
+                    </p>
 
-                    <p className="text-sm font-semibold uppercase tracking-wider text-slate-500">
+                    <p className="mt-0.5 text-base font-semibold text-white">
+                      +1 867-445-7900
+                    </p>
+                  </div>
+                </a>
+
+                {/* EMAIL */}
+
+                <a
+                  href="mailto:info@preventativesecurityservices.ca"
+                  className="group flex items-center gap-3"
+                >
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-[#FCA5A5] transition-all group-hover:border-[#B91C1C] group-hover:bg-[#B91C1C] group-hover:text-white">
+                    <Mail size={18} />
+                  </div>
+
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                      Email Us
+                    </p>
+
+                    <p className="mt-0.5 break-all text-sm font-semibold text-white sm:text-base">
+                      info@preventativesecurityservices.ca
+                    </p>
+                  </div>
+                </a>
+
+                {/* OFFICE */}
+
+                <div className="flex items-center gap-3">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-[#FCA5A5]">
+                    <MapPin size={18} />
+                  </div>
+
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                       Office
                     </p>
 
-                    <p className="mt-2 text-base leading-7 text-slate-300 sm:text-lg">
+                    <p className="mt-0.5 text-sm leading-6 text-slate-300">
                       P.O. Box 20072, 2nd Floor,
-                      <br />
-                      4910 – 50th Street Yellowknife,
-                      <br />
+                      4910 – 50th Street, Yellowknife,
                       NT X1A 3X8
                     </p>
-
                   </div>
-
                 </div>
 
-                {/* PHONE */}
-                <div className="flex gap-4">
+              </div>
+            </div>
 
-                  <ContactIcon icon={Phone} />
+            {/* ================= ENQUIRY FORM ================= */}
+
+            <div className="rounded-xl border border-white/10 bg-[#0B0B24] p-5 shadow-xl sm:p-7">
+
+              <div className="mb-5">
+                <h3 className="text-2xl font-bold text-white">
+                  Send an Enquiry
+                </h3>
+
+                <p className="mt-1 text-sm leading-6 text-slate-400">
+                  Share your requirements and we&apos;ll get
+                  back to you.
+                </p>
+              </div>
+
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-4"
+              >
+
+                {/* FULL NAME */}
+
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="mb-1.5 block text-sm font-semibold text-slate-300"
+                  >
+                    Full Name
+                  </label>
+
+                  <div className="relative">
+                    <User
+                      size={17}
+                      className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500"
+                    />
+
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Enter your full name"
+                      required
+                      disabled={isSubmitting}
+                      className="h-12 w-full rounded-lg border border-white/10 bg-[#05051A] pl-10 pr-4 text-base text-white outline-none transition placeholder:text-slate-500 focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 disabled:cursor-not-allowed disabled:opacity-60"
+                    />
+                  </div>
+                </div>
+
+                {/* EMAIL + PHONE */}
+
+                <div className="grid gap-4 sm:grid-cols-2">
 
                   <div>
-
-                    <p className="text-sm font-semibold uppercase tracking-wider text-slate-500">
-                      Phone
-                    </p>
-
-                    <a
-                      href="tel:+18674457900"
-                      className="mt-2 block text-base text-slate-300 transition-colors hover:text-white sm:text-lg"
+                    <label
+                      htmlFor="email"
+                      className="mb-1.5 block text-sm font-semibold text-slate-300"
                     >
-                      +1 867-445-7900
-                    </a>
-
-                  </div>
-
-                </div>
-
-                {/* EMAIL */}
-                <div className="flex gap-4">
-
-                  <ContactIcon icon={Mail} />
-
-                  <div>
-
-                    <p className="text-sm font-semibold uppercase tracking-wider text-slate-500">
                       Email
-                    </p>
+                    </label>
 
-                    <a
-                      href="mailto:info@preventativesecurityservices.ca"
-                      className="mt-2 block break-all text-base text-slate-300 transition-colors hover:text-white sm:text-lg"
+                    <div className="relative">
+                      <Mail
+                        size={17}
+                        className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500"
+                      />
+
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="Your email"
+                        required
+                        disabled={isSubmitting}
+                        className="h-12 w-full rounded-lg border border-white/10 bg-[#05051A] pl-10 pr-3 text-base text-white outline-none transition placeholder:text-slate-500 focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 disabled:cursor-not-allowed disabled:opacity-60"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className="mb-1.5 block text-sm font-semibold text-slate-300"
                     >
-                      info@preventativesecurityservices.ca
-                    </a>
+                      Phone
+                    </label>
 
+                    <div className="relative">
+                      <Phone
+                        size={17}
+                        className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500"
+                      />
+
+                      <input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="Phone number"
+                        required
+                        disabled={isSubmitting}
+                        className="h-12 w-full rounded-lg border border-white/10 bg-[#05051A] pl-10 pr-3 text-base text-white outline-none transition placeholder:text-slate-500 focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 disabled:cursor-not-allowed disabled:opacity-60"
+                      />
+                    </div>
                   </div>
 
                 </div>
 
-              </div>
+                {/* MESSAGE */}
 
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="mb-1.5 block text-sm font-semibold text-slate-300"
+                  >
+                    Message
+                  </label>
+
+                  <div className="relative">
+                    <MessageSquare
+                      size={17}
+                      className="absolute left-3.5 top-3.5 text-slate-500"
+                    />
+
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Tell us about your security requirements..."
+                      required
+                      disabled={isSubmitting}
+                      rows={3}
+                      className="w-full resize-none rounded-lg border border-white/10 bg-[#05051A] py-3 pl-10 pr-4 text-base leading-6 text-white outline-none transition placeholder:text-slate-500 focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 disabled:cursor-not-allowed disabled:opacity-60"
+                    />
+                  </div>
+                </div>
+
+                {/* SUBMIT */}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="group flex w-full items-center justify-center gap-2 rounded-lg bg-[#B91C1C] px-5 py-3.5 text-base font-bold text-white transition-all duration-300 hover:bg-[#991B1B] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Submit Enquiry
+
+                      <Send
+                        size={16}
+                        className="transition-transform group-hover:translate-x-1"
+                      />
+                    </>
+                  )}
+                </button>
+
+                <p className="text-center text-xs leading-5 text-slate-500">
+                  Your information will only be used to respond
+                  to your enquiry.
+                </p>
+
+              </form>
             </div>
 
           </div>
+        </Container>
+      </section>
 
-        </div>
 
-        {/* =================================================
-            TRUST STRIP
-        ================================================== */}
 
-        <div className="border-t border-white/10">
+   
+{/* ================= SLEEK FOOTER ================= */}
 
-          <div className="mx-auto max-w-[1400px] px-5 py-7 sm:px-8 lg:px-12">
+<footer
+  id="footer"
+  className="relative border-t border-white/[0.08]"
+>
+  <Container>
+    <div className="grid gap-8 py-8 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.7fr_0.8fr] lg:gap-10">
 
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+      {/* BRAND */}
 
-              <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
+      <div>
+        <Link href="/" className="inline-flex items-center">
+          <Image
+            src="/images/logo.png"
+            alt="Preventative Security Services"
+            width={190}
+            height={85}
+            className="h-auto w-auto max-h-32 max-w-[195px] object-contain"
+            unoptimized
+          />
+        </Link>
 
-                <TrustItem
-                  icon={ShieldCheck}
-                  text="Professional"
-                />
+        <p className="mt-3 max-w-xs text-base leading-6 text-slate-400">
+          Professional security and customer service
+          solutions for safer business environments.
+        </p>
 
-                <TrustItem
-                  icon={CheckCircle2}
-                  text="Reliable"
-                />
+        {/* SOCIAL LINKS */}
 
-                <TrustItem
-                  icon={Shield}
-                  text="Trusted"
-                />
+        <div className="mt-4 flex items-center gap-2.5">
+          {socialLinks.map((social) => {
+            const Icon = social.icon;
 
-                <TrustItem
-                  icon={Building2}
-                  text="Business Focused"
-                />
-
-              </div>
-
-              <p className="text-sm text-slate-600 sm:text-base">
-                © {new Date().getFullYear()} Preventative Security Services Ltd. © COPYRIGHT 2026
-               
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        {/* =================================================
-            LEGAL BAR
-        ================================================== */}
-
-        <div className="border-t border-white/5">
-
-          <div className="mx-auto flex max-w-[1400px] flex-col gap-5 px-5 py-6 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-12">
-
-            <div className="flex flex-wrap items-center gap-5 text-sm text-slate-600 sm:text-base">
-
-              {/* <Link
-                href="/privacy-policy"
-                className="transition-colors hover:text-slate-300"
+            return (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                className="flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-slate-400 transition-all hover:border-[#B91C1C] hover:bg-[#B91C1C] hover:text-white"
               >
-                Privacy Policy
-              </Link>
-
-              <span className="h-1.5 w-1.5 rounded-full bg-slate-700" />
-
-              <Link
-                href="/terms"
-                className="transition-colors hover:text-slate-300"
-              >
-                Terms & Conditions
-              </Link> */}
-
-            </div>
-
-            <p className="text-sm text-slate-700 sm:text-base">
-             Designed & Developed by GTM CANADA
-            </p>
-
-          </div>
-
+                <Icon size={16} />
+              </a>
+            );
+          })}
         </div>
-
       </div>
-    </footer>
-  );
-}
 
-/* =========================================================
-   FOOTER TITLE
-========================================================= */
+      {/* EXPLORE + SERVICES */}
 
-function FooterTitle({ children }) {
-  return (
-    <div>
+      {footerLinks.map((group) => (
+        <div key={group.title}>
+          <h4 className="text-base font-bold uppercase tracking-[0.12em] text-white">
+            {group.title}
+          </h4>
 
-      <p className="text-base font-bold uppercase tracking-[0.25em] text-white sm:text-lg">
-        {children}
+          <div className="mt-4 space-y-3">
+            {group.links.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="block text-base leading-6 text-slate-400 transition-colors hover:text-white"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      ))}
+
+    </div>
+
+    {/* COPYRIGHT BAR */}
+
+    <div className="flex flex-col gap-3 border-t border-white/[0.08] py-5 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+
+      <p>
+        © {new Date().getFullYear()} Preventative Security
+        Services Ltd. All rights reserved.
       </p>
 
-      <div className="mt-4 h-[2px] w-9 bg-[#B91C1C]" />
+      <p>
+        Designed & Developed by GTM CANADA
+      </p>
 
     </div>
-  );
-}
+  </Container>
+</footer>
 
-/* =========================================================
-   FOOTER LINK
-========================================================= */
-
-function FooterLink({ href, children }) {
-  return (
-    <Link
-      href={href}
-      className="group flex items-center gap-3 text-base text-slate-400 transition-colors duration-300 hover:text-white sm:text-lg"
-    >
-      <span className="h-px w-0 bg-[#B91C1C] transition-all duration-300 group-hover:w-5" />
-
-      <span>
-        {children}
-      </span>
-    </Link>
-  );
-}
-
-/* =========================================================
-   SOCIAL BUTTON
-========================================================= */
-
-function SocialButton({ href, label, icon }) {
-  return (
-    <a
-      href={href}
-      aria-label={label}
-      className="flex h-14 w-14 items-center justify-center border border-white/10 bg-white/[0.03] text-slate-400 transition-all duration-300 hover:border-[#B91C1C]/50 hover:bg-[#B91C1C] hover:text-white"
-    >
-      {icon}
-    </a>
-  );
-}
-
-/* =========================================================
-   CONTACT ICON
-========================================================= */
-
-function ContactIcon({ icon: Icon }) {
-  return (
-    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03]">
-      <Icon
-        size={21}
-        className="text-[#F87171]"
-      />
-    </div>
-  );
-}
-
-/* =========================================================
-   TRUST ITEM
-========================================================= */
-
-function TrustItem({ icon: Icon, text }) {
-  return (
-    <div className="flex items-center gap-3">
-
-      <Icon
-        size={19}
-        strokeWidth={1.6}
-        className="text-[#B91C1C]"
-      />
-
-      <span className="text-sm font-semibold text-slate-500 sm:text-base">
-        {text}
-      </span>
 
     </div>
   );

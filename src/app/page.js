@@ -22,7 +22,7 @@ export default function Home() {
         <WhyChoose/>
         <MissionVision/>
         <Team/>
-        <BookingSection/>
+        {/* <BookingSection/> */}
         <FAQSection/>
     
       </main>
