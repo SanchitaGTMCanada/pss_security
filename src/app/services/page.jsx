@@ -168,7 +168,10 @@ export default function ServicesPage() {
           HERO — DARK
       ====================================================== */}
 
-      <section className="relative overflow-hidden bg-[#05051A]">
+      <section
+  id="service-overview"
+  className="relative scroll-mt-24 overflow-hidden bg-[#05051A]"
+>
 
         <div className="absolute inset-0">
           <Image

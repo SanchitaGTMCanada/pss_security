@@ -6,7 +6,7 @@ import Container from "@/components/ui/Container";
 
 export default function AboutPreview() {
   return (
-    <section className="relative overflow-hidden bg-[#05051A] py-7 sm:py-8 lg:py-9">
+    <section className="relative overflow-hidden bg-[#05051A] py-7 sm:py-8 lg:py-9" id="about">
       {/* Ambient Glow */}
       <div className="pointer-events-none absolute -right-40 top-20 h-80 w-80 rounded-full bg-[#B91C1C]/10 blur-[120px]" />
 

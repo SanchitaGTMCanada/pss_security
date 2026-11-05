@@ -47,23 +47,21 @@ const socialLinks = [
   },
 ];
 
+// Updated homepage navigation links
 const footerLinks = [
   {
     title: "Explore",
     links: [
       { label: "Home", href: "/" },
-      { label: "About Us", href: "#about" },
-      { label: "Our Team", href: "#team" },
+      { label: "About Us", href: "/#about" },
+      { label: "Our Team", href: "/#team" },
     ],
   },
   {
     title: "Services",
     links: [
-      { label: "Security Services", href: "/services" },
-      {
-        label: "Customer Service / Reception",
-        href: "/services",
-      },
+    { label: "Security Services", href: "/services#service-overview" },
+{ label: "Customer Service / Reception", href: "/services#service-overview" },
     ],
   },
 ];
@@ -77,6 +75,29 @@ export default function Footer() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // When already on the Services page, clicking a Services footer link
+  // should scroll to the overview section again.
+  const handleFooterLinkClick = (e, href) => {
+    if (href !== "/services#service-overview") return;
+
+    const currentPath = window.location.pathname.endsWith("/")
+      ? window.location.pathname.slice(0, -1)
+      : window.location.pathname;
+
+    if (currentPath === "/services") {
+      e.preventDefault();
+
+      window.history.replaceState(null, "", href);
+
+      document
+        .getElementById("service-overview")
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -449,100 +470,98 @@ export default function Footer() {
         </Container>
       </section>
 
+      {/* ================= SLEEK FOOTER ================= */}
 
+      <footer
+        id="footer"
+        className="relative border-t border-white/[0.08]"
+      >
+        <Container>
+          <div className="grid gap-8 py-8 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.7fr_0.8fr] lg:gap-10">
 
-   
-{/* ================= SLEEK FOOTER ================= */}
+            {/* BRAND */}
 
-<footer
-  id="footer"
-  className="relative border-t border-white/[0.08]"
->
-  <Container>
-    <div className="grid gap-8 py-8 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.7fr_0.8fr] lg:gap-10">
-
-      {/* BRAND */}
-
-      <div>
-        <Link href="/" className="inline-flex items-center">
-          <Image
-            src="/images/logo.png"
-            alt="Preventative Security Services"
-            width={190}
-            height={85}
-            className="h-auto w-auto max-h-32 max-w-[195px] object-contain"
-            unoptimized
-          />
-        </Link>
-
-        <p className="mt-3 max-w-xs text-base leading-6 text-slate-400">
-          Professional security and customer service
-          solutions for safer business environments.
-        </p>
-
-        {/* SOCIAL LINKS */}
-
-        <div className="mt-4 flex items-center gap-2.5">
-          {socialLinks.map((social) => {
-            const Icon = social.icon;
-
-            return (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label}
-                className="flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-slate-400 transition-all hover:border-[#B91C1C] hover:bg-[#B91C1C] hover:text-white"
-              >
-                <Icon size={16} />
-              </a>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* EXPLORE + SERVICES */}
-
-      {footerLinks.map((group) => (
-        <div key={group.title}>
-          <h4 className="text-base font-bold uppercase tracking-[0.12em] text-white">
-            {group.title}
-          </h4>
-
-          <div className="mt-4 space-y-3">
-            {group.links.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="block text-base leading-6 text-slate-400 transition-colors hover:text-white"
-              >
-                {link.label}
+            <div>
+              <Link href="/" className="inline-flex items-center">
+                <Image
+                  src="/images/logo.png"
+                  alt="Preventative Security Services"
+                  width={190}
+                  height={85}
+                  className="h-auto w-auto max-h-32 max-w-[195px] object-contain"
+                  unoptimized
+                />
               </Link>
+
+              <p className="mt-3 max-w-xs text-base leading-6 text-slate-400">
+                Professional security and customer service
+                solutions for safer business environments.
+              </p>
+
+              {/* SOCIAL LINKS */}
+
+              <div className="mt-4 flex items-center gap-2.5">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon;
+
+                  return (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      className="flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-slate-400 transition-all hover:border-[#B91C1C] hover:bg-[#B91C1C] hover:text-white"
+                    >
+                      <Icon size={16} />
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* EXPLORE + SERVICES */}
+
+            {footerLinks.map((group) => (
+              <div key={group.title}>
+                <h4 className="text-base font-bold uppercase tracking-[0.12em] text-white">
+                  {group.title}
+                </h4>
+
+                <div className="mt-4 space-y-3">
+                  {group.links.map((link) => (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      scroll={true}
+                      onClick={(e) => handleFooterLinkClick(e, link.href)}
+                      className="block text-base leading-6 text-slate-400 transition-colors hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             ))}
+
           </div>
-        </div>
-      ))}
 
-    </div>
+          {/* COPYRIGHT BAR */}
 
-    {/* COPYRIGHT BAR */}
+          <div className="flex flex-col gap-3 border-t border-white/[0.08] py-5 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
 
-    <div className="flex flex-col gap-3 border-t border-white/[0.08] py-5 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+            <p>
+              © {new Date().getFullYear()} Preventative Security
+              Services Ltd. All rights reserved.
+            </p>
 
-      <p>
-        © {new Date().getFullYear()} Preventative Security
-        Services Ltd. All rights reserved.
-      </p>
+            <p>
+              Designed & Developed by GTM CANADA
+            </p>
 
-      <p>
-        Designed & Developed by GTM CANADA
-      </p>
-
-    </div>
-  </Container>
-</footer>
-
+          </div>
+        </Container>
+      </footer>
 
     </div>
   );
